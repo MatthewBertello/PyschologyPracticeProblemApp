@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PsychologyPracticeProblemApp.LoginPage"
+             BackgroundColor="White">
+
+    <ScrollView >
+      <Grid RowDefinitions="5*, *, *, *, *, 5* " ColumnDefinitions="2*, *, 2*">
+        <Label Grid.Row="1" Grid.Column="1" TextColor="Black" Text="Login" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center"/>
+        <Frame Grid.Row="2" Grid.Column="1" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="10">
+          <Entry TextColor="Black" Placeholder="Username" x:Name="UsernameEntry"/>
+        </Frame>
+        <Frame Grid.Row="3" Grid.Column="1" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="10">
+          <Entry TextColor="Black" Placeholder="Password" x:Name="PasswordEntry"/>
+        </Frame>
+        <Button Grid.Row="4" Grid.Column="1" TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Login" />
+      </Grid>
+
+    </ScrollView>
+
+</ContentPage>
