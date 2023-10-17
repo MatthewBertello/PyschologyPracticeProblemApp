@@ -15,7 +15,7 @@
         </Border>
         <Grid Grid.Column="1" RowDefinitions="50,*"> <!-- Divide Upper bar and lower half-->
             <Grid Grid.Column="0" ColumnDefinitions="50,*,200,200" BackgroundColor="{StaticResource Tint}"> <!-- Upper Bar -->
-                <Rectangle Grid.Column="0"  BackgroundColor="Red"/>
+                <Image Grid.Column="0" Source="menu_button.png" Margin="5"/>
                 <Label Grid.Column="2" Text="Username" VerticalOptions="Center" HorizontalOptions="End" Padding="25,0" FontSize="20" FontFamily="Roboto-Bold"/>
                 <Rectangle Grid.Column="3" BackgroundColor="{StaticResource TintLight}"/>
                 <Label Grid.Column="3" Text="Logout" VerticalOptions="Center" HorizontalOptions="Center" Padding="25,0" FontSize="20" BackgroundColor="{StaticResource TintLight}" FontFamily="Roboto-Bold"/>
