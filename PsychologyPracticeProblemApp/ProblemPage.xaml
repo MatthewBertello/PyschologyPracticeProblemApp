@@ -3,39 +3,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PsychologyPracticeProblemApp.ProblemPage"
              BackgroundColor="White">
-  <ScrollView >
-    <Grid ColumnDefinitions="*, 2*, *" RowDefinitions="*">
-      <VerticalStackLayout Grid.Column="0" Grid.Row="0" Margin="30" Spacing="10">
-        <Label TextColor="Black" Text="Data" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-        <Grid ColumnDefinitions="*" RowDefinitions="*,*">
-          <Frame Grid.Column="0" Grid.Row="0" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="End">
-            <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
-              <Label Grid.Column="0" TextColor="Black" Text="X" HorizontalOptions="Center" VerticalOptions="Center"/>
-              <Label Grid.Column="1" TextColor="Black" Text="Y" HorizontalOptions="Center" VerticalOptions="Center"/>
-              <Label Grid.Column="2" TextColor="Black" Text="Z" HorizontalOptions="Center" VerticalOptions="Center"/>
-            </Grid>
-          </Frame>
-          <CollectionView x:Name="DataTable" ItemsSource="{Binding .}" SelectionMode="Single" Grid.Column="0" Grid.Row="1">
-            <CollectionView.ItemTemplate>
-              <DataTemplate>
-                <Frame Grid.Column="0" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0">
-                  <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
-                    <Label Grid.Column="0" TextColor="Black" Text="{Binding XString}" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Label Grid.Column="1" TextColor="Black" Text="{Binding YString}" HorizontalOptions="Center" VerticalOptions="Center"/>
-                    <Label Grid.Column="2" TextColor="Black" Text="{Binding ZString}" HorizontalOptions="Center" VerticalOptions="Center"/>
-                  </Grid>
+    <ScrollView >
+        <Grid ColumnDefinitions="*, 2*, *" RowDefinitions="*">
+            <VerticalStackLayout Grid.Column="0" Grid.Row="0" Margin="30" Spacing="10">
+                <Label TextColor="Black" Text="Data" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                <Grid ColumnDefinitions="*" RowDefinitions="*,*">
+                    <Frame Grid.Column="0" Grid.Row="0" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="End">
+                        <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
+                            <Label Grid.Column="0" TextColor="Black" Text="X" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Column="1" TextColor="Black" Text="Y" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            <Label Grid.Column="2" TextColor="Black" Text="Z" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+                    <CollectionView x:Name="DataTable" ItemsSource="{Binding .}" SelectionMode="Single" Grid.Column="0" Grid.Row="1">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Grid.Column="0" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0">
+                                    <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
+                                        <Label Grid.Column="0" TextColor="Black" Text="{Binding XString}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Label Grid.Column="1" TextColor="Black" Text="{Binding YString}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Label Grid.Column="2" TextColor="Black" Text="{Binding ZString}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+                <Button TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Generate new problem" VerticalOptions="CenterAndExpand"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Column="1" Grid.Row="0" Margin="30" Spacing="10">
+                <Label TextColor="Black" Text="Formula" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="10" Padding="20" VerticalOptions="CenterAndExpand"  Margin="0" WidthRequest="600" HeightRequest="300">
+                    <Image Source="formula.png" Aspect="AspectFit" HorizontalOptions="Center" />
                 </Frame>
-              </DataTemplate>
-            </CollectionView.ItemTemplate>
-          </CollectionView>
+                <Grid ColumnDefinitions="2*, *, 2*" RowDefinitions="*">
+                    <Frame Grid.Column="0" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10">
+                        <Entry TextColor="Black" Placeholder="Check Answer" x:Name="AnswerEntry"/>
+                    </Frame>
+                    <Button Grid.Column="1" TextColor="Black" BorderColor="Black" BackgroundColor="Green" Text="X" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" MaximumWidthRequest="50"/>
+                    <Button Grid.Column="2" TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Generate new problem" VerticalOptions="CenterAndExpand"/>
+                </Grid>
+                <Frame BorderColor="Red" BackgroundColor="Transparent" CornerRadius="10" Padding="20" VerticalOptions="CenterAndExpand"  Margin="0" WidthRequest="600" HeightRequest="300">
+                    <Label TextColor="Red" Text="Feedback will go here" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
+                </Frame>
+            </VerticalStackLayout>
         </Grid>
-        <Button TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Generate new problem" VerticalOptions="CenterAndExpand"/>
-      </VerticalStackLayout>
-      <VerticalStackLayout Grid.Column="1" Grid.Row="0" Margin="30" Spacing="10">
-        <Label TextColor="Black" Text="Formula" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-        <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="10" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10">
-        </Frame>
-      </VerticalStackLayout>
-    </Grid>
-  </ScrollView>
+    </ScrollView>
 </ContentPage>
