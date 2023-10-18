@@ -43,10 +43,5 @@ namespace PsychologyPracticeProblemApp
             BindingContext = dataRows;
         }
 
-        void Test(System.Object sender, System.EventArgs e)
-        {
-            dataRows.Add(new DataRow(1, 2, 3));
-        }
-
     }
 }
