@@ -1,45 +1,25 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PsychologyPracticeProblemApp.LoginPage"
              BackgroundColor="White">
-    <Grid>
-        <StackLayout Margin="20">
-
-            <StackLayout Margin="0,80">
-                <Label FontFamily="OpenSansRegular" TextColor="Black" 
-                       FontSize="64" Text="Login" VerticalOptions="StartAndExpand" HorizontalOptions="Center"/>
-            </StackLayout>
-
-            <StackLayout>
-                <Label FontFamily="OpenSansRegular" TextColor="Black" 
-                       FontSize="16" Text="Username"/>
-                <Grid Margin="0,5">
-                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry BackgroundColor="Transparent" Placeholder="Enter username" 
-                           TextColor="White" Margin="5,0"
-                           PlaceholderColor="Gray" />
-
-                </Grid>
-
-                <Label FontFamily="OpenSansRegular" TextColor="Black" 
-                       FontSize="16" Text="Password"/>
-                <Grid Margin="0,5">
-                    <Frame Opacity="0.3" BackgroundColor="White" CornerRadius="5"/>
-                    <Entry BackgroundColor="Transparent" Placeholder="Enter password" 
-                           TextColor="White" Margin="5,0"
-                           PlaceholderColor="Gray" IsPassword="True"/>
-
-                </Grid>
-            </StackLayout>
-
-            <Button Margin="0,15" BackgroundColor="Blue"
-                    Text="Sign in" TextColor="Black" FontFamily="OpenSansBold"/>
-
-                <Label FontFamily="OpenSansRegular" TextColor="Black" 
-                       FontSize="16" Text="Register"  VerticalOptions="StartAndExpand" 
-                       HorizontalOptions="EndAndExpand"/>
-            </StackLayout>
-    </Grid>
-
+    <ScrollView >
+        <Grid>
+            <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="10" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="400">
+                <VerticalStackLayout Margin="20" Spacing="20">
+                    <Label TextColor="Black" Text="Login" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                    <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="300">
+                        <Entry TextColor="Black" Placeholder="Username" x:Name="UsernameEntry"/>
+                    </Frame>
+                    <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="300">
+                        <Entry TextColor="Black" Placeholder="Password" x:Name="PasswordEntry"/>
+                    </Frame>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Login" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Use as guest" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Label TextColor="Black" Text="Create an account" FontSize="Small" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
 </ContentPage>
