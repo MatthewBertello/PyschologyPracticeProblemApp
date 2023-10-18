@@ -1,72 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:PsychologyPracticeProblemApp"
+             x:DataType="model:History" 
              x:Class="PsychologyPracticeProblemApp.History"
              BackgroundColor="White">
 
 
-    <StackLayout>
-        <Grid Grid.Column="1" RowDefinitions="50,*">
+    <Grid Grid.Column="1" RowDefinitions="50,*">
             <!-- Divide Upper bar and lower half-->
-            <Grid Grid.Column="0" ColumnDefinitions="50,*,200,200" BackgroundColor="{StaticResource Tint}">
-                <!-- Upper Bar -->
-                <Image Grid.Column="0" Source="menu_button.png" Margin="5"/>
-                <Label Grid.Column="2" Text="Username" VerticalOptions="Center" HorizontalOptions="End" Padding="25,0" FontSize="20" FontFamily="Roboto-Bold"/>
-                <Rectangle Grid.Column="3" BackgroundColor="{StaticResource TintLight}"/>
-                <Label Grid.Column="3" Text="Logout" VerticalOptions="Center" HorizontalOptions="Center" Padding="25,0" FontSize="20" BackgroundColor="{StaticResource TintLight}" FontFamily="Roboto-Bold"/>
+        <Grid Grid.Row="0" ColumnDefinitions="50,*,200,200" BackgroundColor="{StaticResource Tint}">
+            <!-- Upper Bar -->
+            <Image Grid.Column="0" Source="menu_button.png" Margin="5"/>
+            <Label Grid.Column="2" Text="Username" VerticalOptions="Center" HorizontalOptions="End" Padding="25,0" FontSize="20" FontFamily="Roboto-Bold"/>
+            <Rectangle Grid.Column="3" BackgroundColor="{StaticResource TintLight}"/>
+            <Label Grid.Column="3" Text="Logout" VerticalOptions="Center" HorizontalOptions="Center" Padding="25,0" FontSize="20" BackgroundColor="{StaticResource TintLight}" FontFamily="Roboto-Bold"/>
 
-            </Grid>
-            <Grid Grid.Column="1">
-                <!-- Lower Section (Blank for now) -->
-            </Grid>
         </Grid>
-        <!-- Centered Label -->
-        <Label Text="History" TextColor="Black" FontSize="30" HorizontalTextAlignment="Center"/>
-        <TableView>
-            <TableRoot>
-                <TableSection Title="Grid Example">
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="10" Padding="10">
-                                <Label Text="Temp" TextColor="Black"/>
-                            </Frame>
-                            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="10" Padding="10" >
-                                <Label Text="Temp" TextColor="Black" />
-                            </Frame>
-                            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="10" Padding="10" >
-                                <Label Text="Temp" TextColor="Black" />
-                            </Frame>
-                        </StackLayout>
-                    </ViewCell>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="10" Padding="10" >
-                                <Label Text="Temp" TextColor="Black" />
-                            </Frame>
-                            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="10" Padding="10" >
-                                <Label Text="Temp" TextColor="Black"  />
-                            </Frame>
-                            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="10" Padding="10" >
-                                <Label Text="Temp" TextColor="Black" />
-                            </Frame>
-                        </StackLayout>
-                    </ViewCell>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="10" Padding="10">
-                                <Label Text="Temp" TextColor="Black"/>
-                            </Frame>
-                            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="10" Padding="10">
-                                <Label Text="Temp" TextColor="Black" />
-                            </Frame>
-                            <Frame BackgroundColor="Transparent" BorderColor="Black" CornerRadius="10" Padding="10">
-                                <Label Text="Temp" TextColor="Black"/>
-                            </Frame>
-                        </StackLayout>
-                    </ViewCell>
-                </TableSection>
-            </TableRoot>
-        </TableView>
+        <Grid Grid.Row="1" ColumnDefinitions="*,*" RowDefinitions="50,*">
+            <!-- History : Left : Title -->
+            <Grid Grid.Row="0" ColumnDefinitions="2*,6*,4*,1">
+                <Label Grid.Column="0" Text="Problem Type" VerticalTextAlignment="Center" TextColor="Black"/>
+                <Label Grid.Column="1" Text="Date Attempted" VerticalTextAlignment="Center" TextColor="Black"/>
+                <Label Grid.Column="2" Text="Answer" VerticalTextAlignment="Center" TextColor="Black"/>
+                <Button Grid.Column="3" BackgroundColor="Transparent" />
+            </Grid>
+            <!-- History : Left : Data -->
+            <CollectionView Grid.Row="1" x:Name="CV" ItemsSource="{Binding Hist}" SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:HistoryLog">
+                        <Grid RowDefinitions="*" ColumnDefinitions="2*,6*,4*,1">
+                            <Label Grid.Column="0" Text="{Binding Type}" VerticalTextAlignment="Center" TextColor="Black"/>
+                            <Label Grid.Column="1" Text="{Binding Date}" VerticalTextAlignment="Center" TextColor="Black"/>
+                            <Label Grid.Column="2" Text="{Binding Answer}" VerticalTextAlignment="Center" TextColor="Black"/>
+                            <Button Grid.Column="3" BackgroundColor="Transparent" />
+                        </Grid>
+                    </DataTemplate>
 
-    </StackLayout>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <!-- PUT STUFF ON RIGHT HERE (Grid.Column="1")-->
+            
+            
+        </Grid>
+    </Grid>
+    <!-- Centered Label -->
+
 </ContentPage>
