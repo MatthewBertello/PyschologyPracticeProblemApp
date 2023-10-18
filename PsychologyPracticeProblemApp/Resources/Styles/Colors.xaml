@@ -17,6 +17,10 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
+    <Color x:Key="Tint">#517AC4</Color>
+    <Color x:Key="TintLight">#00B0F0</Color>
+    <Color x:Key="Valid">#92D050</Color>
+    <Color x:Key="Invalid">#FF5050</Color>
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
