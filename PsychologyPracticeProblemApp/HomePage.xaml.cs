@@ -1,12 +1,11 @@
 ﻿namespace PsychologyPracticeProblemApp
 {
-    public partial class App : Application
+    public partial class HomePage : ContentPage
     {
-        public App()
+
+        public HomePage()
         {
             InitializeComponent();
-
-            MainPage = new History();
         }
     }
 }
