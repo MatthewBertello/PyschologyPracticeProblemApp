@@ -31,13 +31,13 @@
             <!-- Left side: "Table goes here" in a Frame -->
             <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20">
                 <VerticalStackLayout Grid.Column="0" Grid.Row="0" Margin="30" Spacing="10">
-                    <Label TextColor="Black" Text="Data" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                    <Label TextColor="Black" Text="Previous Attempts" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
                     <Grid ColumnDefinitions="*" RowDefinitions="*,*">
                         <Frame Grid.Column="0" Grid.Row="0" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="Start">
                             <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
-                                <Label Grid.Column="0" TextColor="Black" Text="X" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Label Grid.Column="1" TextColor="Black" Text="Y" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Label Grid.Column="2" TextColor="Black" Text="Z" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Grid.Column="0" TextColor="Black" Text="Problem type" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" TextColor="Black" Text="Date Attempted" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Grid.Column="2" TextColor="Black" Text="Answer" HorizontalOptions="Center" VerticalOptions="Center"/>
                             </Grid>
                         </Frame>
                         <CollectionView x:Name="DataTable" ItemsSource="{Binding .}" SelectionMode="Single" Grid.Column="0" Grid.Row="1">
@@ -45,9 +45,9 @@
                                 <DataTemplate>
                                     <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="Start">
                                         <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
-                                            <Label Grid.Column="0" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                            <Label Grid.Column="2" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="0" TextColor="Black" Text="Problem 1" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" TextColor="Black" Text="12/12/12" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="2" TextColor="Black" Text="1234" HorizontalOptions="Center" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                 </DataTemplate>
@@ -59,34 +59,39 @@
 
             <!-- Right side: Grid with red square and "Answer" -->
             <Frame Grid.Row="1" Grid.Column="2" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
-                <Grid ColumnDefinitions="1*,1*">
-                    <Grid ColumnDefinitions="*" RowDefinitions="*,*">
-                        <Frame Grid.Column="2" Grid.Row="0" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="EndAndExpand">
+                <Grid ColumnDefinitions="*,*">
+                    <VerticalStackLayout>
+                        <Label TextColor="Black" Text="Data" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                        <Frame Grid.Row="0" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="StartAndExpand">
                             <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
                                 <Label Grid.Column="0" TextColor="Black" Text="X" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 <Label Grid.Column="1" TextColor="Black" Text="Y" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 <Label Grid.Column="2" TextColor="Black" Text="Z" HorizontalOptions="Center" VerticalOptions="Center"/>
                             </Grid>
                         </Frame>
-                        <CollectionView x:Name="RightDataTable" ItemsSource="{Binding .}" SelectionMode="Single" Grid.Column="2" Grid.Row="1">
+                        <CollectionView x:Name="RightDataTable" ItemsSource="{Binding .}" SelectionMode="Single" Grid.Row="1" VerticalOptions="StartAndExpand">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame Grid.Column="2" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="EndAndExpand">
+                                    <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="StartAndExpand">
                                         <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
-                                            <Label Grid.Column="0" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                            <Label Grid.Column="2" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="0" TextColor="Black" Text="1" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" TextColor="Black" Text="2" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="2" TextColor="Black" Text="3" HorizontalOptions="Center" VerticalOptions="Center"/>
                                         </Grid>
                                     </Frame>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
-                    </Grid>
+                    </VerticalStackLayout>
                     <Grid Grid.Row="0" Grid.Column="1">
                         <!-- Smaller red square with "Answer" -->
-                        <Frame BackgroundColor="LightCoral" Padding="5" Margin="10" CornerRadius="10" WidthRequest="100" HeightRequest="100" VerticalOptions="StartAndExpand">
-                            <Label Text="Answer" TextColor="White" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-                        </Frame>
+                        <VerticalStackLayout Margin="30" Spacing="10">
+                            <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue"  Text="Go to problem" VerticalOptions="EndAndExpand"/>
+                            <Frame BackgroundColor="LightCoral" Padding="5" Margin="10" CornerRadius="10" HeightRequest="100" VerticalOptions="StartAndExpand">
+                                <Label Text="Answer:1234" TextColor="White" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                            </Frame>
+                            <Label Text="Your answer is wrong" TextColor="Red" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand"/>
+                        </VerticalStackLayout>
                     </Grid>
                 </Grid>
             </Frame>
