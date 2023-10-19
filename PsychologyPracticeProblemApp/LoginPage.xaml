@@ -14,9 +14,9 @@
                     <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="300">
                         <Entry TextColor="Black" Placeholder="Password" x:Name="PasswordEntry"/>
                     </Frame>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Login" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Use as guest" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Login" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Use as guest" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
                     <Label TextColor="Black" Text="Create an account" FontSize="Small" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
                 </VerticalStackLayout>
             </Frame>
