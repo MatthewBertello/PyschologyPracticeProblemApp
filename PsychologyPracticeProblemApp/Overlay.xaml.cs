@@ -1,9 +1,9 @@
 ﻿namespace PsychologyPracticeProblemApp
 {
-    public partial class HomePage : ContentPage
+    public partial class Overlay : ContentPage
     {
 
-        public HomePage()
+        public Overlay()
         {
             InitializeComponent();
         }

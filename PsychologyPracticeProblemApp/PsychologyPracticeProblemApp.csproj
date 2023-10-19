@@ -58,8 +58,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="HomePage.xaml.cs">
-	    <DependentUpon>HomePage.xaml</DependentUpon>
+	  <Compile Update="Overlay.xaml.cs">
+	    <DependentUpon>Overlay.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="LogoutPage.xaml.cs">
 	    <DependentUpon>LogoutPage.xaml</DependentUpon>
@@ -67,7 +67,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="HomePage.xaml">
+	  <MauiXaml Update="Overlay.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="LogoutPage.xaml">
