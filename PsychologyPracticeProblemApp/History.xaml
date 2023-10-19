@@ -6,44 +6,90 @@
              x:Class="PsychologyPracticeProblemApp.History"
              BackgroundColor="White">
 
+    <ScrollView>
 
-    <Grid Grid.Column="1" RowDefinitions="50,*">
-            <!-- Divide Upper bar and lower half-->
-        <Grid Grid.Row="0" ColumnDefinitions="50,*,200,200" BackgroundColor="{StaticResource Tint}">
-            <!-- Upper Bar -->
-            <Image Grid.Column="0" Source="menu_button.png" Margin="5"/>
-            <Label Grid.Column="2" Text="Username" VerticalOptions="Center" HorizontalOptions="End" Padding="25,0" FontSize="20" FontFamily="Roboto-Bold"/>
-            <Rectangle Grid.Column="3" BackgroundColor="{StaticResource TintLight}"/>
-            <Label Grid.Column="3" Text="Logout" VerticalOptions="Center" HorizontalOptions="Center" Padding="25,0" FontSize="20" BackgroundColor="{StaticResource TintLight}" FontFamily="Roboto-Bold"/>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <!-- Set this to 1* for 1/3 of the screen -->
+                <ColumnDefinition Width="0.1*" />
+                <!-- Set this to 0.1* for a smaller gap -->
+                <ColumnDefinition Width="1*" />
+                <!-- Set this to 1*  -->
+            </Grid.ColumnDefinitions>
+
+            <!-- Centered "History" label horizontally -->
+            <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" FontFamily="OpenSansRegular" TextColor="Black"
+             FontSize="30" Text="History" VerticalOptions="Center" HorizontalOptions="CenterAndExpand" />
+
+            <!-- Left side: "Table goes here" in a Frame -->
+            <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20">
+                <VerticalStackLayout Grid.Column="0" Grid.Row="0" Margin="30" Spacing="10">
+                    <Label TextColor="Black" Text="Data" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                    <Grid ColumnDefinitions="*" RowDefinitions="*,*">
+                        <Frame Grid.Column="0" Grid.Row="0" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="Start">
+                            <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
+                                <Label Grid.Column="0" TextColor="Black" Text="X" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" TextColor="Black" Text="Y" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Grid.Column="2" TextColor="Black" Text="Z" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <CollectionView x:Name="DataTable" ItemsSource="{Binding .}" SelectionMode="Single" Grid.Column="0" Grid.Row="1">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="Start">
+                                        <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
+                                            <Label Grid.Column="0" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="2" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Right side: Grid with red square and "Answer" -->
+            <Frame Grid.Row="1" Grid.Column="2" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
+                <Grid ColumnDefinitions="1*,1*">
+                    <Grid ColumnDefinitions="*" RowDefinitions="*,*">
+                        <Frame Grid.Column="2" Grid.Row="0" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="EndAndExpand">
+                            <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
+                                <Label Grid.Column="0" TextColor="Black" Text="X" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" TextColor="Black" Text="Y" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Grid.Column="2" TextColor="Black" Text="Z" HorizontalOptions="Center" VerticalOptions="Center"/>
+                            </Grid>
+                        </Frame>
+                        <CollectionView x:Name="RightDataTable" ItemsSource="{Binding .}" SelectionMode="Single" Grid.Column="2" Grid.Row="1">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame Grid.Column="2" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="EndAndExpand">
+                                        <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
+                                            <Label Grid.Column="0" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="2" TextColor="Black" Text="SomeNum" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <!-- Smaller red square with "Answer" -->
+                        <Frame BackgroundColor="LightCoral" Padding="5" Margin="10" CornerRadius="10" WidthRequest="100" HeightRequest="100" VerticalOptions="StartAndExpand">
+                            <Label Text="Answer" TextColor="White" FontSize="Large" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+                        </Frame>
+                    </Grid>
+                </Grid>
+            </Frame>
         </Grid>
-        <Grid Grid.Row="1" ColumnDefinitions="*,*" RowDefinitions="50,*">
-            <!-- History : Left : Title -->
-            <Grid Grid.Row="0" ColumnDefinitions="2*,6*,4*,1">
-                <Label Grid.Column="0" Text="Problem Type" VerticalTextAlignment="Center" TextColor="Black"/>
-                <Label Grid.Column="1" Text="Date Attempted" VerticalTextAlignment="Center" TextColor="Black"/>
-                <Label Grid.Column="2" Text="Answer" VerticalTextAlignment="Center" TextColor="Black"/>
-                <Button Grid.Column="3" BackgroundColor="Transparent" />
-            </Grid>
-            <!-- History : Left : Data -->
-            <CollectionView Grid.Row="1" x:Name="CV" ItemsSource="{Binding Hist}" SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:HistoryLog">
-                        <Grid RowDefinitions="*" ColumnDefinitions="2*,6*,4*,1">
-                            <Label Grid.Column="0" Text="{Binding Type}" VerticalTextAlignment="Center" TextColor="Black"/>
-                            <Label Grid.Column="1" Text="{Binding Date}" VerticalTextAlignment="Center" TextColor="Black"/>
-                            <Label Grid.Column="2" Text="{Binding Answer}" VerticalTextAlignment="Center" TextColor="Black"/>
-                            <Button Grid.Column="3" BackgroundColor="Transparent" />
-                        </Grid>
-                    </DataTemplate>
-
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <!-- PUT STUFF ON RIGHT HERE (Grid.Column="1")-->
-            
-            
-        </Grid>
-    </Grid>
-    <!-- Centered Label -->
-
+    </ScrollView>
 </ContentPage>
