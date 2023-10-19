@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PsychologyPracticeProblemApp.LoginPage"
+             BackgroundColor="White">
+    <ScrollView >
+        <Grid>
+            <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="10" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="400">
+                <VerticalStackLayout Margin="20" Spacing="20">
+                    <Label TextColor="Black" Text="Login" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                    <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="300">
+                        <Entry TextColor="Black" Placeholder="Username" x:Name="UsernameEntry"/>
+                    </Frame>
+                    <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="300">
+                        <Entry TextColor="Black" Placeholder="Password" x:Name="PasswordEntry"/>
+                    </Frame>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Login" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Use as guest" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Label TextColor="Black" Text="Create an account" FontSize="Small" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>
