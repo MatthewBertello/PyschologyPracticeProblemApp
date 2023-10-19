@@ -29,7 +29,7 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                 </Grid>
-                <Button TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="Generate new problem" VerticalOptions="CenterAndExpand"/>
+                <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Generate new problem" VerticalOptions="CenterAndExpand"/>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Column="1" Grid.Row="0" Margin="30" Spacing="10">
                 <Label TextColor="Black" Text="Formula" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
@@ -41,7 +41,7 @@
                         <Entry TextColor="Black" Placeholder="Check Answer" x:Name="AnswerEntry"/>
                     </Frame>
                     <Button Grid.Column="1" TextColor="Black" BorderColor="Black" BackgroundColor="Green" Text="X" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" MaximumWidthRequest="50"/>
-                    <Button Grid.Column="2" TextColor="Black" BorderColor="Black" BackgroundColor="Blue" Text="See example" VerticalOptions="CenterAndExpand"/>
+                    <Button Grid.Column="2" TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="See example" VerticalOptions="CenterAndExpand"/>
                 </Grid>
                 <Frame BorderColor="Red" BackgroundColor="Transparent" CornerRadius="10" Padding="20" VerticalOptions="CenterAndExpand"  Margin="0" WidthRequest="600" HeightRequest="300">
                     <Label TextColor="Red" Text="Feedback will go here" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" />
