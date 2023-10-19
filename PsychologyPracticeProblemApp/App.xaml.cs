@@ -6,7 +6,7 @@
         {
             InitializeComponent();
 
-            MainPage = new ProblemPage();
+            MainPage = new History();
         }
     }
 }
