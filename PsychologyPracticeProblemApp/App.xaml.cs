@@ -6,7 +6,7 @@
         {
             InitializeComponent();
 
-            MainPage = new LogoutPage();
+            MainPage = new HomePage();
         }
     }
 }
