@@ -1,3 +1,7 @@
+/*
+ * Michael Meisenburg
+ * Date: 10/18/2023
+*/
 using System.Collections.ObjectModel;
 
 namespace PsychologyPracticeProblemApp;
