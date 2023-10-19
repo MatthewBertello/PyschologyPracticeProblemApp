@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PsychologyPracticeProblemApp.LogoutPage"
              BackgroundColor="White">
-    <Border Padding="0" Margin="30" BackgroundColor="White" MaximumHeightRequest="150" MaximumWidthRequest="500"
+    <Border Padding="0" Margin="30" BackgroundColor="White" MaximumHeightRequest="200" MaximumWidthRequest="500"
             Stroke="Black" StrokeThickness="2">
         <Border.StrokeShape>
             <RoundRectangle CornerRadius="30"/>
