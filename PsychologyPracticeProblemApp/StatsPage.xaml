@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PsychologyPracticeProblemApp.StatsPage"
+             BackgroundColor="White">
+    <ScrollView >
+      <VerticalStackLayout Grid.Column="0" Grid.Row="0" Margin="30" Spacing="10">
+        <Label TextColor="Black" Text="Stats" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+        <Grid ColumnDefinitions="*, 2*" RowDefinitions="*">
+          <VerticalStackLayout Grid.Column="0" Grid.Row="0" Margin="30" Spacing="10">
+            <Label TextColor="Black" Text="Problem type 1: 23/45 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+            <Label TextColor="Black" Text="Problem type 2: 23/45 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+            <Label TextColor="Black" Text="Problem type 3: 23/45 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+            <Label TextColor="Black" Text="Problem type 4: 23/45 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+            <Label TextColor="Black" Text="Problem type 5: 23/45 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+          </VerticalStackLayout>
+          <VerticalStackLayout Grid.Column="1" Grid.Row="0" Margin="30" Spacing="10">
+            <Label TextColor="Black" Text="Total: 115/225 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+          </VerticalStackLayout>
+        </Grid>
+      </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
