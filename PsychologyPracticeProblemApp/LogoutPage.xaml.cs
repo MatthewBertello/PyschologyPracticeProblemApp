@@ -1,12 +1,11 @@
 ﻿namespace PsychologyPracticeProblemApp
 {
-    public partial class App : Application
+    public partial class LogoutPage : ContentPage
     {
-        public App()
+
+        public LogoutPage()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
         }
     }
 }
