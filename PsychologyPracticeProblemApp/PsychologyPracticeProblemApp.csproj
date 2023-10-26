@@ -59,28 +59,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Overlay.xaml.cs">
+	  <Compile Update="Model\UI\Overlay.xaml.cs">
 	    <DependentUpon>Overlay.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="LogoutPage.xaml.cs">
+	  <Compile Update="Model\UI\LogoutPage.xaml.cs">
 	    <DependentUpon>LogoutPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="HomePage.xaml">
+	  <MauiXaml Update="Model\UI\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Overlay.xaml">
+	  <MauiXaml Update="Model\UI\Overlay.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="LogoutPage.xaml">
+	  <MauiXaml Update="Model\UI\LogoutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="ProblemPage.xaml">
+	  <MauiXaml Update="Model\UI\ProblemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="StatsPage.xaml">
+	  <MauiXaml Update="Model\UI\StatsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
