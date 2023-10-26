@@ -6,7 +6,7 @@
         {
             InitializeComponent();
 
-            MainPage = new StatsPage();
+            MainPage = new AppShell();
         }
     }
 }

@@ -7,6 +7,7 @@
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = MauiProgram.Database;
         }
 
         private void OnCounterClicked(object sender, EventArgs e)
