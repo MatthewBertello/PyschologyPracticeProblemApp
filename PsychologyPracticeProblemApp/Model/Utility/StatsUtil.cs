@@ -5,13 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
-public class StatsUtil {
+/// <summary>
+/// A utility class specializing in statistical calculations.
+/// </summary>
+public static class StatsUtil { 
     /// <summary>
-    /// M = Sum / n
+    /// Calculates the mean of a data set
     /// </summary>
-    /// <param name="data"></param>
+    /// <param name="data">Data set</param>
     /// <returns></returns>
-    public static double GetMean(double[] data)
+    public static double CalcMean(double[] data)
     {
         double n = 0;
         for(int i = 0; i < data.Length; i++)
@@ -19,14 +22,16 @@ public class StatsUtil {
         return n / data.Length;
     }
     /// <summary>
+    /// Calculates standard deviation: 
     /// S = sqrt ( Sum((x-M)^2) / (n-1) )
     /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
-    public static double GetStandardDeviation(double[] data, double? mean = null)
+    /// <param name="data">The data set</param>
+    /// <param name="mean">The mean of the data set. Can be left blank</param>
+    /// <returns>The Mean of the data set</returns>
+    public static double CalcStandardDeviation(double[] data, double? mean = null)
     {
         // get mean
-        double m = (double)(mean == null ? GetMean(data) : mean); // if mean is null, generate it
+        double m = mean ?? CalcMean(data);
 
         // sum the differances
         double sumOfDifferances = 0;
@@ -39,18 +44,18 @@ public class StatsUtil {
         return Math.Sqrt(sumOfDifferances);
     }
     /// <summary>
-    /// m(X') = Sample mean
-    /// u = population mean
-    /// s = sample standardDeviation
-    /// n = sample size 
+    /// Calculates the one sample T-Test: 
+    /// OT = (m - u) / (s / sqrt(n))
     /// </summary>
-    /// <returns></returns>
-    public static double GetOneSampleTTest(double[] data, double populationMean)
+    /// <param name="data">The data set</param>
+    /// <param name="populationMean">The population mean</param>
+    /// <returns>The T score of the data set</returns>
+    public static double CalcOneSampleTTest(double[] data, double populationMean)
     {
-        double m = GetMean(data);
-        double u = populationMean;
-        double s = GetStandardDeviation(data, m);
-        double n = data.Length;
+        double m = CalcMean(data);                      // sample mean
+        double u = populationMean;                      // population mean
+        double s = CalcStandardDeviation(data, m);      // sample standard deviation
+        double n = data.Length;                         // sample size
 
         double upper = m - u;
         double lower = s / Math.Sqrt(n);
@@ -58,14 +63,12 @@ public class StatsUtil {
 
     }
     /// <summary>
-    /// Dependent T Test
-    /// D -> differance
-    /// T = Mean(D) / Deviation(D)
+    /// Calculates a dependent T-Test score
     /// </summary>
-    /// <param name="dataPre"></param>
-    /// <param name="dataPost"></param>
-    /// <returns></returns>
-    public static double? GetDependentSampleTTest(double[] dataPre, double[] dataPost)
+    /// <param name="dataPre">The data pre-experiment</param>
+    /// <param name="dataPost">The data post-experiment</param>
+    /// <returns>The T score of the data set</returns>
+    public static double? CalcDependentSampleTTest(double[] dataPre, double[] dataPost)
     {
         if(dataPre.Length != dataPost.Length) return null;
 
@@ -74,9 +77,9 @@ public class StatsUtil {
         for(int i = 0; i < dataPre.Length; i++)
             differances[i] = dataPre[i] - dataPost[i];
         // mean of differance
-        double diffMean = GetMean(differances);
+        double diffMean = CalcMean(differances);
         // standard dev of differance
-        double diffStandardDev = GetStandardDeviation(differances, diffMean);
+        double diffStandardDev = CalcStandardDeviation(differances, diffMean);
         // error of means
         double standardErrorOfMean = diffStandardDev / Math.Sqrt(differances.Length);
 
@@ -85,33 +88,36 @@ public class StatsUtil {
 
     }
     /// <summary>
-    /// Calculate Independent T Test
+    /// Calculate the independent T-Test score: 
     /// T = (M1 - M2) / sqrt((S1^2 / N1) + (S2^2 / N2))
     /// </summary>
-    /// <param name="dataA"></param>
-    /// <param name="dataB"></param>
-    /// <returns></returns>
-    public static double? GetIndependentSampleTTest(double[] dataA, double[] dataB)
+    /// <param name="dataA">Data of group A</param>
+    /// <param name="dataB">Data of group B</param>
+    /// <returns>T-Score of both data sets</returns>
+    public static double? CalcIndependentSampleTTest(double[] dataA, double[] dataB)
     {
 
-        double meanA = GetMean(dataA);
-        double meanB = GetMean(dataB);
+        double meanA = CalcMean(dataA);
+        double meanB = CalcMean(dataB);
 
-        double deviationA = GetStandardDeviation(dataA, meanA);
-        double deviationB = GetStandardDeviation(dataB, meanB);
+        double deviationA = CalcStandardDeviation(dataA, meanA);
+        double deviationB = CalcStandardDeviation(dataB, meanB);
 
         double val = Math.Sqrt((deviationA * deviationA) / dataA.Length + (deviationB * deviationB) / dataA.Length);
 
         return (meanA - meanB) / val;
     }
     /// <summary>
+    /// Calculates Z-Score of a data set
     /// Z Score = how many deviations away from the mean
     /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
-    public static double GetZScore(double[] data, double popMean, double popDeviation)
+    /// <param name="data">The data set</param>
+    /// <param name="popMean">Population Mean</param>
+    /// <param name="popDeviation">Population Standard Deviation</param>
+    /// <returns>Z-Score of the data set</returns>
+    public static double CalcZScore(double[] data, double popMean, double popDeviation)
     {
-        double mean = GetMean(data);
+        double mean = CalcMean(data);
         double meanDiff = mean - popMean;
 
         return meanDiff / (popDeviation / Math.Sqrt(data.Length));
@@ -122,8 +128,7 @@ public class StatsUtil {
     /// <param name="count">how many elements to make</param>
     /// <param name="minRange">smallest an element can be</param>
     /// <param name="maxRange">largest an element can be</param>
-    /// <param name="decimals">how many decimal places to use</param>
-    /// <returns></returns>
+    /// <returns>A randomized data set</returns>
     public static double[] GenerateRandomData(int count, int minRange = 0, int maxRange = 20)
     {
         Random rand = new Random();
@@ -136,8 +141,8 @@ public class StatsUtil {
     /// Generates a list of random points, forcing a target mean
     /// </summary>
     /// <param name="count">how many elements to make</param>
-    /// <param name="maxRange">largest an element can be</param>
-    /// <param name="decimals">how many decimal places to use</param>
+    /// <param name="targetMean">the target mean</param>
+    /// <param name="range">how spread out the data points should be</param>
     /// <returns></returns>
     public static double[] GenerateRandomDataForceMean(int count, int targetMean, int range = 10)
     {
@@ -147,19 +152,18 @@ public class StatsUtil {
 
         // while mean is not correct, add or subtract 1 to random elements until the mean is correct
         double mean;
-        while((mean = GetMean(data)) != targetMean)
+        while((mean = CalcMean(data)) != targetMean)
         {
             int delta = mean < targetMean ? 1 : -1;
             int index = rand.Next(count);
             data[index] += delta;
         }
-
         return data;
     }
     /// <summary>
     /// Turns data into a string format { a, b, c, d }
     /// </summary>
-    /// <param name="data"></param>
+    /// <param name="data">Data converted into string format</param>
     public static String DataToString(double[] data)
     {
         String str = "{ ";

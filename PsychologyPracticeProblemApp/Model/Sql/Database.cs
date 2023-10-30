@@ -1,10 +1,11 @@
 ﻿using Npgsql;
+using System.Collections.Generic;
 
 namespace PsychologyPracticeProblemApp.Model
 {
-    public class Database
-    {
+    public class Database {
         private string connString = GetConnectionString();
+
 
         public Database()
         {
