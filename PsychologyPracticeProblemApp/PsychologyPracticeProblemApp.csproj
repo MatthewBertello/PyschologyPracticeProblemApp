@@ -51,6 +51,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
+	  <None Remove="Resources\Images\checked.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -59,28 +60,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Model\UI\Overlay.xaml.cs">
+	  <Compile Update="View\Overlay.xaml.cs">
 	    <DependentUpon>Overlay.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Model\UI\LogoutPage.xaml.cs">
+	  <Compile Update="View\LogoutPage.xaml.cs">
 	    <DependentUpon>LogoutPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Model\UI\HomePage.xaml">
+	  <MauiXaml Update="View\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Model\UI\Overlay.xaml">
+	  <MauiXaml Update="View\Overlay.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Model\UI\LogoutPage.xaml">
+	  <MauiXaml Update="View\LogoutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Model\UI\ProblemPage.xaml">
+	  <MauiXaml Update="View\ProblemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Model\UI\StatsPage.xaml">
+	  <MauiXaml Update="View\StatsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

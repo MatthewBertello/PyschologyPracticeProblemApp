@@ -129,7 +129,7 @@ public static class StatsUtil {
     /// <param name="minRange">smallest an element can be</param>
     /// <param name="maxRange">largest an element can be</param>
     /// <returns>A randomized data set</returns>
-    public static double[] GenerateRandomData(int count, int minRange = 0, int maxRange = 20)
+    public static double[] GenRandomData(int count, int minRange = 0, int maxRange = 20)
     {
         Random rand = new Random();
         double[] data = new double[count];
@@ -144,11 +144,11 @@ public static class StatsUtil {
     /// <param name="targetMean">the target mean</param>
     /// <param name="range">how spread out the data points should be</param>
     /// <returns></returns>
-    public static double[] GenerateRandomDataForceMean(int count, int targetMean, int range = 10)
+    public static double[] GenRandomDataForceMean(int count, int targetMean, int range = 10)
     {
         // Geneate a basic data set that is close to the correct mean (based on range)
         Random rand = new Random();
-        double[] data = GenerateRandomData(count, targetMean - range, targetMean + range);
+        double[] data = GenRandomData(count, targetMean - range, targetMean + range);
 
         // while mean is not correct, add or subtract 1 to random elements until the mean is correct
         double mean;

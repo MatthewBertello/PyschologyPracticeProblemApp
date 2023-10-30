@@ -16,8 +16,8 @@ public readonly struct DataSet {
 
     public DataSet(double[] dataA=null, double[] dataB=null, double? valA=null, double? valB=null)
     {
-        this.DataA = dataA;
-        this.DataB = dataB;
+        this.DataA = dataA ?? new double[0];
+        this.DataB = dataB ?? new double[0];
         this.ValueA = valA;
         this.ValueB = valB;
     }

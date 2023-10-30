@@ -8,8 +8,10 @@
             <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="10" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="400">
                 <VerticalStackLayout Margin="20" Spacing="20">
                     <Label TextColor="Black" Text="Home" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Problem 1" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Problem 2" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Summation Test Problem" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
+                            Clicked="OnProblem_Summation"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Mean" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
+                            Clicked="OnProblem_Mean"/>
                     <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Problem 3" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
                     <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Problem 4" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
                     <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Problem 5" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
