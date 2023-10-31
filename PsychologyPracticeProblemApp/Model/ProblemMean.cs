@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PsychologyPracticeProblemApp;
 public class ProblemMean : IProblem {
     public string Name => "Mean";
-
+    public int Id { get; set; }
     public DataSet GenData()
     {
         return new DataSet(StatsUtil.GenRandomData(5, 0, 10));

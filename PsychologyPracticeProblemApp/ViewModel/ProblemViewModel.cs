@@ -12,9 +12,9 @@ public class ProblemViewModel : INotifyPropertyChanged {
 
     public ObservableCollection<DataItem> DataSetA { get; set; } = new();
     public ObservableCollection<DataItem> DataSetB { get; set; } = new();
-
     public Double? Input1 { get; set; }
     public Double? Input2 { get; set; }
+
     public Double? CorrectAnswer { get; set; }
     public Double? YourAnswer { get; set; }
 
@@ -42,6 +42,7 @@ public class ProblemViewModel : INotifyPropertyChanged {
     public void RegenerateProblem()
     {
         data = problem.GenData();
+
         DataSetA.Clear();
         DataSetB.Clear();
         for(int i = 0; i < data.DataA.Length; i++) DataSetA.Add(new DataItem(data.DataA[i]));
@@ -58,7 +59,7 @@ public class ProblemViewModel : INotifyPropertyChanged {
         try
         {
             YourAnswer = double.Parse(solution);
-
+            Database.SaveAnswerAttempt(problem, data, YourAnswer ?? 0);
             ApplyPropertyChange(false, true);
         } catch (Exception ex)
         {

@@ -2,6 +2,7 @@
  * Matthew Bertello
  * Date: 10/18/2023
 */
+using PsychologyPracticeProblemApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,6 +17,7 @@ public partial class HomePage : ContentPage
     public HomePage()
     {
         InitializeComponent();
+        Database.Verify();
     }
     private void OnProblem_Summation(object sender, EventArgs e)
     {

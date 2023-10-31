@@ -6,7 +6,6 @@ namespace PsychologyPracticeProblemApp
 {
     public static class MauiProgram
     {
-        public static Database Database = new Database();
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();

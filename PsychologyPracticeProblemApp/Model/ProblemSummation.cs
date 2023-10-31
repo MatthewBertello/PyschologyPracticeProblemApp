@@ -8,6 +8,8 @@ namespace PsychologyPracticeProblemApp;
 public class ProblemSummation : IProblem {
     public string Name => "Summation";
 
+    public int Id { get; set; }
+
     public DataSet GenData()
     {
         return new DataSet(StatsUtil.GenRandomData(5, 0, 10));

@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
 public interface IProblem {
+    private static IProblem[] problemIds = new IProblem[] {
+        null,
+        new ProblemSummation() { Id=1 },
+        new ProblemMean() {Id=2 }
+    };
+    public static IProblem[] ProblemIds { get => problemIds; }
+    public abstract int Id { get; set; }
+
     /// <summary>
     /// The name of the problem to display
     /// </summary>
