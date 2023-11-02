@@ -14,7 +14,8 @@ namespace PsychologyPracticeProblemApp
 
 
 
-            MainPage = new NavigationPage(new HomePage());
+            //MainPage = new NavigationPage(new HomePage());
+            MainPage = new AppShell();
         }
     }
 }
