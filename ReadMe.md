@@ -7,16 +7,16 @@ added SQL connectivity in the class Database.cs\
 added the Data set which keeps track of the data for the tables in the class called DataSet.cs\
 
 Needs to be Done: \
-We need to add functionality to the Login page \
-  - C# code and the SQL database needs to be added \
-needs to add functionality to the Create Account page \
-  - C# code and the SQL database needs to be added \
-needs to add functionality to the Logout page \
-  - C# code and the SQL database needs to be added \
-need to add functionality to the History page \
-  - Need to Connect to the SQL database\
-  - The C# logic also needs to be completed \
+We need to add functionality to the Login page 
+  - C# code and the SQL database needs to be added 
+needs to add functionality to the Create Account page 
+  - C# code and the SQL database needs to be added 
+needs to add functionality to the Logout page 
+  - C# code and the SQL database needs to be added 
+need to add functionality to the History page 
+  - Need to Connect to the SQL database
+  - The C# logic also needs to be completed 
   - REQUIRES The user to be Logged in and for them to have completed a problem to work.\
 
-Problems and Issues: \
+Problems and Issues:
 
