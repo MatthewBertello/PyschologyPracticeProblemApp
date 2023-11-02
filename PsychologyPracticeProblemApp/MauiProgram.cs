@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using PsychologyPracticeProblemApp.Model;
 
 
 namespace PsychologyPracticeProblemApp

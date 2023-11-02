@@ -8,8 +8,11 @@ namespace PsychologyPracticeProblemApp;
 public interface IProblem {
     private static IProblem[] problemIds = new IProblem[] {
         null,
-        new ProblemSummation() { Id=1 },
-        new ProblemMean() {Id=2 }
+        new ProbStandardDeviation() { Id=1 },
+        new ProbOneSampleTTest() { Id=2 },
+        new ProbDependentSampleTTest() { Id=3 },
+        new ProbIndependentSampleTTest() { Id=4 },
+        new ProbZScore() { Id=5 },
     };
     public static IProblem[] ProblemIds { get => problemIds; }
     public abstract int Id { get; set; }

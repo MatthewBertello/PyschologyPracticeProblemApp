@@ -5,16 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
-public class ProblemMean : IProblem {
-    public string Name => "Mean";
+public class ProbStandardDeviation : IProblem {
+    public string Name => "Standard Deviation";
+
     public int Id { get; set; }
+
     public DataSet GenData()
     {
-        return new DataSet(StatsUtil.GenRandomData(5, 0, 10));
+        int count = (int) StatsUtil.GenRandomValue(7, 10);
+        return new DataSet(StatsUtil.GenRandomData(count, 0, 10));
     }
 
     public double Solve(DataSet dataSet)
     {
-        return StatsUtil.CalcMean(dataSet.DataA);
+        return StatsUtil.CalcStandardDeviation(dataSet.DataA);
     }
 }

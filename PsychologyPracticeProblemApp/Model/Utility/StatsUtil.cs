@@ -50,10 +50,10 @@ public static class StatsUtil {
     /// <param name="data">The data set</param>
     /// <param name="populationMean">The population mean</param>
     /// <returns>The T score of the data set</returns>
-    public static double CalcOneSampleTTest(double[] data, double populationMean)
+    public static double CalcOneSampleTTest(double[] data, double? populationMean)
     {
         double m = CalcMean(data);                      // sample mean
-        double u = populationMean;                      // population mean
+        double u = populationMean ?? 0;                 // population mean
         double s = CalcStandardDeviation(data, m);      // sample standard deviation
         double n = data.Length;                         // sample size
 
@@ -68,9 +68,9 @@ public static class StatsUtil {
     /// <param name="dataPre">The data pre-experiment</param>
     /// <param name="dataPost">The data post-experiment</param>
     /// <returns>The T score of the data set</returns>
-    public static double? CalcDependentSampleTTest(double[] dataPre, double[] dataPost)
+    public static double CalcDependentSampleTTest(double[] dataPre, double[] dataPost)
     {
-        if(dataPre.Length != dataPost.Length) return null;
+        if(dataPre.Length != dataPost.Length) return 0;
 
         // get differances
         double[] differances = new double[dataPre.Length];
@@ -94,7 +94,7 @@ public static class StatsUtil {
     /// <param name="dataA">Data of group A</param>
     /// <param name="dataB">Data of group B</param>
     /// <returns>T-Score of both data sets</returns>
-    public static double? CalcIndependentSampleTTest(double[] dataA, double[] dataB)
+    public static double CalcIndependentSampleTTest(double[] dataA, double[] dataB)
     {
 
         double meanA = CalcMean(dataA);
@@ -112,11 +112,13 @@ public static class StatsUtil {
     /// Z Score = how many deviations away from the mean
     /// </summary>
     /// <param name="data">The data set</param>
-    /// <param name="popMean">Population Mean</param>
-    /// <param name="popDeviation">Population Standard Deviation</param>
+    /// <param name="populationMean">Population Mean</param>
+    /// <param name="populationDeviation">Population Standard Deviation</param>
     /// <returns>Z-Score of the data set</returns>
-    public static double CalcZScore(double[] data, double popMean, double popDeviation)
+    public static double CalcZScore(double[] data, double? populationMean, double? populationDeviation)
     {
+        double popMean = populationMean ?? 0;
+        double popDeviation = populationDeviation ?? 0;
         double mean = CalcMean(data);
         double meanDiff = mean - popMean;
 
@@ -134,7 +136,7 @@ public static class StatsUtil {
         Random rand = new Random();
         double[] data = new double[count];
         for(int i = 0; i < count; i++)
-            data[i] = Math.Floor(rand.NextDouble() * (maxRange-minRange)) + minRange;
+            data[i] = Math.Floor(rand.NextDouble() * (maxRange - minRange)) + minRange;
         return data;
     }
     /// <summary>
@@ -159,6 +161,17 @@ public static class StatsUtil {
             data[index] += delta;
         }
         return data;
+    }
+    /// <summary>
+    /// Generates a random input value
+    /// </summary>
+    /// <param name="minRange">smallest the element can be</param>
+    /// <param name="maxRange">largest the element can be</param>
+    /// <returns>A randomized data set</returns>
+    public static double GenRandomValue(int minRange = 0, int maxRange = 20)
+    {
+        Random rand = new Random();
+        return Math.Floor(rand.NextDouble() * (maxRange - minRange)) + minRange;
     }
     /// <summary>
     /// Turns data into a string format { a, b, c, d }

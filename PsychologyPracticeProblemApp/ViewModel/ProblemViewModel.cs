@@ -19,6 +19,7 @@ public class ProblemViewModel : INotifyPropertyChanged {
     public Double? YourAnswer { get; set; }
 
 
+    public String ProblemName { get => problem.Name; }
     public String CorrectAnswerText { get => IsCorrect ? "" : String.Format("expected {0}", CorrectAnswer);  }
     public Boolean ShowSetB { get => DataSetB.Count > 0; }
     public Boolean ShowInput1 { get => Input1 != null; }
