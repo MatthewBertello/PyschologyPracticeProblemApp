@@ -1,4 +1,3 @@
-<!---
 Sprint2 changes: 
 Added diffrent problem types called Problems.cs 😀😀 
 Added problem interface called IProblem.cs 
@@ -21,4 +20,3 @@ need to add functionality to the History page
 
 Problems and Issues:
 
--->
