@@ -18,8 +18,8 @@ public readonly struct DataSet {
     {
         this.DataA = dataA ?? new double[0];
         this.DataB = dataB ?? new double[0];
-        this.ValueA = valA;
-        this.ValueB = valB;
+        this.ValueA = valA == double.NaN ? null : valA;
+        this.ValueB = valB == double.NaN ? null : valB;
     }
 
     public override string ToString()

@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
 public class ProbDependentSampleTTest : IProblem {
-    public string Name => "Dependent Sample T-Test";
 
-    public int Id { get; set; }
-
-    public DataSet GenData()
+    public override DataSet GenData()
     {
         int count = (int) StatsUtil.GenRandomValue(7, 10);
         return new DataSet(
@@ -19,7 +16,7 @@ public class ProbDependentSampleTTest : IProblem {
             );
     }
 
-    public double Solve(DataSet dataSet)
+    public override double Solve(DataSet dataSet)
     {
         return StatsUtil.CalcDependentSampleTTest(dataSet.DataA, dataSet.DataB);
     }

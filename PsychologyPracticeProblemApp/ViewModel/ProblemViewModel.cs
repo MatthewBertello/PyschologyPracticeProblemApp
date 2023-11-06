@@ -50,7 +50,7 @@ public class ProblemViewModel : INotifyPropertyChanged {
         for(int i = 0; i < data.DataB.Length; i++) DataSetB.Add(new DataItem(data.DataB[i]));
         Input1 = data.ValueA;
         Input2 = data.ValueB;
-        CorrectAnswer = problem.Solve(data);
+        CorrectAnswer = IProblem.ToPrecise(problem.Solve(data));
         YourAnswer = null;
 
         ApplyPropertyChange(true, true);

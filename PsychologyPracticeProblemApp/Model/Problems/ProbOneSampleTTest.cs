@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
 public class ProbOneSampleTTest : IProblem {
-    public string Name => "One Sample T-Test";
 
-    public int Id { get; set; }
-
-    public DataSet GenData()
+    public override DataSet GenData()
     {
         int count = (int)StatsUtil.GenRandomValue(7, 10);
         return new DataSet(
@@ -20,7 +17,7 @@ public class ProbOneSampleTTest : IProblem {
             );
     }
 
-    public double Solve(DataSet dataSet)
+    public override double Solve(DataSet dataSet)
     {
         return StatsUtil.CalcOneSampleTTest(dataSet.DataA, dataSet.ValueA);
     }

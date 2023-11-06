@@ -2,22 +2,31 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PsychologyPracticeProblemApp.StatsPage"
-             BackgroundColor="White">
+             BackgroundColor="White"
+             Title="Stats Page"
+             xmlns:viewmodel="clr-namespace:PsychologyPracticeProblemApp.ViewModel"
+             x:DataType="viewmodel:StatsViewModel"
+             BindingContext="{x:Reference StatsViewModel}">
     <ScrollView >
-      <VerticalStackLayout Grid.Column="0" Grid.Row="0" Margin="30" Spacing="10">
+    <VerticalStackLayout Grid.Column="0" Grid.Row="0" Margin="30" Spacing="10">
         <Label TextColor="Black" Text="Stats" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-        <Grid ColumnDefinitions="*, 2*" RowDefinitions="*">
-          <VerticalStackLayout Grid.Column="0" Grid.Row="0" Margin="30" Spacing="10">
-            <Label TextColor="Black" Text="Problem type 1: 23/45 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-            <Label TextColor="Black" Text="Problem type 2: 23/45 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-            <Label TextColor="Black" Text="Problem type 3: 23/45 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-            <Label TextColor="Black" Text="Problem type 4: 23/45 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-            <Label TextColor="Black" Text="Problem type 5: 23/45 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-          </VerticalStackLayout>
-          <VerticalStackLayout Grid.Column="1" Grid.Row="0" Margin="30" Spacing="10">
-            <Label TextColor="Black" Text="Total: 115/225 - 51%" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-          </VerticalStackLayout>
-        </Grid>
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="*">
+                <Grid Grid.Column="0" ColumnDefinitions="Auto,15,Auto" RowDefinitions="*,*,*,*,*">
+
+                    <Label Grid.Row="0" Grid.Column="2" TextColor="Black" Text="{Binding TextStandard}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" FontFamily="Roboto-Bold"/>
+                    <Label Grid.Row="1" Grid.Column="2" TextColor="Black" Text="{Binding TextOneSamp}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" FontFamily="Roboto-Bold"/>
+                    <Label Grid.Row="2" Grid.Column="2" TextColor="Black" Text="{Binding TextDepend}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" FontFamily="Roboto-Bold"/>
+                    <Label Grid.Row="3" Grid.Column="2" TextColor="Black" Text="{Binding TextIndep}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" FontFamily="Roboto-Bold"/>
+                    <Label Grid.Row="4" Grid.Column="2" TextColor="Black" Text="{Binding TextZScore}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" FontFamily="Roboto-Bold"/>
+
+                    <Label Grid.Row="0" TextColor="Black" Text="{Binding TextStandardName}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" FontFamily="Roboto-Bold"/>
+                    <Label Grid.Row="1" TextColor="Black" Text="{Binding TextOneSampName}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" FontFamily="Roboto-Bold"/>
+                    <Label Grid.Row="2" TextColor="Black" Text="{Binding TextDependName}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" FontFamily="Roboto-Bold"/>
+                    <Label Grid.Row="3" TextColor="Black" Text="{Binding TextIndepName}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" FontFamily="Roboto-Bold"/>
+                    <Label Grid.Row="4" TextColor="Black" Text="{Binding TextZScoreName}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Start" VerticalOptions="Start" FontFamily="Roboto-Bold"/>
+                </Grid>
+                <Label Grid.Column="1" TextColor="Black" Text="{Binding TotalText}" FontSize="Medium" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Start"/>
+            </Grid>
       </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
