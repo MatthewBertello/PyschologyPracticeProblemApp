@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
 public class ProbIndependentSampleTTest : IProblem {
-    public string Name => "Independent Sample T-Test";
 
-    public int Id { get; set; }
-
-    public DataSet GenData()
+    public override DataSet GenData()
     {
         int countA = (int)StatsUtil.GenRandomValue(7, 10);
         int countB = (int)StatsUtil.GenRandomValue(7, 10);
@@ -20,7 +17,7 @@ public class ProbIndependentSampleTTest : IProblem {
             );
     }
 
-    public double Solve(DataSet dataSet)
+    public override double Solve(DataSet dataSet)
     {
         return StatsUtil.CalcIndependentSampleTTest(dataSet.DataA, dataSet.DataB);
     }

@@ -1,20 +1,21 @@
 ﻿using Npgsql;
+using PsychologyPracticeProblemApp.Model.Structs;
 using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace PsychologyPracticeProblemApp;
 public static class Database {
-    private static Guid ADMIN_USER = Guid.Empty;
 
     private static NpgsqlConnection connection = null;
 
     private static Dictionary<String, String> SQL = new() {
-        { "CreateProblemsTable", "CREATE TABLE IF NOT EXISTS problem (id UUID DEFAULT gen_random_uuid(), problemType INT, xValues STRING, yValues STRING, inputA DECIMAL, inputB DECIMAL, PRIMARY KEY(id));" },
-        { "CreateAttemptsTable", "CREATE TABLE IF NOT EXISTS attempt (id UUID DEFAULT gen_random_uuid(), userId UUID, problemId UUID, answer DECIMAL, PRIMARY KEY(id));" },
+        { "CreateProblemsTable", "CREATE TABLE IF NOT EXISTS problem (id UUID DEFAULT gen_random_uuid(), problemType INT, xValues STRING, yValues STRING, inputA FLOAT, inputB FLOAT, PRIMARY KEY(id));" },
+        { "CreateAttemptsTable", "CREATE TABLE IF NOT EXISTS attempt (id UUID DEFAULT gen_random_uuid(), date DATE, userId UUID, problemId UUID, answer FLOAT, PRIMARY KEY(id));" },
         { "DropProblemsTable", "DROP TABLE IF EXISTS problem" },
         { "DropAttemptsTable", "DROP TABLE IF EXISTS attempt" },
         { "InsertProblem", "INSERT INTO problem (problemType, xValues, yValues, inputA, inputB) VALUES ($1, $2, $3, $4, $5) RETURNING id" },
-        { "InsertAttempt", "INSERT INTO attempt (userId, problemId, answer) VALUES ($1, $2, $3) RETURNING id" },
+        { "InsertAttempt", "INSERT INTO attempt (userId, problemId, answer, date) VALUES ($1, $2, $3, $4) RETURNING id" },
+        { "GetPastAttempts", "SELECT attempt.answer, problem.xValues, problem.yValues, problem.inputA, problem.inputB, attempt.date FROM attempt, problem WHERE attempt.problemId = problem.id and attempt.userId = $1 AND problem.problemType = $2" },
     };
 
     /// <summary>
@@ -23,8 +24,7 @@ public static class Database {
     /// <returns></returns>
     private static String GetConnectionString()
     {
-        
-        
+
         var connStringBuilder = new NpgsqlConnectionStringBuilder();
         connStringBuilder.Host = "wool-toucan-13031.5xj.cockroachlabs.cloud";
         connStringBuilder.Port = 26257;
@@ -35,8 +35,9 @@ public static class Database {
         connStringBuilder.ApplicationName = "PsychologyPracticeProblemApp";
         connStringBuilder.IncludeErrorDetail = true;
         return connStringBuilder.ConnectionString;
-        
+
     }
+    
 
     public static NpgsqlCommand CallSQL(string sql, bool callCommand=true)
     {
@@ -54,8 +55,8 @@ public static class Database {
         {
             connection = new NpgsqlConnection(GetConnectionString());
             connection.Open();
-            new NpgsqlCommand(SQL["DropProblemsTable"], connection).ExecuteNonQuery();
-            new NpgsqlCommand(SQL["DropAttemptsTable"], connection).ExecuteNonQuery();
+            //new NpgsqlCommand(SQL["DropProblemsTable"], connection).ExecuteNonQuery();
+            //new NpgsqlCommand(SQL["DropAttemptsTable"], connection).ExecuteNonQuery();
             new NpgsqlCommand(SQL["CreateProblemsTable"], connection).ExecuteNonQuery();
             new NpgsqlCommand(SQL["CreateAttemptsTable"], connection).ExecuteNonQuery();
         }
@@ -82,9 +83,10 @@ public static class Database {
             {
                 await using var cmd = new NpgsqlCommand(SQL["InsertAttempt"], connection) {
                     Parameters = {
-                        new() { Value = userID ?? ADMIN_USER },
+                        new() { Value = userID ?? User.Admin },
                         new() { Value = probID },
-                        new() { Value = yourAnswer ?? double.NaN }
+                        new() { Value = yourAnswer ?? double.NaN },
+                        new() { Value = DateTime.Now },
                     }
                 };
                 await cmd.ExecuteNonQueryAsync();
@@ -94,6 +96,30 @@ public static class Database {
             Debug.WriteLine("{0}\n\t{1}\n\t{2}\n\t{3}\n\t{4}", e.StackTrace, e.Where, e.Line, e.ConstraintName, e.Detail);
         }
     }
+    public static LinkedList<HistoryLog> GetHistory(Guid? userID, int type)
+    {
+        LinkedList<HistoryLog> log = new();
+
+        using var cmd = new NpgsqlCommand(SQL["GetPastAttempts"], connection) {
+            Parameters = {
+                new() { Value = userID ?? User.Admin },
+                new() { Value = type },
+            }
+        };
+        NpgsqlDataReader reader = cmd.ExecuteReader();
+        while(reader.Read())
+        {
+            double answer = (double) reader.GetValue(0);
+            double[] xValues = StringToData((string)reader.GetValue(1));
+            double[] yValues = StringToData((string)reader.GetValue(2));
+            double inputA = (double)reader.GetValue(3);
+            double inputB = (double)reader.GetValue(4);
+            DateTime date = (DateTime)reader.GetValue(5);
+            log.AddLast(new HistoryLog(type, new DataSet(xValues, yValues, inputA, inputB), answer, date));
+        }
+        reader.Close();
+        return log;
+    }
     private static String DataToString(double[] data)
     {
         String dataStr = "";
@@ -102,6 +128,7 @@ public static class Database {
     }
     private static double[] StringToData(string dataStr)
     {
+        if(dataStr == "") return new double[0];
         string[] parts = dataStr.Split(",");
         double[] data = new double[parts.Length];
         for(int i=0; i<parts.Length; i++) data[i] = Double.Parse(parts[i]);

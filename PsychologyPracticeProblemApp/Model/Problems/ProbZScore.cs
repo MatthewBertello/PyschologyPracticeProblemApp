@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
 public class ProbZScore : IProblem {
-    public string Name => "Z-Test";
-
-    public int Id { get; set; }
-
-    public DataSet GenData()
+    public override DataSet GenData()
     {
         int v = (int)StatsUtil.GenRandomValue(7, 10);
         return new DataSet(
@@ -21,7 +17,7 @@ public class ProbZScore : IProblem {
             );
     }
 
-    public double Solve(DataSet dataSet)
+    public override double Solve(DataSet dataSet)
     {
         return StatsUtil.CalcZScore(dataSet.DataA, dataSet.ValueA, dataSet.ValueB);
     }

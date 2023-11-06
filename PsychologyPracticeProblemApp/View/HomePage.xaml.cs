@@ -18,26 +18,32 @@ public partial class HomePage : ContentPage
     {
         InitializeComponent();
         Database.Verify();
+
+        User.Login();
     }
-    private void OnProblem1(object sender, EventArgs e)
+    private void OnStandard(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new ProblemPage(new ProbStandardDeviation()));
+        Navigation.PushAsync(new ProblemPage(IProblem.StandardDeviation));
     }
-    private void OnProblem2(object sender, EventArgs e)
+    private void OnOneSample(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new ProblemPage(new ProbOneSampleTTest()));
+        Navigation.PushAsync(new ProblemPage(IProblem.OneSampleTTest));
     }
-    private void OnProblem3(object sender, EventArgs e)
+    private void OnDependent(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new ProblemPage(new ProbDependentSampleTTest()));
+        Navigation.PushAsync(new ProblemPage(IProblem.DependentSampleTTest));
     }
-    private void OnProblem4(object sender, EventArgs e)
+    private void OnIndependent(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new ProblemPage(new ProbIndependentSampleTTest()));
+        Navigation.PushAsync(new ProblemPage(IProblem.IndependentSampleTTest));
     }
-    private void OnProblem5(object sender, EventArgs e)
+    private void OnZScore(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new ProblemPage(new ProbZScore()));
+        Navigation.PushAsync(new ProblemPage(IProblem.ZScore));
+    }
+    private void OnStatsTest(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new StatsPage());
     }
 
 }
