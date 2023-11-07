@@ -45,5 +45,9 @@ public partial class HomePage : ContentPage
     {
         Navigation.PushAsync(new StatsPage());
     }
+    private void OnLogoutTest(object sender, EventArgs e)
+    {
+        User.Logout(this);
+    }
 
 }

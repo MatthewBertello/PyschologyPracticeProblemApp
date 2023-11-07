@@ -30,5 +30,13 @@ public class User {
         Current = user;
         return user;
     }
+    public async static void Logout(ContentPage currentPage)
+    {
+        Current = null;
+        while(currentPage.Navigation.NavigationStack.Count > 0)
+        {
+            await currentPage.Navigation.PopAsync();
+        }
+    }
 
 }

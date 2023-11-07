@@ -19,6 +19,11 @@ namespace PsychologyPracticeProblemApp
         {
             InitializeComponent();
         }
+        public async void OnGuest(object sender, EventArgs e)
+        {
+            User.Login();
+            await Navigation.PushAsync(new HomePage());
 
+        }
     }
 }
