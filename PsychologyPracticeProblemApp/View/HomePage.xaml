@@ -20,6 +20,8 @@
                             Clicked="OnZScore"/>
                     <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Stats" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
                             Clicked="OnStatsTest"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Logout" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
+                            Clicked="OnLogoutTest"/>
                 </VerticalStackLayout>
             </Frame>
         </Grid>
