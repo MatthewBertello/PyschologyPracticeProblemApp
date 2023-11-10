@@ -38,7 +38,12 @@ public static class Database {
 
     }
     
-
+    /// <summary>
+    /// Calls any given sql command. can auto execute as well.
+    /// </summary>
+    /// <param name="sql">sql command</param>
+    /// <param name="callCommand">if the command should be executed</param>
+    /// <returns>the Npgsql command object associated with the sql</returns>
     public static NpgsqlCommand CallSQL(string sql, bool callCommand=true)
     {
         Verify();
@@ -61,6 +66,13 @@ public static class Database {
             new NpgsqlCommand(SQL["CreateAttemptsTable"], connection).ExecuteNonQuery();
         }
     }
+    /// <summary>
+    /// Take any given attempt and save it to the database
+    /// </summary>
+    /// <param name="problem">the problem type to save</param>
+    /// <param name="dataSet">the data set of inputs</param>
+    /// <param name="yourAnswer">what the user answered</param>
+    /// <param name="userID">user id</param>
     public static async void SaveAnswerAttempt(IProblem problem, DataSet dataSet, double? yourAnswer, Guid? userID = null)
     {
         
@@ -96,6 +108,12 @@ public static class Database {
             Debug.WriteLine("{0}\n\t{1}\n\t{2}\n\t{3}\n\t{4}", e.StackTrace, e.Where, e.Line, e.ConstraintName, e.Detail);
         }
     }
+    /// <summary>
+    /// Takes a user id and gets their attempt history from database (filtered by type)
+    /// </summary>
+    /// <param name="userID">user id</param>
+    /// <param name="type">type of problem to retrieve</param>
+    /// <returns>a list of attempts</returns>
     public static LinkedList<HistoryLog> GetHistory(Guid? userID, int type)
     {
         LinkedList<HistoryLog> log = new();
@@ -120,12 +138,22 @@ public static class Database {
         reader.Close();
         return log;
     }
+    /// <summary>
+    /// Converts array of data into a string
+    /// </summary>
+    /// <param name="data">raw data</param>
+    /// <returns>data formatted as string</returns>
     private static String DataToString(double[] data)
     {
         String dataStr = "";
         for(int i = 0; i < data.Length; i++) dataStr += (i == 0 ? "" : ",") + data[i].ToString();
         return dataStr;
     }
+    /// <summary>
+    /// converts a string of data into a raw data set
+    /// </summary>
+    /// <param name="dataStr">string of data</param>
+    /// <returns>raw data</returns>
     private static double[] StringToData(string dataStr)
     {
         if(dataStr == "") return new double[0];
