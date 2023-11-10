@@ -8,15 +8,6 @@
              Title="Problem Page"
              BindingContext="{x:Reference ProblemViewModel}">
     <Grid RowDefinitions="50,*">
-        <Grid ColumnDefinitions="50,*,200,200" BackgroundColor="{StaticResource Tint}">
-            <!-- Upper Bar -->
-            <Image Grid.Column="0" Source="menu_button.png" Margin="5"/>
-            <Label Grid.Column="1" Text="{Binding ProblemName}" FontSize="30" FontFamily="Roboto-Bold" VerticalOptions="Center" Padding="25,0"/>
-            <Label Grid.Column="2" Text="Username" VerticalOptions="Center" HorizontalOptions="End" Padding="25,0" FontSize="20" FontFamily="Roboto-Bold"/>
-            <Rectangle Grid.Column="3" BackgroundColor="{StaticResource TintLight}"/>
-            <Label Grid.Column="3" Text="Logout" VerticalOptions="Center" HorizontalOptions="Center" Padding="25,0" FontSize="20" BackgroundColor="{StaticResource TintLight}" FontFamily="Roboto-Bold"/>
-
-        </Grid>
         <Grid Grid.Row="1" RowDefinitions="50,*" ColumnDefinitions="*,*" Margin="50,15">
             <Label Grid.Row="0" Text="Data" TextColor="Black" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,200,0" FontSize="Large"/>
             <Label Grid.Row="0" Text="Formula" TextColor="Black" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,0" FontSize="Large" Grid.Column="1"/>
@@ -62,7 +53,7 @@
                     <Image Source="formula.png" Scale=".75"/>
                 </Border>
                 <Grid Grid.Row="1" ColumnDefinitions="*,*,50">
-                    <Button Text="See Example" TextColor="Black" BackgroundColor="{StaticResource Tint}"/>
+                    <Button Text="See Example" TextColor="Black" Clicked="OnSeeExampleClicked" BackgroundColor="{StaticResource Tint}"/>
                     <Border Grid.Column="1" Stroke="Black" StrokeShape="RoundRectangle 5" Padding="0" IsVisible="{Binding NotShowCorrectAnswer}">
                         <Entry x:Name="AnswerEntry"  MaxLength="6" Text="0" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" Placeholder="Answer"/>
                     </Border>

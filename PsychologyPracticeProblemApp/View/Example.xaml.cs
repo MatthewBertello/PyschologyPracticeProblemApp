@@ -29,11 +29,16 @@ public partial class Example : ContentPage
     ObservableCollection<DataRow> dataRows = new ObservableCollection<DataRow>();
     public Example()
 	{
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < 10; i++)
         {
             dataRows.Add(new DataRow(i, i * 2, i * 3));
         }
         InitializeComponent();
         BindingContext = dataRows;
+    }
+
+    private void OnCloseExampleClicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
     }
 }

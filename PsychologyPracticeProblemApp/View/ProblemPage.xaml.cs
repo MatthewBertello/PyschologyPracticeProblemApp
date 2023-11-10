@@ -31,5 +31,10 @@ public partial class ProblemPage : ContentPage {
         VM.ApplySolution(AnswerEntry.Text);
     }
 
+    private void OnSeeExampleClicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new Example());
+    }
+
 }
 
