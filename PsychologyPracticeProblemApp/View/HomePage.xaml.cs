@@ -3,6 +3,7 @@
  * Date: 10/18/2023
 */
 using PsychologyPracticeProblemApp;
+using PsychologyPracticeProblemApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,10 +14,14 @@ using System.Threading.Tasks;
 namespace PsychologyPracticeProblemApp;
 public partial class HomePage : ContentPage
 {
-
+    public OverlayViewModel VM { get; set; }
     public HomePage()
     {
+        OverlayViewModel VM = new(this, "Home");
         InitializeComponent();
+        BindingContext = VM;
+
+
         Database.Verify();
 
         User.Login();
@@ -41,13 +46,18 @@ public partial class HomePage : ContentPage
     {
         Navigation.PushAsync(new ProblemPage(IProblem.ZScore));
     }
-    private void OnStatsTest(object sender, EventArgs e)
+
+
+    private void OnStatsPage(object sender, EventArgs e)
     {
         Navigation.PushAsync(new StatsPage());
     }
-    private void OnLogoutTest(object sender, EventArgs e)
+    private void OnHistoryPage(object sender, EventArgs e)
     {
-        User.Logout(this);
+        Navigation.PushAsync(new History());
+    }
+    private void OnSettingsPage(object sender, EventArgs e)
+    {
     }
 
 }

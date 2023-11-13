@@ -40,7 +40,7 @@
     <Style TargetType="Button">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Primary}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
-        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontFamily" Value="Roboto-Bold"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="CornerRadius" Value="8"/>
         <Setter Property="Padding" Value="14,10"/>
@@ -60,7 +60,7 @@
             </VisualStateGroupList>
         </Setter>
     </Style>
-
+    
     <Style TargetType="CheckBox">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
         <Setter Property="MinimumHeightRequest" Value="44"/>
@@ -172,7 +172,7 @@
     </Style>
 
     <Style TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray900}}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular" />
         <Setter Property="FontSize" Value="14" />
@@ -196,7 +196,7 @@
     </Style>
 
     <Style TargetType="Picker">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray900}}" />
         <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
@@ -416,4 +416,67 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+
+    <Style x:Key="HeaderTitle" TargetType="Label">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="Margin" Value="25,0"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="Grid.Column" Value="1"/>
+    </Style>
+    <Style x:Key="HeaderUsername" TargetType="Label">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="HorizontalOptions" Value="End"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="Margin" Value="25,0"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="Grid.Column" Value="1"/>
+    </Style>
+    <Style x:Key="HeaderRect" TargetType="Rectangle">
+        <Setter Property="BackgroundColor" Value="{StaticResource Tint}"/>
+        <Setter Property="Grid.ColumnSpan" Value="3"/>
+    </Style>
+
+    <Style x:Key="HeaderBar" TargetType="Grid">
+        <Setter Property="RowDefinitions" Value="50,*"/>
+        <Setter Property="ColumnDefinitions" Value="50,*,Auto"/>
+    </Style>
+    <Style x:Key="HeaderLogout" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource TintLight}"/>
+        <Setter Property="Text" Value="Logout"/>
+        <Setter Property="Padding" Value="50,0"/>
+        <Setter Property="Grid.Column" Value="2"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="TextColor" Value="White"/>
+    </Style>
+    <Style x:Key="HeaderButton" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="{StaticResource Tint}"/>
+        <Setter Property="Source" Value="menu_button.png"/>
+        <Setter Property="Padding" Value="5"/>
+    </Style>
+    <Style x:Key="HeaderInner" TargetType="ScrollView">
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="Grid.ColumnSpan" Value="3"/>
+    </Style>
+
+    <Style x:Key="HomeButton" TargetType="Button">
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="BorderColor" Value="Black"/>
+        <Setter Property="BackgroundColor" Value="LightBlue"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="MaximumWidthRequest" Value="300"/>
+    </Style>
+    <Style x:Key="HomeButtonSide" TargetType="Button">
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="BorderColor" Value="Black"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="CornerRadius" Value="0"/>
+        <Setter Property="MinimumWidthRequest" Value="200"/>
+    </Style>
 </ResourceDictionary>

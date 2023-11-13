@@ -12,7 +12,7 @@ public partial class StatsPage : ContentPage
     public StatsPage()
     {
 
-        VM = new();
+        VM = new(this, "Stats");
         InitializeComponent();
         BindingContext = VM;
 

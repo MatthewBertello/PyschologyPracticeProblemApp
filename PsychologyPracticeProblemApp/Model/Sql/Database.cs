@@ -60,8 +60,8 @@ public static class Database {
         {
             connection = new NpgsqlConnection(GetConnectionString());
             connection.Open();
-            //new NpgsqlCommand(SQL["DropProblemsTable"], connection).ExecuteNonQuery();
-            //new NpgsqlCommand(SQL["DropAttemptsTable"], connection).ExecuteNonQuery();
+            // new NpgsqlCommand(SQL["DropProblemsTable"], connection).ExecuteNonQuery();
+            // new NpgsqlCommand(SQL["DropAttemptsTable"], connection).ExecuteNonQuery();
             new NpgsqlCommand(SQL["CreateProblemsTable"], connection).ExecuteNonQuery();
             new NpgsqlCommand(SQL["CreateAttemptsTable"], connection).ExecuteNonQuery();
         }
@@ -95,7 +95,7 @@ public static class Database {
             {
                 await using var cmd = new NpgsqlCommand(SQL["InsertAttempt"], connection) {
                     Parameters = {
-                        new() { Value = userID ?? User.Admin },
+                        new() { Value = userID ?? User.Guest },
                         new() { Value = probID },
                         new() { Value = yourAnswer ?? double.NaN },
                         new() { Value = DateTime.Now },
@@ -120,7 +120,7 @@ public static class Database {
 
         using var cmd = new NpgsqlCommand(SQL["GetPastAttempts"], connection) {
             Parameters = {
-                new() { Value = userID ?? User.Admin },
+                new() { Value = userID ?? User.Guest },
                 new() { Value = type },
             }
         };
