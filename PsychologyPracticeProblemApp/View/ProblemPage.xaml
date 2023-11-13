@@ -53,26 +53,6 @@
                         HorizontalOptions="Center" BackgroundColor="{StaticResource Tint}"
                         MaximumWidthRequest="500" WidthRequest="200" Clicked="OnRegenerateClicked"/>
 
-                </Grid>
-            </Border>
-            <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="*,50,*">
-                <Border Stroke="Black" StrokeShape="RoundRectangle 25" >
-                    <Image Source="formula.png" Scale=".75"/>
-                </Border>
-                <Grid Grid.Row="1" ColumnDefinitions="*,*,50">
-                    <Button Text="See Example" TextColor="Black" Clicked="OnSeeExampleClicked" BackgroundColor="{StaticResource Tint}"/>
-                    <Border Grid.Column="1" Stroke="Black" StrokeShape="RoundRectangle 5" Padding="0" IsVisible="{Binding NotShowCorrectAnswer}">
-                        <Entry x:Name="AnswerEntry"  MaxLength="6" Text="0" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" Placeholder="Answer"/>
-                    </Border>
-                    <Grid Grid.Column="1" ColumnDefinitions="*,2*" RowDefinitions="*,*" IsVisible="{Binding ShowCorrectAnswer}">
-                        <Border Grid.RowSpan="2" BackgroundColor="{StaticResource Valid}" Stroke="Black" StrokeShape="RoundRectangle 5" IsVisible="{Binding IsCorrect}">
-                            <Label Text="Correct!" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
-                        </Border>
-                        <Border Grid.RowSpan="2" BackgroundColor="{StaticResource Invalid}" Stroke="Black" StrokeShape="RoundRectangle 5" IsVisible="{Binding IsIncorrect}">
-                            <Label Text="Wrong!" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
-                        </Border>
-                        <Label Grid.Column="1" Grid.Row="0" Text="{Binding YourAnswer}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
-                        <Label Grid.Column="1" Grid.Row="1" Text="{Binding CorrectAnswerText}" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="Bold"/>
                     </Grid>
                 </Border>
                 <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="*,50,*">
@@ -80,7 +60,7 @@
 
                     </Border>
                     <Grid Grid.Row="1" ColumnDefinitions="*,*,50">
-                        <Button Text="See Example" TextColor="Black" BackgroundColor="{StaticResource Tint}"/>
+                        <Button Text="See Example" Clicked="OnSeeExampleClicked" TextColor="Black" BackgroundColor="{StaticResource Tint}"/>
                         <Border Grid.Column="1" Stroke="Black" StrokeShape="RoundRectangle 5" Padding="0" IsVisible="{Binding NotShowCorrectAnswer}">
                             <Entry x:Name="AnswerEntry"  MaxLength="6" Text="0" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" Placeholder="Answer"/>
                         </Border>
