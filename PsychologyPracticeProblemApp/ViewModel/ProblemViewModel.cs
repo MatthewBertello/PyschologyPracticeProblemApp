@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp.ViewModel;
-public class ProblemViewModel : INotifyPropertyChanged {
+public class ProblemViewModel : OverlayViewModel {
 
+    public event PropertyChangedEventHandler PropertyChanged;
     public ObservableCollection<DataItem> DataSetA { get; set; } = new();
     public ObservableCollection<DataItem> DataSetB { get; set; } = new();
     public Double? Input1 { get; set; }
@@ -33,8 +34,7 @@ public class ProblemViewModel : INotifyPropertyChanged {
     private IProblem problem;
     private DataSet data;
 
-    public event PropertyChangedEventHandler PropertyChanged;
-    public ProblemViewModel(IProblem problem)
+    public ProblemViewModel(ContentPage parent, String pageName, IProblem problem) : base(parent, pageName)
     {
         this.problem = problem;
         RegenerateProblem();

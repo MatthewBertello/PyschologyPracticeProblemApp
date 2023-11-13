@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp.ViewModel;
-public class StatsViewModel : INotifyPropertyChanged {
-    public event PropertyChangedEventHandler PropertyChanged;
+public class StatsViewModel : OverlayViewModel {
 
+    public event PropertyChangedEventHandler PropertyChanged;
     public LinkedList<HistoryLog>[] Logs = new LinkedList<HistoryLog>[5];
     public int[] Correct = new int[5];
     public int[] Total = new int[5];
@@ -29,7 +29,7 @@ public class StatsViewModel : INotifyPropertyChanged {
 
     private int GTotal = 0;
     private int GCorrect = 0;
-    public StatsViewModel()
+    public StatsViewModel(ContentPage parent, String pageName) : base(parent, pageName)
     {
         // load all histories
         for(int i = 0; i < 5; i++)

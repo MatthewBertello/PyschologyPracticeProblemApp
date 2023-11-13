@@ -57,11 +57,12 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Npgsql" Version="7.0.6" />
+		<PackageReference Include="Refractored.MvvmHelpers" Version="1.6.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="View\Overlay.xaml.cs">
-	    <DependentUpon>Overlay.xaml</DependentUpon>
+	  <Compile Update="View\History.xaml.cs">
+	    <DependentUpon>History.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="View\LogoutPage.xaml.cs">
 	    <DependentUpon>LogoutPage.xaml</DependentUpon>
@@ -70,9 +71,6 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="View\HomePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="View\Overlay.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\LogoutPage.xaml">

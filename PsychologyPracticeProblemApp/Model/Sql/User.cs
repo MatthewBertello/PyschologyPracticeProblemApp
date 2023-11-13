@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
 public class User {
-    public static Guid Admin => Guid.Empty;
+    public static Guid Guest => Guid.Empty;
+    public static User Current { get; set; }
 
 
     private Guid id;
+
     private int errorCallback;
+    private String name;
     public int ErrorCallback => errorCallback;
+
+    public String Name => name;
     public Guid Id => id;
 
-    public static User Current { get; set; }
+
 
     /// <summary>
     /// Attempts to login user based on username and password.
@@ -24,8 +29,9 @@ public class User {
     public static User Login(String? username=null, String? password=null)
     {
         User user = new User() {
-            id = Admin, // default to admin
+            id = Guest, // default to admin
             errorCallback = 0, // default to no errors
+            name="Guest"
         };
         Current = user;
         return user;
@@ -33,10 +39,7 @@ public class User {
     public async static void Logout(ContentPage currentPage)
     {
         Current = null;
-        while(currentPage.Navigation.NavigationStack.Count > 0)
-        {
-            await currentPage.Navigation.PopAsync();
-        }
+        await currentPage.Navigation.PopToRootAsync();
     }
 
 }

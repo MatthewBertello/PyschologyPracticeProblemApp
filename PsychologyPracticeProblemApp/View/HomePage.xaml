@@ -2,28 +2,39 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PsychologyPracticeProblemApp.HomePage"
-             BackgroundColor="White">
-    <ScrollView >
-        <Grid>
-            <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="10" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="400">
-                <VerticalStackLayout Margin="20" Spacing="20">
-                    <Label TextColor="Black" Text="Home" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Standard Deviation" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
-                            Clicked="OnStandard"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="One Sample T-Test" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
-                            Clicked="OnOneSample"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Dependent Sample T-Test" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
-                            Clicked="OnDependent"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Independent Sample T-Test" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
-                            Clicked="OnIndependent"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Z-Score" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
-                            Clicked="OnZScore"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Stats" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
-                            Clicked="OnStatsTest"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Logout" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
-                            Clicked="OnLogoutTest"/>
-                </VerticalStackLayout>
-            </Frame>
+             BackgroundColor="White"
+             xmlns:viewmodel="clr-namespace:PsychologyPracticeProblemApp.ViewModel"
+             x:DataType="viewmodel:OverlayViewModel"
+             Title="{Binding PageName}"
+             BindingContext="{x:Reference OverlayViewModel}">
+    <Grid ColumnDefinitions="Auto,*">
+        <Border BackgroundColor="Transparent" Padding="0" Margin="0" StrokeThickness="1">
+            <Grid RowDefinitions="50,50,50,*,50">
+                <Button Grid.Row="0" Text="History" Clicked="OnHistoryPage" Style="{StaticResource HomeButtonSide}"/>
+                <Button Grid.Row="1" Text="Stats" Clicked="OnStatsPage" Style="{StaticResource HomeButtonSide}"/>
+                <Button Grid.Row="2" Text="Settings" Clicked="OnSettingsPage" Style="{StaticResource HomeButtonSide}"/>
+                <Button Grid.Row="4" Text="Logout" Command="{Binding LogoutCommand}" Style="{StaticResource HomeButtonSide}"/>
+            </Grid>
+        </Border>
+        <Grid Style="{StaticResource HeaderBar}" Grid.Column="1">
+            <Rectangle Style="{StaticResource HeaderRect}"/>
+            <Label Text="{Binding PageName}" Style="{StaticResource HeaderTitle}"/>
+            <Label Text="{Binding Username}" Style="{StaticResource HeaderUsername}"/>
+            <Button Style="{StaticResource HeaderLogout}" Command="{Binding LogoutCommand}"/>
+            <ImageButton Style="{StaticResource HeaderButton}"/>
+
+            <ScrollView Style="{StaticResource HeaderInner}">
+                <Frame Grid.Row="1" BorderColor="Black" BackgroundColor="Transparent" CornerRadius="10" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="400">
+                    <VerticalStackLayout Margin="20" Spacing="20">
+                        <Label TextColor="Black" Text="Practice Problems" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
+                        <Button Style="{StaticResource HomeButton}" Text="Standard Deviation" Clicked="OnStandard"/>
+                        <Button Style="{StaticResource HomeButton}" Text="One Sample T-Test" Clicked="OnOneSample"/>
+                        <Button Style="{StaticResource HomeButton}" Text="Dependent Sample T-Test" Clicked="OnDependent"/>
+                        <Button Style="{StaticResource HomeButton}" Text="Independent Sample T-Test" Clicked="OnIndependent"/>
+                        <Button Style="{StaticResource HomeButton}" Text="Z-Score" Clicked="OnZScore"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </ScrollView>
         </Grid>
-    </ScrollView>
+    </Grid>
 </ContentPage>

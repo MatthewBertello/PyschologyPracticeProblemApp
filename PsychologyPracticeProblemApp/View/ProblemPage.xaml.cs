@@ -15,7 +15,7 @@ public partial class ProblemPage : ContentPage {
     public ProblemViewModel VM { get; set; }
     public ProblemPage(IProblem problem)
     {
-        VM = new(problem);
+        VM = new(this, problem.Name, problem);
 
         InitializeComponent();
 
