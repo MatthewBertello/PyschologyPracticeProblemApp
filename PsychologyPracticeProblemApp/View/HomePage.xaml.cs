@@ -23,8 +23,6 @@ public partial class HomePage : ContentPage
 
 
         Database.Verify();
-
-        User.Login();
     }
     private void OnStandard(object sender, EventArgs e)
     {

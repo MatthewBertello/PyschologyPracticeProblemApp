@@ -7,31 +7,49 @@ using System.Threading.Tasks;
 namespace PsychologyPracticeProblemApp;
 public class User {
     public static Guid Guest => Guid.Empty;
-    public static User Current { get; set; }
+    public static User Current { get; private set; } = null;
+    public static string Error { get; private set; } = string.Empty;
 
 
     private Guid id;
+    private string firstName, lastName, email;
 
-    private int errorCallback;
-    private String name;
-    public int ErrorCallback => errorCallback;
-
-    public String Name => name;
+    public String DisplayName => firstName;
+    public String Email => email;
+    public String FirstName => firstName;
+    public String LastName => firstName;
     public Guid Id => id;
 
 
-
+    public User() {}
+    public User(Guid id, string firstName, string lastName, string email)
+    {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
     /// <summary>
     /// Attempts to login user based on username and password.
     /// If login failed, user.ErrorCallback != 0
     /// </summary>
     /// <returns></returns>
-    public static User Login(String? username=null, String? password=null)
+    public static User Login(string username, string password)
+    {
+        User user = Database.GetUser(username, password);
+        Current = user;
+        Error = user == null ? "Username or password is incorrect!" : string.Empty; // if its null, throw error
+        return user;
+    }
+    /// <summary>
+    /// Creates a guest user
+    /// </summary>
+    /// <returns></returns>
+    public static User LoginGuest()
     {
         User user = new User() {
             id = Guest, // default to admin
-            errorCallback = 0, // default to no errors
-            name="Guest"
+            firstName = "Guest",
         };
         Current = user;
         return user;
@@ -41,5 +59,6 @@ public class User {
         Current = null;
         await currentPage.Navigation.PopToRootAsync();
     }
+
 
 }
