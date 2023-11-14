@@ -12,7 +12,7 @@ public class OverlayViewModel : INotifyPropertyChanged {
     public event PropertyChangedEventHandler PropertyChanged;
 
     public String PageName { get; set; }
-    public String Username => User.Current?.Name ?? string.Empty;
+    public String Username => User.Current?.DisplayName ?? string.Empty;
     public Command LogoutCommand { get; set; }
     public Command HomeCommand { get; set; }
 

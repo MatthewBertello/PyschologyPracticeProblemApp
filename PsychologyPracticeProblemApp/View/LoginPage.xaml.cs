@@ -21,7 +21,7 @@ namespace PsychologyPracticeProblemApp
         }
         public async void OnGuest(object sender, EventArgs e)
         {
-            User.Login();
+            User.LoginGuest();
             await Navigation.PushAsync(new HomePage());
 
         }
