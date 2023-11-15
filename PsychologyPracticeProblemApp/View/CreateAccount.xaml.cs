@@ -11,4 +11,10 @@ public partial class CreateAccount : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void OnCancel(object sender, EventArgs e)
+    {
+        //navigate back to the login page
+        await Navigation.PopAsync();
+    }
 }
