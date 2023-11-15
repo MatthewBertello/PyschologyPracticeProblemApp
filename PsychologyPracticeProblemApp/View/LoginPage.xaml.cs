@@ -54,5 +54,12 @@ namespace PsychologyPracticeProblemApp
                 await DisplayAlert("Login Failed", "Invalid username or password. Please try again.", "OK");
             }
         }
+
+        public async void OnCreateAccount(object sender, EventArgs e)
+        {
+            // Navigate to the CreateAccountPage
+            await Navigation.PushAsync(new CreateAccount());
+        }
+
     }
 }
