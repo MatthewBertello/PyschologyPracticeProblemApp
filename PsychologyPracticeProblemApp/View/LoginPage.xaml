@@ -15,7 +15,8 @@
                 </Frame>
                  <Button Grid.Row="3" TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Login" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300" 
                             Clicked="OnLogin"/>
-                <Button Grid.Row="4" TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                        <Button Grid.Row="4" TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
+                            Clicked="OnCreateAccount"/>
                 <Button Grid.Row="5" TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Use as guest" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
                             Clicked="OnGuest"/>
                 <Label Grid.Row="6" TextColor="Black" Text="Create an account" FontSize="Small" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
