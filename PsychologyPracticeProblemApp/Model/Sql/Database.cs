@@ -61,18 +61,16 @@ public static class Database {
     /// </summary>
     public static void Verify()
     {
-        if(connection == null)
-        {
-            connection = new NpgsqlConnection(GetConnectionString());
-            connection.Open();
-            // new NpgsqlCommand(SQL["DropProblemsTable"], connection).ExecuteNonQuery();
-            // new NpgsqlCommand(SQL["DropAttemptsTable"], connection).ExecuteNonQuery();
-            new NpgsqlCommand(SQL["CreateProblemsTable"], connection).ExecuteNonQuery();
-            new NpgsqlCommand(SQL["CreateAttemptsTable"], connection).ExecuteNonQuery();
-            new NpgsqlCommand(SQL["CreateUsersTable"], connection).ExecuteNonQuery();
+        if(connection != null) connection.Close();
+        connection = new NpgsqlConnection(GetConnectionString());
+        connection.Open();
+        // new NpgsqlCommand(SQL["DropProblemsTable"], connection).ExecuteNonQuery();
+        // new NpgsqlCommand(SQL["DropAttemptsTable"], connection).ExecuteNonQuery();
+        new NpgsqlCommand(SQL["CreateProblemsTable"], connection).ExecuteNonQuery();
+        new NpgsqlCommand(SQL["CreateAttemptsTable"], connection).ExecuteNonQuery();
+        new NpgsqlCommand(SQL["CreateUsersTable"], connection).ExecuteNonQuery();
 
-            AddUser("admin", "123", "admin@admin.com", "Admin", "A");
-        }
+        //AddUser("admin", "123", "admin@admin.com", "Admin", "A");
     }
     /// <summary>
     /// Take any given attempt and save it to the database
@@ -81,7 +79,7 @@ public static class Database {
     /// <param name="dataSet">the data set of inputs</param>
     /// <param name="yourAnswer">what the user answered</param>
     /// <param name="userID">user id</param>
-    public static async void SaveAnswerAttempt(IProblem problem, DataSet dataSet, double? yourAnswer, Guid? userID = null)
+    public static void SaveAnswerAttempt(IProblem problem, DataSet dataSet, double? yourAnswer, Guid? userID = null)
     {
 
         Verify();
@@ -89,7 +87,7 @@ public static class Database {
         {
             Guid probID;
             {
-                await using var cmd = new NpgsqlCommand(SQL["InsertProblem"], connection) {
+                using var cmd = new NpgsqlCommand(SQL["InsertProblem"], connection) {
                     Parameters = {
                         new() { Value = problem.Id },
                         new() { Value = DataToString(dataSet.DataA) },
@@ -98,10 +96,10 @@ public static class Database {
                         new() { Value = dataSet.ValueB ?? double.NaN }
                     }
                 };
-                probID = (Guid)await cmd.ExecuteScalarAsync();
+                probID = (Guid) cmd.ExecuteScalar();
             }
             {
-                await using var cmd = new NpgsqlCommand(SQL["InsertAttempt"], connection) {
+                using var cmd = new NpgsqlCommand(SQL["InsertAttempt"], connection) {
                     Parameters = {
                         new() { Value = userID ?? User.Guest },
                         new() { Value = probID },
@@ -109,7 +107,7 @@ public static class Database {
                         new() { Value = DateTime.Now },
                     }
                 };
-                await cmd.ExecuteNonQueryAsync();
+                cmd.ExecuteNonQuery();
             }
         } catch(PostgresException e)
         {
