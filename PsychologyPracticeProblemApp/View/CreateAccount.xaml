@@ -15,7 +15,8 @@
                         <Entry TextColor="Black" Placeholder="Password" x:Name="PasswordEntry"/>
                     </Frame>
                     <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightCoral" Text="Cancel" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                   <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightCoral" Text="Cancel" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300" 
+                            Clicked="OnCancel"/>
                 </VerticalStackLayout>
             </Frame>
         </Grid>
