@@ -252,5 +252,40 @@ public static class Database {
         for(int i=0; i<parts.Length; i++) data[i] = Double.Parse(parts[i]);
         return data;
     }
+    /// <summary>
+    /// Checks if a username already exists in the database.
+    /// </summary>
+    /// <param name="username">Username to check for existence.</param>
+    /// <returns>True if the username exists; otherwise, false.</returns>
+    public static bool CheckUsernameExists(string username)
+    {
+        Verify();
+
+        using var cmd = new NpgsqlCommand(SQL["GetUsernameExists"], connection)
+        {
+            Parameters = { new NpgsqlParameter { Value = username } }
+        };
+
+        using var reader = cmd.ExecuteReader();
+        return reader.Read();
+    }
+
+    /// <summary>
+    /// Checks if an email already exists in the database.
+    /// </summary>
+    /// <param name="email">Email to check for existence.</param>
+    /// <returns>True if the email exists; otherwise, false.</returns>
+    public static bool CheckEmailExists(string email)
+    {
+        Verify();
+
+        using var cmd = new NpgsqlCommand(SQL["GetEmailExists"], connection)
+        {
+            Parameters = { new NpgsqlParameter { Value = email } }
+         };
+
+        using var reader = cmd.ExecuteReader();
+        return reader.Read();
+    }  
 }
 
