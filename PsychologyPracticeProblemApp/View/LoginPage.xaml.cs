@@ -15,6 +15,15 @@ namespace PsychologyPracticeProblemApp
     {
         int count = 0;
 
+        protected override void OnDisappearing()
+        {
+            // Clear the text fields when leaving the page
+            UsernameEntry.Text = string.Empty;
+            PasswordEntry.Text = string.Empty;
+
+            base.OnDisappearing();
+        }
+
         public LoginPage()
         {
             InitializeComponent();
