@@ -40,7 +40,7 @@ namespace PsychologyPracticeProblemApp
             }
 
             // Retrieve user data from the database
-            User user = Database.GetUser(username, password);
+            User user = User.Login(username, password);
 
             if (user != null)
             {
