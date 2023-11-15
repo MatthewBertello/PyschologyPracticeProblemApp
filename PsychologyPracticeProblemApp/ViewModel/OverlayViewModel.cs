@@ -16,6 +16,9 @@ public class OverlayViewModel : INotifyPropertyChanged {
     public Command LogoutCommand { get; set; }
     public Command HomeCommand { get; set; }
 
+    public Boolean IsGuest => User.Current.Id == User.Guest;
+    public Boolean IsNotGuest => !IsGuest;
+
     private ContentPage parent;
     public OverlayViewModel(ContentPage parent, String pageName)
     {
