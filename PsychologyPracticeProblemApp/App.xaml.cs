@@ -9,7 +9,10 @@ namespace PsychologyPracticeProblemApp
 
             //MainPage = new NavigationPage(new HomePage());
             //MainPage = new AppShell();
-            MainPage = new NavigationPage(new LoginPage());
+            if(DeviceInfo.Current.Idiom == DeviceIdiom.Desktop)
+                MainPage = new NavigationPage(new LoginPage());
+            else
+                MainPage = new NavigationPage(new MLoginPage());
         }
     }
 }
