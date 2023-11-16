@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp.ViewModel;
-public class ProblemViewModel : OverlayViewModel {
+public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
 
     public event PropertyChangedEventHandler PropertyChanged;
     public ObservableCollection<DataItem> DataSetA { get; set; } = new();
