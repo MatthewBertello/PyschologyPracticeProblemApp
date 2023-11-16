@@ -54,7 +54,6 @@ namespace PsychologyPracticeProblemApp
             if (user != null)
             {
                 // Successful login
-                await DisplayAlert("Login Successful", "Welcome, " + user.FirstName + "!", "OK");
                 Database.CurrentUserId = user.Id;
                 await Navigation.PushAsync(new HomePage());
             }
