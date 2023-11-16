@@ -52,6 +52,8 @@
 	  <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
 	  <None Remove="Resources\Images\checked.png" />
+	  <None Remove="Resources\Images\Examples\standardDeviationex.png" />
+	  <None Remove="Resources\Images\standarddeviationf.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -82,6 +84,11 @@
 	  <MauiXaml Update="View\StatsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Images\Examples\" />
+	  <Folder Include="Resources\Images\Formulas\" />
 	</ItemGroup>
 
 </Project>

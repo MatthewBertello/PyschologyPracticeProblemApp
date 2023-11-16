@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace PsychologyPracticeProblemApp.ViewModel;
 public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
 
+
     public event PropertyChangedEventHandler PropertyChanged;
     public ObservableCollection<DataItem> DataSetA { get; set; } = new();
     public ObservableCollection<DataItem> DataSetB { get; set; } = new();
@@ -31,7 +32,7 @@ public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
     public Boolean IsIncorrect { get => !IsCorrect; }
 
 
-    private IProblem problem;
+    public IProblem problem;
     private DataSet data;
 
     public ProblemViewModel(ContentPage parent, String pageName, IProblem problem) : base(parent, pageName)

@@ -8,33 +8,12 @@ namespace PsychologyPracticeProblemApp;
 
 public partial class Example : ContentPage
 {
-    public class DataRow
-    {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double Z { get; set; }
+    private string[] problemTypes = { "standarddeviationex.png", "onesamplettestex.png", "dependentsameplettestex.png", "independentsamplettestex.png", "zscoreex.png" };
 
-        public String XString { get { return X.ToString(); } }
-        public String YString { get { return Y.ToString(); } }
-        public String ZString { get { return Z.ToString(); } }
-
-        public DataRow(double x, double y, double z)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-        }
-    }
-
-    ObservableCollection<DataRow> dataRows = new ObservableCollection<DataRow>();
-    public Example()
+    public Example(int problemType)
 	{
-        for (int i = 0; i < 10; i++)
-        {
-            dataRows.Add(new DataRow(i, i * 2, i * 3));
-        }
         InitializeComponent();
-        BindingContext = dataRows;
+        ExampleImage.Source = problemTypes[problemType - 1];
     }
 
     private void OnCloseExampleClicked(object sender, EventArgs e)
