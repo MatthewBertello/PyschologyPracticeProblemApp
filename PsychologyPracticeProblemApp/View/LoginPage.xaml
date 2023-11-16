@@ -20,7 +20,6 @@
                             Clicked="OnCreateAccount"/>
                 <Button Grid.Row="5" TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Use as guest" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
                             Clicked="OnGuest"/>
-                <Label Grid.Row="6" TextColor="Black" Text="Create an account" FontSize="Small" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
             </Grid>
         </Frame>
     </ScrollView>
