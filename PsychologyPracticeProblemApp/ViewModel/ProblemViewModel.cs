@@ -60,7 +60,7 @@ public class ProblemViewModel : OverlayViewModel {
         try
         {
             YourAnswer = double.Parse(solution);
-            Database.SaveAnswerAttempt(problem, data, YourAnswer ?? 0);
+            Database.SaveAnswerAttempt(problem, data, YourAnswer ?? 0, problem.Name, Database.CurrentUserId);
             ApplyPropertyChange(false, true);
         } catch (Exception ex)
         {
