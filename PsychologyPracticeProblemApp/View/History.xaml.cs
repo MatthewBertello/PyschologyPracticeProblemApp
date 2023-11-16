@@ -29,6 +29,6 @@ public partial class History : ContentPage
         var button = sender as Button;
         AttemptLog attempt = button?.BindingContext as AttemptLog;
         VM.problem = Database.GetProblem(attempt.ProblemId);
-        
+        Navigation.PushAsync(new ProblemPage(VM.problem, VM.problem.Dataset));
     }
 }

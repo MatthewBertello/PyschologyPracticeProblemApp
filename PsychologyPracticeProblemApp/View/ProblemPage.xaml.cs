@@ -21,6 +21,17 @@ public partial class ProblemPage : ContentPage {
 
         BindingContext = VM;
     }
+
+    public ProblemPage(IProblem problem, DataSet dataset)
+    {
+        VM = new(this, problem.Name, problem);
+        VM.SetProblem(dataset);
+
+        InitializeComponent();
+
+        BindingContext = VM;
+    }
+
     public void OnRegenerateClicked(object sender, EventArgs e)
     {
         VM.RegenerateProblem();

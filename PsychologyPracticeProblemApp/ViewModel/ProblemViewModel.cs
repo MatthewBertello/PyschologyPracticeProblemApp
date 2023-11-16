@@ -55,6 +55,22 @@ public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
 
         ApplyPropertyChange(true, true);
     }
+
+    public void SetProblem(DataSet data)
+    {
+        this.data = data;
+
+        DataSetA.Clear();
+        DataSetB.Clear();
+        for(int i = 0; i < data.DataA.Length; i++) DataSetA.Add(new DataItem(data.DataA[i]));
+        for(int i = 0; i < data.DataB.Length; i++) DataSetB.Add(new DataItem(data.DataB[i]));
+        Input1 = data.ValueA;
+        Input2 = data.ValueB;
+        CorrectAnswer = IProblem.ToPrecise(problem.Solve(data));
+        YourAnswer = null;
+
+        ApplyPropertyChange(true, true);
+    }
     public void ApplySolution(String solution)
     {
         try

@@ -29,6 +29,8 @@ public class IProblem {
     /// </summary>
     public string Name { get; set; }
 
+    public DataSet Dataset { get; set; }
+
 
     /// <summary>
     /// Solve a generic problem.

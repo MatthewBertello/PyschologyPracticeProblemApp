@@ -248,16 +248,33 @@ public static class Database {
         NpgsqlDataReader reader = cmd.ExecuteReader();
         while (reader.Read())
         {
-            int problemType = (int)reader.GetValue(0);
+            long problemType = (long)reader.GetValue(0);
             double[] xValues = StringToData((string)reader.GetValue(1));
+            if(xValues.Length == 0)
+            {
+                xValues = null;
+            }
             double[] yValues = StringToData((string)reader.GetValue(2));
-            double inputA = (double)reader.GetValue(3);
-            double inputB = (double)reader.GetValue(4);
+            if (yValues.Length == 0)
+            {
+                yValues = null;
+            }
+            double? inputA = (double)reader.GetValue(3);
+            //check if inputa is NaN
+            if (double.IsNaN((double)inputA))
+            {
+                inputA = null;
+            }
+            double? inputB = (double)reader.GetValue(4);
+            if(double.IsNaN((double)inputB))
+            {
+                inputB = null;
+            }
             problem = IProblem.Problem[problemType];
-            //problem.DataSet = new DataSet(xValues, yValues, inputA, inputB);
+            problem.Dataset = new DataSet(xValues, yValues, inputA, inputB);
         }
         reader.Close();
-        return null;
+        return problem;
     }
 
     /// <summary>
