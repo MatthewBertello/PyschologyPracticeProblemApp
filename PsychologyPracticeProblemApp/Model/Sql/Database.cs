@@ -7,6 +7,7 @@ namespace PsychologyPracticeProblemApp;
 public static class Database {
 
     private static NpgsqlConnection connection = null;
+    public static Guid CurrentUserId { get; set; } = Guid.Empty;
 
     private static Dictionary<String, String> SQL = new() {
         { "CreateProblemsTable", "CREATE TABLE IF NOT EXISTS problem (id UUID DEFAULT gen_random_uuid(), problemType INT, xValues STRING, yValues STRING, inputA FLOAT, inputB FLOAT, PRIMARY KEY(id));" },
@@ -16,7 +17,7 @@ public static class Database {
         { "DropAttemptsTable", "DROP TABLE IF EXISTS attempt" },
         { "DropUsersTable", "DROP TABLE IF EXISTS account" },
         { "InsertProblem", "INSERT INTO problem (problemType, xValues, yValues, inputA, inputB) VALUES ($1, $2, $3, $4, $5) RETURNING id" },
-        { "InsertAttempt", "INSERT INTO attempt (userId, problemId, answer, date) VALUES ($1, $2, $3, $4) RETURNING id" },
+        { "InsertAttempt", "INSERT INTO attempt (userId, problemId, answer, date, type) VALUES ($1, $2, $3, $4, $5) RETURNING id" },
         { "InsertUser", "INSERT INTO account (username, password, firstName, lastName, email) VALUES ($1, $2, $3, $4, $5) RETURNING id" },
         { "GetPastAttempts", "SELECT attempt.answer, problem.xValues, problem.yValues, problem.inputA, problem.inputB, attempt.date FROM attempt, problem WHERE attempt.problemId = problem.id and attempt.userId = $1 AND problem.problemType = $2" },
         { "GetUser", "SELECT id, firstName, lastName, email FROM account WHERE username = $1 AND password = $2" },
@@ -61,18 +62,16 @@ public static class Database {
     /// </summary>
     public static void Verify()
     {
-        if(connection == null)
-        {
-            connection = new NpgsqlConnection(GetConnectionString());
-            connection.Open();
-            // new NpgsqlCommand(SQL["DropProblemsTable"], connection).ExecuteNonQuery();
-            // new NpgsqlCommand(SQL["DropAttemptsTable"], connection).ExecuteNonQuery();
-            new NpgsqlCommand(SQL["CreateProblemsTable"], connection).ExecuteNonQuery();
-            new NpgsqlCommand(SQL["CreateAttemptsTable"], connection).ExecuteNonQuery();
-            new NpgsqlCommand(SQL["CreateUsersTable"], connection).ExecuteNonQuery();
+        if(connection != null) connection.Close();
+        connection = new NpgsqlConnection(GetConnectionString());
+        connection.Open();
+        // new NpgsqlCommand(SQL["DropProblemsTable"], connection).ExecuteNonQuery();
+        // new NpgsqlCommand(SQL["DropAttemptsTable"], connection).ExecuteNonQuery();
+        new NpgsqlCommand(SQL["CreateProblemsTable"], connection).ExecuteNonQuery();
+        new NpgsqlCommand(SQL["CreateAttemptsTable"], connection).ExecuteNonQuery();
+        new NpgsqlCommand(SQL["CreateUsersTable"], connection).ExecuteNonQuery();
 
-            AddUser("admin", "123", "admin@admin.com", "Admin", "A");
-        }
+        //AddUser("admin", "123", "admin@admin.com", "Admin", "A");
     }
     /// <summary>
     /// Take any given attempt and save it to the database
@@ -81,7 +80,7 @@ public static class Database {
     /// <param name="dataSet">the data set of inputs</param>
     /// <param name="yourAnswer">what the user answered</param>
     /// <param name="userID">user id</param>
-    public static async void SaveAnswerAttempt(IProblem problem, DataSet dataSet, double? yourAnswer, Guid? userID = null)
+    public static void SaveAnswerAttempt(IProblem problem, DataSet dataSet, double? yourAnswer, string type, Guid? userID = null)
     {
 
         Verify();
@@ -89,7 +88,7 @@ public static class Database {
         {
             Guid probID;
             {
-                await using var cmd = new NpgsqlCommand(SQL["InsertProblem"], connection) {
+                using var cmd = new NpgsqlCommand(SQL["InsertProblem"], connection) {
                     Parameters = {
                         new() { Value = problem.Id },
                         new() { Value = DataToString(dataSet.DataA) },
@@ -98,18 +97,19 @@ public static class Database {
                         new() { Value = dataSet.ValueB ?? double.NaN }
                     }
                 };
-                probID = (Guid)await cmd.ExecuteScalarAsync();
+                probID = (Guid) cmd.ExecuteScalar();
             }
             {
-                await using var cmd = new NpgsqlCommand(SQL["InsertAttempt"], connection) {
+                using var cmd = new NpgsqlCommand(SQL["InsertAttempt"], connection) {
                     Parameters = {
                         new() { Value = userID ?? User.Guest },
                         new() { Value = probID },
                         new() { Value = yourAnswer ?? double.NaN },
                         new() { Value = DateTime.Now },
+                        new() { Value = type }
                     }
                 };
-                await cmd.ExecuteNonQueryAsync();
+                cmd.ExecuteNonQuery();
             }
         } catch(PostgresException e)
         {
@@ -200,6 +200,83 @@ public static class Database {
         reader.Close();
         return log;
     }
+
+
+    /// <summary>
+    /// Takes a user id and gets their attempt history from database (filtered by type)
+    /// </summary>
+    /// <param name="userID">user id</param>
+    /// <param name="type">type of problem to retrieve</param>
+    /// <returns>a list of attempts</returns>
+    public static LinkedList<AttemptLog> GetAttempts(Guid? userID)
+    {
+        Verify();
+        LinkedList<AttemptLog> log = new();
+        //using var cmd = new NpgsqlCommand(SQL["GetPastAttempts"], connection) {
+        using var cmd = new NpgsqlCommand("select id, date, userid, problemid, answer, type from attempt where userid=$1;", connection)
+        {
+
+            Parameters = {
+                new() { Value = userID ?? User.Guest }
+            }
+        };
+        NpgsqlDataReader reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            Guid id = (Guid)reader.GetValue(0);
+            DateTime date = (DateTime)reader.GetValue(1);
+            Guid userId = (Guid)reader.GetValue(2);
+            Guid problemId = (Guid)reader.GetValue(3);
+            double answer = (double)reader.GetValue(4);
+            string type = (string)reader.GetValue(5);
+            log.AddLast(new AttemptLog(userId, problemId, date, answer, type));
+        }
+        reader.Close();
+        return log;
+    }
+
+    public static IProblem GetProblem(Guid problemId)
+    {
+        IProblem problem = null;
+        using var cmd = new NpgsqlCommand("select problemType, xvalues, yvalues, inputa, inputb from problem where id=$1;", connection)
+        {
+            Parameters =
+            {
+                new() { Value = problemId }
+            }
+        };
+        NpgsqlDataReader reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            long problemType = (long)reader.GetValue(0);
+            double[] xValues = StringToData((string)reader.GetValue(1));
+            if(xValues.Length == 0)
+            {
+                xValues = null;
+            }
+            double[] yValues = StringToData((string)reader.GetValue(2));
+            if (yValues.Length == 0)
+            {
+                yValues = null;
+            }
+            double? inputA = (double)reader.GetValue(3);
+            //check if inputa is NaN
+            if (double.IsNaN((double)inputA))
+            {
+                inputA = null;
+            }
+            double? inputB = (double)reader.GetValue(4);
+            if(double.IsNaN((double)inputB))
+            {
+                inputB = null;
+            }
+            problem = IProblem.Problem[problemType];
+            problem.Dataset = new DataSet(xValues, yValues, inputA, inputB);
+        }
+        reader.Close();
+        return problem;
+    }
+
     /// <summary>
     /// Takes a username and password and returns a user based on that. null if not exists
     /// </summary>
@@ -254,5 +331,40 @@ public static class Database {
         for(int i=0; i<parts.Length; i++) data[i] = Double.Parse(parts[i]);
         return data;
     }
+    /// <summary>
+    /// Checks if a username already exists in the database.
+    /// </summary>
+    /// <param name="username">Username to check for existence.</param>
+    /// <returns>True if the username exists; otherwise, false.</returns>
+    public static bool CheckUsernameExists(string username)
+    {
+        Verify();
+
+        using var cmd = new NpgsqlCommand(SQL["GetUsernameExists"], connection)
+        {
+            Parameters = { new NpgsqlParameter { Value = username } }
+        };
+
+        using var reader = cmd.ExecuteReader();
+        return reader.Read();
+    }
+
+    /// <summary>
+    /// Checks if an email already exists in the database.
+    /// </summary>
+    /// <param name="email">Email to check for existence.</param>
+    /// <returns>True if the email exists; otherwise, false.</returns>
+    public static bool CheckEmailExists(string email)
+    {
+        Verify();
+
+        using var cmd = new NpgsqlCommand(SQL["GetEmailExists"], connection)
+        {
+            Parameters = { new NpgsqlParameter { Value = email } }
+         };
+
+        using var reader = cmd.ExecuteReader();
+        return reader.Read();
+    }  
 }
 

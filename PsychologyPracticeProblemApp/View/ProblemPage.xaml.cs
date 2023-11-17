@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
 public partial class ProblemPage : ContentPage {
+    private string[] problemTypes = { "standarddeviationf.png", "onesamplettestf.png", "dependentsameplettestf.png", "independentsamplettestf.png", "zscoref.png" };
     public ProblemViewModel VM { get; set; }
     public ProblemPage(IProblem problem)
     {
@@ -20,7 +21,20 @@ public partial class ProblemPage : ContentPage {
         InitializeComponent();
 
         BindingContext = VM;
+        FormulaImage.Source = problemTypes[VM.problem.Id - 1];
     }
+
+    public ProblemPage(IProblem problem, DataSet dataset)
+    {
+        VM = new(this, problem.Name, problem);
+        VM.SetProblem(dataset);
+
+        InitializeComponent();
+
+        BindingContext = VM;
+        FormulaImage.Source = problemTypes[VM.problem.Id - 1];
+    }
+
     public void OnRegenerateClicked(object sender, EventArgs e)
     {
         VM.RegenerateProblem();
@@ -29,6 +43,11 @@ public partial class ProblemPage : ContentPage {
     public void OnSolveClicked(object sender, EventArgs e)
     {
         VM.ApplySolution(AnswerEntry.Text);
+    }
+
+    private void OnSeeExampleClicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new Example(VM.problem.Id));
     }
 
 }

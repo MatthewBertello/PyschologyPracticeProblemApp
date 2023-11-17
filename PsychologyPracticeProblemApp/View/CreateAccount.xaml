@@ -12,10 +12,15 @@
                         <Entry TextColor="Black" Placeholder="Username" x:Name="UsernameEntry"/>
                     </Frame>
                     <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="300">
-                        <Entry TextColor="Black" Placeholder="Password" x:Name="PasswordEntry"/>
+                        <Entry TextColor="Black" Placeholder="Password" x:Name="PasswordEntry" IsPassword="True"/>
                     </Frame>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
-                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightCoral" Text="Cancel" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                    <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="5" Padding="10" VerticalOptions="CenterAndExpand"  Margin="10"  MaximumWidthRequest="300">
+                        <Entry TextColor="Black" Placeholder="Email" x:Name="EmailEntry"/>
+                    </Frame>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
+                            Clicked="OnCreateAccount"/>
+                    <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightCoral" Text="Cancel" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300" 
+                            Clicked="OnCancel"/>
                 </VerticalStackLayout>
             </Frame>
         </Grid>

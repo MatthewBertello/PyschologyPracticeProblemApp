@@ -96,4 +96,9 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Resources\Images\Examples\" />
+	  <Folder Include="Resources\Images\Formulas\" />
+	</ItemGroup>
+
 </Project>

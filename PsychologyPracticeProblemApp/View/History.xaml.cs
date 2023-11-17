@@ -3,38 +3,32 @@
  * Date: 10/18/2023
 */
 
+using PsychologyPracticeProblemApp.Model.Structs;
+using PsychologyPracticeProblemApp.ViewModel;
 using System.Collections.ObjectModel;
 
 namespace PsychologyPracticeProblemApp;
 
 public partial class History : ContentPage
 {
-    public class Data
-    {
-        public double X { get; set; }
-        public double Y { get; set; }
-        public double Z { get; set; }
-
-        public String XString { get { return X.ToString(); } }
-        public String YString { get { return Y.ToString(); } }
-        public String ZString { get { return Z.ToString(); } }
-
-        public Data(double x, double y, double z)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-        }
-    }
-
-    ObservableCollection<Data> dataR = new ObservableCollection<Data>();
+    public HistoryViewModel VM { get; set; }
     public History()
     {
-        for (int i = 0; i < 15; i++)
-        {
-            dataR.Add(new Data(i, i * 2, i * 3));
-        }
+
+        LinkedList<AttemptLog> attempts = Database.GetAttempts(Database.CurrentUserId);
+        VM = new(attempts);
+
+
         InitializeComponent();
-        BindingContext = dataR;
+
+        BindingContext = VM;
+    }
+
+    void ViewProblemClicked(System.Object sender, System.EventArgs e)
+    {
+        var button = sender as Button;
+        AttemptLog attempt = button?.BindingContext as AttemptLog;
+        VM.problem = Database.GetProblem(attempt.ProblemId);
+        Navigation.PushAsync(new ProblemPage(VM.problem, VM.problem.Dataset));
     }
 }

@@ -8,7 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp.ViewModel;
-public class ProblemViewModel : OverlayViewModel {
+public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
+
 
     public event PropertyChangedEventHandler PropertyChanged;
     public ObservableCollection<DataItem> DataSetA { get; set; } = new();
@@ -31,7 +32,7 @@ public class ProblemViewModel : OverlayViewModel {
     public Boolean IsIncorrect { get => !IsCorrect; }
 
 
-    private IProblem problem;
+    public IProblem problem;
     private DataSet data;
 
     public ProblemViewModel(ContentPage parent, String pageName, IProblem problem) : base(parent, pageName)
@@ -55,12 +56,28 @@ public class ProblemViewModel : OverlayViewModel {
 
         ApplyPropertyChange(true, true);
     }
+
+    public void SetProblem(DataSet data)
+    {
+        this.data = data;
+
+        DataSetA.Clear();
+        DataSetB.Clear();
+        for(int i = 0; i < data.DataA.Length; i++) DataSetA.Add(new DataItem(data.DataA[i]));
+        for(int i = 0; i < data.DataB.Length; i++) DataSetB.Add(new DataItem(data.DataB[i]));
+        Input1 = data.ValueA;
+        Input2 = data.ValueB;
+        CorrectAnswer = IProblem.ToPrecise(problem.Solve(data));
+        YourAnswer = null;
+
+        ApplyPropertyChange(true, true);
+    }
     public void ApplySolution(String solution)
     {
         try
         {
             YourAnswer = double.Parse(solution);
-            Database.SaveAnswerAttempt(problem, data, YourAnswer ?? 0);
+            Database.SaveAnswerAttempt(problem, data, YourAnswer ?? 0, problem.Name, Database.CurrentUserId);
             ApplyPropertyChange(false, true);
         } catch (Exception ex)
         {

@@ -2,9 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:PsychologyPracticeProblemApp"
-             x:DataType="model:History" 
              x:Class="PsychologyPracticeProblemApp.History"
-             BackgroundColor="White">
+             xmlns:viewmodel="clr-namespace:PsychologyPracticeProblemApp.ViewModel"
+             xmlns:structs="clr-namespace:PsychologyPracticeProblemApp.Model.Structs"
+             x:DataType="viewmodel:HistoryViewModel"
+             BackgroundColor="White"
+             Title="History Page"
+             BindingContext="{x:Reference HistoryViewModel}">
 
     <ScrollView>
 
@@ -18,9 +22,10 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <!-- Set this to 1* for 1/3 of the screen -->
-                <ColumnDefinition Width="0.1*" />
+
+                <!--<ColumnDefinition Width="0.1*" />-->
                 <!-- Set this to 0.1* for a smaller gap -->
-                <ColumnDefinition Width="1*" />
+                <!--<ColumnDefinition Width="1*" />-->
                 <!-- Set this to 1*  -->
             </Grid.ColumnDefinitions>
 
@@ -40,14 +45,15 @@
                                 <Label Grid.Column="2" TextColor="Black" Text="Answer" HorizontalOptions="Center" VerticalOptions="Center"/>
                             </Grid>
                         </Frame>
-                        <CollectionView x:Name="DataTable" ItemsSource="{Binding .}" SelectionMode="Single" Grid.Column="0" Grid.Row="1">
+                        <CollectionView x:Name="DataTable" ItemsSource="{Binding attempts}" SelectionMode="Single" Grid.Column="0" Grid.Row="1">
                             <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="10" Margin="0" VerticalOptions="Start">
-                                        <Grid RowDefinitions="*" ColumnDefinitions="*,*,*">
-                                            <Label Grid.Column="0" TextColor="Black" Text="Problem 1" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                            <Label Grid.Column="1" TextColor="Black" Text="12/12/12" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                            <Label Grid.Column="2" TextColor="Black" Text="1234" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <DataTemplate x:DataType="structs:AttemptLog">
+                                    <Frame BorderColor="Black" BackgroundColor="Transparent" CornerRadius="0" Padding="5" Margin="0" VerticalOptions="Start">
+                                        <Grid RowDefinitions="*" ColumnDefinitions="*,*,*,*">
+                                            <Label Grid.Column="0" TextColor="Black" Text="{Binding Type}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="1" TextColor="Black" Text="{Binding Date}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Column="2" TextColor="Black" Text="{Binding Answer}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Button Grid.Column="3" TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue" Text="View" VerticalOptions="Center" Clicked="ViewProblemClicked" Padding="10" />
                                         </Grid>
                                     </Frame>
                                 </DataTemplate>
@@ -58,6 +64,9 @@
             </Frame>
 
             <!-- Right side: Grid with red square and "Answer" -->
+            
+            <!--
+            
             <Frame Grid.Row="1" Grid.Column="2" BackgroundColor="LightGray" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10">
                 <Grid ColumnDefinitions="*,*">
                     <VerticalStackLayout>
@@ -84,7 +93,6 @@
                         </CollectionView>
                     </VerticalStackLayout>
                     <Grid Grid.Row="0" Grid.Column="1">
-                        <!-- Smaller red square with "Answer" -->
                         <VerticalStackLayout Margin="30" Spacing="10">
                             <Button TextColor="Black" BorderColor="Black" BackgroundColor="LightBlue"  Text="Go to problem" VerticalOptions="EndAndExpand"/>
                             <Frame BackgroundColor="LightCoral" Padding="5" Margin="10" CornerRadius="10" HeightRequest="100" VerticalOptions="StartAndExpand">
@@ -95,6 +103,8 @@
                     </Grid>
                 </Grid>
             </Frame>
+            -->
+            
         </Grid>
     </ScrollView>
 </ContentPage>
