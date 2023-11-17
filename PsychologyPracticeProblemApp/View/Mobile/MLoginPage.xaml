@@ -23,12 +23,9 @@
                     <Entry TextColor="Black" Placeholder="Password" x:Name="PasswordEntry" IsPassword="True"/>
                 </Frame>
 
-                <Button Grid.Row="4" Text="Login" VerticalOptions="CenterAndExpand"
-                                Clicked="OnLogin"/>
-                <Button Grid.Row="5" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
-                                Clicked="OnCreateAccount"/>
-                <Button Grid.Row="6" Text="Use as guest" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"
-                                Clicked="OnGuest"/>
+                <Button Grid.Row="4" Text="Login" VerticalOptions="CenterAndExpand"/>
+                <Button Grid.Row="5" Text="Create Account" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
+                <Button Grid.Row="6" Text="Use as guest" VerticalOptions="CenterAndExpand" MaximumWidthRequest="300"/>
             </Grid>
         </ScrollView>
         <ImageButton Style="{StaticResource FooterButtonSelected}" Grid.Column="0" Source="ico_problems.png"/>
