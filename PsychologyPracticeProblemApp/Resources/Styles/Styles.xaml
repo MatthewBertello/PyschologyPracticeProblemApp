@@ -39,8 +39,8 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextOverlay}, Dark={StaticResource TextOverlayDark}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Tint}, Dark={StaticResource TintDark}}" />
         <Setter Property="FontFamily" Value="Roboto-Bold"/>
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="CornerRadius" Value="16"/>
         <Setter Property="Padding" Value="14,10"/>
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
@@ -145,7 +145,7 @@
     <Style TargetType="Frame">
         <Setter Property="HasShadow" Value="False" />
         <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource TextNormal}, Dark={StaticResource TextNormalDark}}" />
-        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="CornerRadius" Value="5" />
     </Style>
 
     <Style TargetType="ImageButton">
@@ -523,5 +523,12 @@
     <Style x:Key="FooterButtonSelected" TargetType="ImageButton">
         <Setter Property="Grid.Row" Value="2"/>
         <Setter Property="Margin" Value="2"/>
+    </Style>
+    <Style x:Key="Error" TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Invalid}, Dark={StaticResource InvalidDark}}"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
     </Style>
 </ResourceDictionary>
