@@ -7,7 +7,12 @@ namespace PsychologyPracticeProblemApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage());
+            //MainPage = new NavigationPage(new HomePage());
+            //MainPage = new AppShell();
+            if(DeviceInfo.Current.Idiom == DeviceIdiom.Desktop || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet)
+                MainPage = new NavigationPage(new LoginPage());
+            else
+                MainPage = new AppShell();
         }
     }
 }

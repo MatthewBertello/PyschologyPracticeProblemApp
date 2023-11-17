@@ -7,6 +7,30 @@
     <Color x:Key="Primary">#512BD4</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
     <Color x:Key="Tertiary">#2B0B98</Color>
+
+
+    <Color x:Key="Background">White</Color>
+    <Color x:Key="Tint">#517AC4</Color>
+    <Color x:Key="TintHighlight">#00B0F0</Color>
+    <Color x:Key="TintDisabled">#6E6E6E</Color>
+    <Color x:Key="TextNormal">Black</Color>
+    <Color x:Key="TextOverlay">White</Color>
+    <Color x:Key="TextDisabled">Black</Color>
+    <Color x:Key="Valid">#92D050</Color>
+    <Color x:Key="Invalid">#FF5050</Color>
+
+    <Color x:Key="BackgroundDark">White</Color>
+    <Color x:Key="TintDark">#517AC4</Color>
+    <Color x:Key="TintHighlightDark">#00B0F0</Color>
+    <Color x:Key="TintDisabledDark">#00B0F0</Color>
+    <Color x:Key="TextNormalDark">#00B0F0</Color>
+    <Color x:Key="TextOverlayDark">#00B0F0</Color>
+    <Color x:Key="TextDisabledDark">#00B0F0</Color>
+    <Color x:Key="ValidDark">#92D050</Color>
+    <Color x:Key="InvalidDark">#FF5050</Color>
+    
+    <Color x:Key="TintLight">Yellow</Color>
+
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
     <Color x:Key="Gray100">#E1E1E1</Color>
@@ -17,13 +41,9 @@
     <Color x:Key="Gray600">#404040</Color>
     <Color x:Key="Gray900">#212121</Color>
     <Color x:Key="Gray950">#141414</Color>
-    <Color x:Key="Tint">#517AC4</Color>
-    <Color x:Key="TintLight">#00B0F0</Color>
-    <Color x:Key="Valid">#92D050</Color>
-    <Color x:Key="Invalid">#FF5050</Color>
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}"/>
-    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
-    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Tint}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource TintHighlight}"/>
+    <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource TintHighlight}"/>
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
     <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>

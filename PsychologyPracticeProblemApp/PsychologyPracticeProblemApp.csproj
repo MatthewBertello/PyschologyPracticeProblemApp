@@ -52,6 +52,12 @@
 	  <None Remove="Resources\Fonts\Roboto-Bold.ttf" />
 	  <None Remove="Resources\Fonts\Roboto-Light.ttf" />
 	  <None Remove="Resources\Images\checked.png" />
+	  <None Remove="Resources\Images\Examples\standardDeviationex.png" />
+	  <None Remove="Resources\Images\icoProblems.png" />
+	  <None Remove="Resources\Images\icoSettings.png" />
+	  <None Remove="Resources\Images\icoStats.png" />
+	  <None Remove="Resources\Images\ico_history.png" />
+	  <None Remove="Resources\Images\standarddeviationf.png" />
 	</ItemGroup>
 
 	<ItemGroup>
