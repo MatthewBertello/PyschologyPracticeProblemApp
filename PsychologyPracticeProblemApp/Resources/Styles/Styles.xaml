@@ -492,6 +492,11 @@
         <Setter Property="ColumnDefinitions" Value="*,*,*,*"/>
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}"/>
     </Style>
+    <Style x:Key="TitleGridNoFooter" TargetType="Grid">
+        <Setter Property="RowDefinitions" Value="50,*"/>
+        <Setter Property="ColumnDefinitions" Value="*,*,*,*"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}"/>
+    </Style>
     <Style x:Key="TitleRect" TargetType="Rectangle">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Tint}, Dark={StaticResource TintDark}}"/>
         <Setter Property="Grid.ColumnSpan" Value="4"/>
@@ -500,6 +505,7 @@
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Tint}, Dark={StaticResource TintDark}}"/>
         <Setter Property="Grid.ColumnSpan" Value="4"/>
         <Setter Property="Grid.Row" Value="2"/>
+        <Setter Property="MaximumHeightRequest" Value="50"/>
     </Style>
     <Style x:Key="Title" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextOverlay}, Dark={StaticResource TextOverlayDark}}"/>

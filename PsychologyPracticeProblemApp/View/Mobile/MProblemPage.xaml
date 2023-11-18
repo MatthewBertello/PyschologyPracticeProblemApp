@@ -8,21 +8,21 @@
              BindingContext="{x:Reference ProblemViewModel}"
              Shell.NavBarIsVisible="False">
 
-    <Grid Style="{StaticResource TitleGrid}">
+    <Grid Style="{StaticResource TitleGridNoFooter}">
         <Rectangle Style="{StaticResource TitleRect}"/>
         <Label Text="{Binding ProblemName}" Style="{StaticResource Title}"/>
         <Grid ColumnDefinitions="50">
             <ImageButton Style="{StaticResource TitleBack}" Clicked="OnBack"/>
         </Grid>
-        <ScrollView Style="{StaticResource TitleInner}">
+        <ScrollView Style="{StaticResource TitleInner}" VerticalScrollBarVisibility="Never">
             <!-- Upper Value Blocks : List of inputs-->
             <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="*,*,*" Margin="0,10">
                 <Grid Grid.ColumnSpan="3" ColumnDefinitions="*,*" Margin="0,5" RowDefinitions="Auto,125">
                     <!--Input A-->
-                    <Label Text="Data A" VerticalOptions="Center" HorizontalOptions="Center"/>
-                    <Frame Margin="0,0,5,0" Grid.Row="1" Padding="0" HasShadow="True">
+                    <Label Text="Data A" VerticalOptions="Center" HorizontalOptions="Center" Grid.ColumnSpan="{Binding SetASpan}"/>
+                    <Frame Margin="0,0,5,0" Grid.Row="1" Padding="0" HasShadow="True" Grid.ColumnSpan="{Binding SetASpan}">
                         <ListView x:Name="ProbCollectionA" ItemsSource="{Binding DataSetA}" SelectionMode="None"
-                                  SeparatorVisibility="None" RowHeight="25" Margin="0">
+                                  SeparatorVisibility="None" RowHeight="25" Margin="0" VerticalScrollBarVisibility="Never">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="viewmodel:DataItem">
                                     <ViewCell>
@@ -30,9 +30,9 @@
                                             <Rectangle BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}" Grid.ColumnSpan="2"/>
                                             <Rectangle BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundTint}, Dark={StaticResource BackgroundTintDark}}" IsVisible="{Binding IsDark}" Grid.ColumnSpan="2"/>
                                             <Label Text="{Binding Value}" FontSize="14"
-                                                   VerticalOptions="Center" HorizontalOptions="Center" Padding="15, 0"/>
+                                                       VerticalOptions="Center" HorizontalOptions="Center" Padding="15, 0"/>
                                             <Label Text="{Binding NextValue}" FontSize="14" Grid.Column="1"
-                                                   VerticalOptions="Center" HorizontalOptions="Center" Padding="15, 0"/>
+                                                       VerticalOptions="Center" HorizontalOptions="Center" Padding="15, 0"/>
                                         </Grid>
                                     </ViewCell>
                                 </DataTemplate>
@@ -40,11 +40,11 @@
                         </ListView>
                     </Frame>
                     <!--Input B-->
-                    <Label Text="Data B" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="false" />
-                    <Frame Margin="5,0,0,0" Grid.Column="1" Grid.Row="1" Padding="0" IsVisible="false" HasShadow="True">
+                    <Label Text="Data B" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center"  IsVisible="{Binding ShowSetB}"/>
+                    <Frame Margin="5,0,0,0" Grid.Column="1" Grid.Row="1" Padding="0" IsVisible="{Binding ShowSetB}" HasShadow="True">
 
                         <ListView x:Name="ProbCollectionB" ItemsSource="{Binding DataSetB}" SelectionMode="None"
-                                  SeparatorVisibility="None" RowHeight="25" Margin="0">
+                                  SeparatorVisibility="None" RowHeight="25" Margin="0" VerticalScrollBarVisibility="Never">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="viewmodel:DataItem">
                                     <ViewCell>
@@ -63,29 +63,37 @@
                     </Frame>
                     <!--Meta Data-->
                     <Grid Grid.Column="1" Grid.Row="1" RowDefinitions="Auto,Auto,*">
-                        <Label Grid.Row="0" Text="μ" VerticalOptions="Center"/>
-                        <Label Grid.Row="1" Text="σ" VerticalOptions="Center"/>
-                        <Label Grid.Row="0" Text="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
-                        <Label Grid.Row="1" Text="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                        <Label Grid.Row="0" Text="μ" VerticalOptions="Center" IsVisible="{Binding ShowInput1}"/>
+                        <Label Grid.Row="1" Text="σ" VerticalOptions="Center" IsVisible="{Binding ShowInput2}"/>
+                        <Label Grid.Row="0" Text="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand" IsVisible="{Binding ShowInput1}"/>
+                        <Label Grid.Row="1" Text="25" VerticalOptions="Center" HorizontalOptions="EndAndExpand" IsVisible="{Binding ShowInput2}"/>
                     </Grid>
                 </Grid>
                 <!--Your Answer + Correct/Incorrect-->
-                <Grid Grid.ColumnSpan="3" Grid.Row="1" ColumnDefinitions="*,Auto" RowDefinitions="Auto,*" Margin="0,0,0,10">
+                <Grid Grid.ColumnSpan="3" Grid.Row="1" RowDefinitions="Auto,*" Margin="0,0,0,10">
                     <Label Grid.ColumnSpan="2" Text="Your Answer:" VerticalOptions="Center"/>
                     <Frame VerticalOptions="CenterAndExpand" Padding="10,3" Grid.Row="1">
-                        <Entry TextColor="Black" Placeholder="" x:Name="UsernameEntry"/>
+                        <Entry Placeholder="" x:Name="AnswerEntry"/>
                     </Frame>
-                    <Frame Grid.Column="1" Grid.Row="1" Margin="5,0,0,0" Padding="20,5" BackgroundColor="{StaticResource Valid}">
-                        <Label Text="Correct!" VerticalOptions="Center"/>
-                    </Frame>
+                    <Grid IsVisible="{Binding ShowCorrectAnswer}">
+                        <Frame Margin="0" Padding="20,5" BackgroundColor="{StaticResource Valid}" IsVisible="{Binding IsCorrect}">
+                            <Label Text="Correct!" VerticalOptions="Center"/>
+                        </Frame>
+                        <Frame Margin="0" Padding="20,5" BackgroundColor="{StaticResource Invalid}" IsVisible="{Binding IsIncorrect}">
+                            <Grid>
+                                <Label Text="Incorrect!" VerticalOptions="Center"/>
+                                <Label Text="{Binding CorrectAnswerText}" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
+                            </Grid>
+                        </Frame>
+                    </Grid>
                 </Grid>
                 <!--Action Buttons-->
-                <Button Text="Solve" Grid.Row="2" Grid.Column="0" CornerRadius="3" FontSize="16" IsEnabled="false"/>
-                <Button Text="Example" Grid.Row="2" Grid.Column="1" CornerRadius="3" Margin="10,0" FontSize="16"/>
-                <Button Text="Regenerate" Grid.Row="2" Grid.Column="2" CornerRadius="3" FontSize="16"/>
+                <Button Text="Solve" Grid.Row="2" Grid.Column="0" CornerRadius="3" FontSize="16" Clicked="OnSolveClicked" IsEnabled="{Binding NotShowCorrectAnswer}"/>
+                <Button Text="Example" Grid.Row="2" Grid.Column="1" CornerRadius="3" Margin="10,0" FontSize="16" Clicked="OnSeeExampleClicked"/>
+                <Button Text="Regenerate" Grid.Row="2" Grid.Column="2" CornerRadius="3" FontSize="16" Clicked="OnRegenerateClicked"/>
                 <!--Formula Image-->
                 <Frame Grid.Row="3" Grid.ColumnSpan="3" Margin="0,10,0,0" Padding="3" HasShadow="True">
-                    <Image Source="standarddeviationf"/>
+                    <Image x:Name="FormulaImage" Source="standarddeviationf"/>
                 </Frame>
             </Grid>
         </ScrollView>

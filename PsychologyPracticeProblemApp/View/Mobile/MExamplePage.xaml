@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PsychologyPracticeProblemApp.MExamplePage"
+             xmlns:local="clr-namespace:PsychologyPracticeProblemApp"
+             xmlns:viewmodel="clr-namespace:PsychologyPracticeProblemApp.ViewModel"
+             x:DataType="local:MExamplePage"
+             BindingContext="{x:Reference MExamplePage}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid Style="{StaticResource TitleGridNoFooter}">
+        <Rectangle Style="{StaticResource TitleRect}"/>
+        <Label Text="{Binding ProblemName}" Style="{StaticResource Title}"/>
+        <Grid ColumnDefinitions="50">
+            <ImageButton Style="{StaticResource TitleBack}" Clicked="OnBack"/>
+        </Grid>
+        <ScrollView Style="{StaticResource TitleInner}" VerticalScrollBarVisibility="Never">
+            <Image x:Name="ExampleImage" Source="{Binding ProblemImage}" Aspect="AspectFit" HorizontalOptions="Center" />
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

@@ -23,14 +23,14 @@ public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
 
     public String ProblemName { get => problem.Name; }
     public String CorrectAnswerText { get => IsCorrect ? "" : String.Format("expected {0}", CorrectAnswer);  }
-    public Boolean ShowSetB { get => DataSetB.Count > 0; }
+    public Boolean ShowSetB { get => data.DataB.Length > 0; }
     public Boolean ShowInput1 { get => Input1 != null; }
     public Boolean ShowInput2 { get => Input2 != null; }
     public Boolean ShowCorrectAnswer { get => YourAnswer != null; }
     public Boolean NotShowCorrectAnswer { get => !ShowCorrectAnswer; }
     public Boolean IsCorrect { get => YourAnswer == CorrectAnswer; }
     public Boolean IsIncorrect { get => !IsCorrect; }
-
+    public int SetASpan => (!ShowSetB && !ShowInput1 && !ShowInput2) ? 2 : 1;
 
     public IProblem problem;
     private DataSet data;
@@ -61,9 +61,13 @@ public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
     private void BindDataSetItem(ObservableCollection<DataItem> set, double? value, int index)
     {
         bool isDesktop = DeviceInfo.Current.Idiom == DeviceIdiom.Desktop || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet;
+        // Every other element is readded with a next value, rather than as a whole new element.
+        // This allows for double-row data
         if(index % 2 != 0 && value != null && !isDesktop)
         {
-            set.Last().SetNext(value);
+            double? last = set.Last().value;
+            set.RemoveAt(set.Count - 1);
+            set.Add(new DataItem(last, value, index-1));
         } else
         {
             set.Add(new DataItem(value, index));
@@ -109,17 +113,19 @@ public class DataItem {
     public String NextValue => next?.ToString() ?? String.Empty;
     public bool IsDark => index % 4 == 0;
 
-    private int index;
-    private double? value;
-    private double? next;
+    public int index;
+    public double? value;
+    public double? next;
     public DataItem(double? value, int index)
     {
         this.value = value;
         this.index = index;
     }
-    public void SetNext(double? value)
+    public DataItem(double? value, double? next, int index)
     {
-        this.next = value;
+        this.value = value;
+        this.index = index;
+        this.next = next;
     }
 }
 

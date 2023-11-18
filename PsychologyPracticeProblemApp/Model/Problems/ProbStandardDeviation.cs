@@ -9,7 +9,7 @@ public class ProbStandardDeviation : IProblem {
 
     public override DataSet GenData()
     {
-        int count = (int) StatsUtil.GenRandomValue(7, 10);
+        int count = (int) StatsUtil.GenRandomValue(10, 10);
         return new DataSet(StatsUtil.GenRandomData(count, 0, 10));
     }
 

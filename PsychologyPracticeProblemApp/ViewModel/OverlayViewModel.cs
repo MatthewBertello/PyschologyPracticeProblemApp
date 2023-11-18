@@ -8,8 +8,8 @@ using System.Collections.ObjectModel;
 
 namespace PsychologyPracticeProblemApp.ViewModel;
 
-public class OverlayViewModel : INotifyPropertyChanged {
-    public event PropertyChangedEventHandler PropertyChanged;
+public class OverlayViewModel {
+    //public event PropertyChangedEventHandler PropertyChanged;
 
     public String PageName { get; set; }
     public String Username => User.Current?.DisplayName ?? string.Empty;
