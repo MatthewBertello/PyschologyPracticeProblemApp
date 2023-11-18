@@ -11,9 +11,7 @@
 
     <Grid Style="{StaticResource TitleGrid}">
         <Rectangle Style="{StaticResource TitleRect}"/>
-        <Rectangle Style="{StaticResource FooterRect}"/>
         <Label Text="Login" Style="{StaticResource Title}"/>
-        <ImageButton Style="{StaticResource TitleBack}" />
 
         <ScrollView Style="{StaticResource TitleInner}">
             <Grid RowDefinitions="*,*,*,*,*,*,*,*">
@@ -32,9 +30,5 @@
                 <Label Grid.Row="7" Text="{Binding ErrorMessage}" Style="{StaticResource Error}"/>
             </Grid>
         </ScrollView>
-        <ImageButton Style="{StaticResource FooterButtonSelected}" Grid.Column="0" Source="ico_problems.png"/>
-        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="1" Source="ico_stats.png"/>
-        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="2" Source="ico_history.png"/>
-        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="3" Source="ico_settings.png"/>
     </Grid>
 </ContentPage>

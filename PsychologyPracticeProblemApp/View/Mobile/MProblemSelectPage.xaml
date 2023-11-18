@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="PsychologyPracticeProblemApp.MProblemSelectPage"
+             Shell.NavBarIsVisible="False"
+             >
+
+    <Grid Style="{StaticResource TitleGrid}">
+        <Rectangle Style="{StaticResource TitleRect}"/>
+        <Rectangle Style="{StaticResource FooterRect}"/>
+        <Label Text="Problem Select" Style="{StaticResource Title}"/>
+        <!-- <ImageButton Style="{StaticResource TitleBack}" /> -->
+
+        <ScrollView Style="{StaticResource TitleInner}">
+            <Grid RowDefinitions="Auto" VerticalOptions="CenterAndExpand">
+                <Grid RowDefinitions="*,*,*,*,*">
+                    <Button Grid.Row="0" Text="Standard Deviation" VerticalOptions="CenterAndExpand" Clicked="OnStandard" Margin="5"/>
+                    <Button Grid.Row="1" Text="One Sample T-Test" VerticalOptions="CenterAndExpand" Clicked="OnOneSample" Margin="5"/>
+                    <Button Grid.Row="2" Text="Dependent Sample T-Test" VerticalOptions="CenterAndExpand" Clicked="OnDependent" Margin="5"/>
+                    <Button Grid.Row="3" Text="Independent Sample T-Test" VerticalOptions="CenterAndExpand" Clicked="OnIndependent" Margin="5"/>
+                    <Button Grid.Row="4" Text="Z-Score" VerticalOptions="CenterAndExpand" Clicked="OnZScore" Margin="5"/>
+                </Grid>
+            </Grid>
+        </ScrollView>
+        <ImageButton Style="{StaticResource FooterButtonSelected}" Grid.Column="0" Source="ico_problems.png"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="1" Source="ico_stats.png"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="2" Source="ico_history.png"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="3" Source="ico_settings.png"/>
+    </Grid>
+</ContentPage>

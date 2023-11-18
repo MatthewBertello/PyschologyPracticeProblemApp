@@ -10,6 +10,7 @@
 
 
     <Color x:Key="Background">White</Color>
+    <Color x:Key="BackgroundTint">LightGray</Color>
     <Color x:Key="Tint">#517AC4</Color>
     <Color x:Key="TintHighlight">#00B0F0</Color>
     <Color x:Key="TintDisabled">#6E6E6E</Color>
@@ -20,6 +21,7 @@
     <Color x:Key="Invalid">#FF5050</Color>
 
     <Color x:Key="BackgroundDark">White</Color>
+    <Color x:Key="BackgroundTintDark">White</Color>
     <Color x:Key="TintDark">#517AC4</Color>
     <Color x:Key="TintHighlightDark">#00B0F0</Color>
     <Color x:Key="TintDisabledDark">#00B0F0</Color>
@@ -28,8 +30,8 @@
     <Color x:Key="TextDisabledDark">#00B0F0</Color>
     <Color x:Key="ValidDark">#92D050</Color>
     <Color x:Key="InvalidDark">#FF5050</Color>
-    
-    <Color x:Key="TintLight">Yellow</Color>
+
+    <Color x:Key="TintLight">#00B0F0</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>

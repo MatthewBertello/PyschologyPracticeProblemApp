@@ -73,8 +73,14 @@
 	  <Compile Update="View\LogoutPage.xaml.cs">
 	    <DependentUpon>LogoutPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="View\Mobile\MProblemSelectPage.xaml.cs">
+	    <DependentUpon>MProblemSelectPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\Mobile\MLoginPage.xaml.cs">
 	    <DependentUpon>MLoginPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\Mobile\MProblemPage.xaml.cs">
+	    <DependentUpon>MProblemPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -85,7 +91,13 @@
 	  <MauiXaml Update="View\LogoutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\Mobile\MProblemSelectPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\Mobile\MLoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Mobile\MProblemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\ProblemPage.xaml">

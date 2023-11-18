@@ -25,16 +25,23 @@ public partial class MLoginPage : ContentPage, INotifyPropertyChanged {
     public async void OnGuest(object sender, EventArgs e)
     {
         User.LoginGuest();
-        await Navigation.PushAsync(new HomePage());
+        await Navigation.PushAsync(new MProblemSelectPage());
     }
     public async void OnLogin(object sender, EventArgs e)
     {
         ErrorMessage = "";
-        string username = PasswordEntry.Text;
+        string username = UsernameEntry.Text;
         string password = PasswordEntry.Text;
-        User user = User.Login(username, password);
-        //if(user != null) await Navigation.PushAsync(new HomePage());
-        //else ErrorMessage = "Invalid Username or Password!";
+        if(string.IsNullOrEmpty(username))
+            ErrorMessage = "Username cannot be blank!";
+        else if(string.IsNullOrEmpty(password))
+            ErrorMessage = "Password cannot be blank!";
+        else
+        {
+            User user = User.Login(username, password);
+            if(user != null) await Navigation.PushAsync(new MProblemSelectPage());
+            else ErrorMessage = "Invalid Username or Password!";
+        }
 
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ErrorMessage"));
     }

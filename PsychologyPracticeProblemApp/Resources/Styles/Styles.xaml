@@ -417,7 +417,7 @@
 
 
     <Style x:Key="HeaderTitle" TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextOverlay}, Dark={StaticResource TextOverlayDark}}"/>
+        <Setter Property="TextColor" Value="White"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="VerticalOptions" Value="Center"/>
@@ -426,7 +426,7 @@
         <Setter Property="Grid.Column" Value="1"/>
     </Style>
     <Style x:Key="HeaderUsername" TargetType="Label">
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextOverlay}, Dark={StaticResource TextOverlayDark}}"/>
+        <Setter Property="TextColor" Value="White"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="HorizontalOptions" Value="End"/>
         <Setter Property="VerticalOptions" Value="Center"/>
@@ -473,12 +473,15 @@
         <Setter Property="TextColor" Value="Black"/>
         <Setter Property="BorderColor" Value="Black"/>
         <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="BackgroundColor" Value="White"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="CornerRadius" Value="0"/>
         <Setter Property="MinimumWidthRequest" Value="200"/>
     </Style>
 
+    
+    
 
     <Style x:Key="Overlay" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextOverlay}, Dark={StaticResource TextOverlayDark}}"/>
@@ -503,12 +506,14 @@
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="HorizontalTextAlignment" Value="Center"/>
         <Setter Property="VerticalTextAlignment" Value="Center"/>
-        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontSize" Value="20"/>
         <Setter Property="Grid.ColumnSpan" Value="4"/>
     </Style>
     <Style x:Key="TitleBack" TargetType="ImageButton">
         <Setter Property="Source" Value="ico_back.png"/>
-        <Setter Property="Margin" Value="15,5"/>
+        <Setter Property="Margin" Value="0,8"/>
+        <Setter Property="Padding" Value="0,0" />
+        <Setter Property="HorizontalOptions" Value="Start" />
     </Style>
     <Style x:Key="TitleInner" TargetType="ScrollView">
         <Setter Property="Grid.Row" Value="1"/>

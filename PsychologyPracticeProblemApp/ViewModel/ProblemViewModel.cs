@@ -47,8 +47,10 @@ public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
 
         DataSetA.Clear();
         DataSetB.Clear();
-        for(int i = 0; i < data.DataA.Length; i++) DataSetA.Add(new DataItem(data.DataA[i]));
-        for(int i = 0; i < data.DataB.Length; i++) DataSetB.Add(new DataItem(data.DataB[i]));
+        for(int i = 0; i < data.DataA.Length; i++) BindDataSetItem(DataSetA, data.DataA[i], i);//.Add(new DataItem(data.DataA[i], i));
+        for(int i = 0; i < data.DataB.Length; i++) BindDataSetItem(DataSetB, data.DataB[i], i);
+        while(DataSetA.Count < 5) BindDataSetItem(DataSetA, null, DataSetA.Count);
+        while(DataSetB.Count < 5) BindDataSetItem(DataSetB, null, DataSetA.Count);
         Input1 = data.ValueA;
         Input2 = data.ValueB;
         CorrectAnswer = IProblem.ToPrecise(problem.Solve(data));
@@ -63,14 +65,24 @@ public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
 
         DataSetA.Clear();
         DataSetB.Clear();
-        for(int i = 0; i < data.DataA.Length; i++) DataSetA.Add(new DataItem(data.DataA[i]));
-        for(int i = 0; i < data.DataB.Length; i++) DataSetB.Add(new DataItem(data.DataB[i]));
+        for(int i = 0; i < data.DataA.Length; i++) BindDataSetItem(DataSetA, data.DataA[i], i);//.Add(new DataItem(data.DataA[i], i));
+        for(int i = 0; i < data.DataB.Length; i++) BindDataSetItem(DataSetB, data.DataB[i], i);
         Input1 = data.ValueA;
         Input2 = data.ValueB;
         CorrectAnswer = IProblem.ToPrecise(problem.Solve(data));
         YourAnswer = null;
 
         ApplyPropertyChange(true, true);
+    }
+    private void BindDataSetItem(ObservableCollection<DataItem> set, double? value, int index)
+    {
+        if(index % 2 != 0 && value != null)
+        {
+            set.Last().SetNext(value);
+        } else
+        {
+            set.Add(new DataItem(value, index));
+        }
     }
     public void ApplySolution(String solution)
     {
@@ -108,10 +120,21 @@ public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
     }
 }
 public class DataItem {
-    public Double Value { get; }
-    public DataItem(double d)
+    public String Value => value?.ToString() ?? String.Empty;
+    public String NextValue => next?.ToString() ?? String.Empty;
+    public bool IsDark => index % 4 == 0;
+
+    private int index;
+    private double? value;
+    private double? next;
+    public DataItem(double? value, int index)
     {
-        Value = d;
+        this.value = value;
+        this.index = index;
+    }
+    public void SetNext(double? value)
+    {
+        this.next = value;
     }
 }
 
