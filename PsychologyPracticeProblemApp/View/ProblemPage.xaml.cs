@@ -14,20 +14,11 @@ namespace PsychologyPracticeProblemApp;
 public partial class ProblemPage : ContentPage {
     private string[] problemTypes = { "standarddeviationf.png", "onesamplettestf.png", "dependentsameplettestf.png", "independentsamplettestf.png", "zscoref.png" };
     public ProblemViewModel VM { get; set; }
-    public ProblemPage(IProblem problem)
+
+    public ProblemPage(IProblem problem, DataSet? dataset=null)
     {
         VM = new(this, problem.Name, problem);
-
-        InitializeComponent();
-
-        BindingContext = VM;
-        FormulaImage.Source = problemTypes[VM.problem.Id - 1];
-    }
-
-    public ProblemPage(IProblem problem, DataSet dataset)
-    {
-        VM = new(this, problem.Name, problem);
-        VM.SetProblem(dataset);
+        VM.RegenerateProblem(dataset);
 
         InitializeComponent();
 

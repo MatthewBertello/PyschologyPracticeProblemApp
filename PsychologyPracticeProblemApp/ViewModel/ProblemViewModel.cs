@@ -38,16 +38,15 @@ public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
     public ProblemViewModel(ContentPage parent, String pageName, IProblem problem) : base(parent, pageName)
     {
         this.problem = problem;
-        RegenerateProblem();
 
     }
-    public void RegenerateProblem()
+    public void RegenerateProblem(DataSet? dataSet = null)
     {
-        data = problem.GenData();
+        this.data = dataSet ?? problem.GenData();
 
         DataSetA.Clear();
         DataSetB.Clear();
-        for(int i = 0; i < data.DataA.Length; i++) BindDataSetItem(DataSetA, data.DataA[i], i);//.Add(new DataItem(data.DataA[i], i));
+        for(int i = 0; i < data.DataA.Length; i++) BindDataSetItem(DataSetA, data.DataA[i], i);
         for(int i = 0; i < data.DataB.Length; i++) BindDataSetItem(DataSetB, data.DataB[i], i);
         while(DataSetA.Count < 5) BindDataSetItem(DataSetA, null, DataSetA.Count);
         while(DataSetB.Count < 5) BindDataSetItem(DataSetB, null, DataSetA.Count);
@@ -59,24 +58,10 @@ public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
         ApplyPropertyChange(true, true);
     }
 
-    public void SetProblem(DataSet data)
-    {
-        this.data = data;
-
-        DataSetA.Clear();
-        DataSetB.Clear();
-        for(int i = 0; i < data.DataA.Length; i++) BindDataSetItem(DataSetA, data.DataA[i], i);//.Add(new DataItem(data.DataA[i], i));
-        for(int i = 0; i < data.DataB.Length; i++) BindDataSetItem(DataSetB, data.DataB[i], i);
-        Input1 = data.ValueA;
-        Input2 = data.ValueB;
-        CorrectAnswer = IProblem.ToPrecise(problem.Solve(data));
-        YourAnswer = null;
-
-        ApplyPropertyChange(true, true);
-    }
     private void BindDataSetItem(ObservableCollection<DataItem> set, double? value, int index)
     {
-        if(index % 2 != 0 && value != null)
+        bool isDesktop = DeviceInfo.Current.Idiom == DeviceIdiom.Desktop || DeviceInfo.Current.Idiom == DeviceIdiom.Tablet;
+        if(index % 2 != 0 && value != null && !isDesktop)
         {
             set.Last().SetNext(value);
         } else
