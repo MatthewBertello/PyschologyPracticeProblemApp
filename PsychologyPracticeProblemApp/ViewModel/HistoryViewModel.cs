@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp.ViewModel
 {
-    public class HistoryViewModel : INotifyPropertyChanged
+    public class HistoryViewModel : OverlayViewModel, INotifyPropertyChanged
     {
-        public LinkedList<AttemptLog> attempts { get; set; } = new();
-        public IProblem problem { get; set; }
+        public LinkedList<HistoryLog> Attempts { get; set; }
+        public IProblem Problem { get; set; }
 
-        public HistoryViewModel(LinkedList<AttemptLog> attempts)
+        public HistoryViewModel(LinkedList<HistoryLog> attempts, ContentPage parent) : base(parent, "History Page")
         {
-            this.attempts = attempts;
+            Attempts = attempts;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

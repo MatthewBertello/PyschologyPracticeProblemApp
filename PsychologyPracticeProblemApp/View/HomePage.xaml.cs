@@ -52,6 +52,7 @@ public partial class HomePage : ContentPage
     }
     private void OnHistoryPage(object sender, EventArgs e)
     {
+        
         Navigation.PushAsync(new History());
     }
     private void OnSettingsPage(object sender, EventArgs e)

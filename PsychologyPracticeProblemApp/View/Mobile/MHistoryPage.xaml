@@ -20,15 +20,15 @@
             <Grid ColumnDefinitions="20,*,20,*" RowDefinitions="30,30,30" Margin="0, 10">
                 <Button Text="Select All" Padding="0" Margin="0,0,5,0" Grid.ColumnSpan="2" CornerRadius="5" FontSize="16" FontAttributes="None" Clicked="OnCheckAll"/>
 
-                <CheckBox Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChStandard"/>
+                <CheckBox Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChStandard" IsChecked="True"/>
                 <Label Grid.Row="0" Grid.Column="3" Text="Standard Deviation" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <CheckBox Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChOneSample"/>
+                <CheckBox Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChOneSample" IsChecked="True"/>
                 <Label Grid.Row="1" Grid.Column="1" Text="One Sample" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <CheckBox Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChDependent"/>
+                <CheckBox Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChDependent" IsChecked="True"/>
                 <Label Grid.Row="1" Grid.Column="3" Text="Dependent Sample" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <CheckBox Grid.Row="2" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChIndendent"/>
+                <CheckBox Grid.Row="2" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChIndendent" IsChecked="True"/>
                 <Label Grid.Row="2" Grid.Column="1" Text="Independent Sample" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <CheckBox Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChZScore"/>
+                <CheckBox Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChZScore" IsChecked="True"/>
                 <Label Grid.Row="2" Grid.Column="3" Text="Z-Score" HorizontalOptions="Start" VerticalOptions="Center"/>
             </Grid>
             <Rectangle MaximumHeightRequest="1" BackgroundColor="{AppThemeBinding Light={StaticResource TextNormal}, Dark={StaticResource TextNormalDark}}" VerticalOptions="EndAndExpand"/>
@@ -40,18 +40,17 @@
                         <DataTemplate x:DataType="local:HistoryLog">
                             <ViewCell>
                                 <Border Margin="0,0,0,5" BackgroundColor="{AppThemeBinding Light={StaticResource Tint}, Dark={StaticResource TinTDark}}" Padding="0">
-                                    <Grid ColumnDefinitions="50,*,*,Auto" RowDefinitions="*,*" Padding="0,0,10,0">
+                                    <Grid ColumnDefinitions="50,3*,2*,Auto" RowDefinitions="*,*" Padding="0,0,10,0">
                                         <ImageButton Source="Ico_Retry.png" WidthRequest="50" Grid.RowSpan="2" Padding="5" Opacity=".7" IsVisible="{Binding IsNotCorrect}"
                                                      Command="{Binding RetryCommand}"/>
-                                        <Label Text="{Binding LogProblemName}" Style="{StaticResource Overlay}" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" VerticalOptions="Center"/>
+                                        <Label Text="{Binding LogProblemName}" Style="{StaticResource Overlay}" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Grid.ColumnSpan="2"/>
                                         <Label Text="{Binding LogDate}" Style="{StaticResource Overlay}" Grid.Row="1" Grid.Column="1" VerticalOptions="Start"/>
-                                        <Label Text="Answer" Style="{StaticResource Overlay}" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Start"/>
-                                        <Label Text="Expected" Style="{StaticResource Overlay}" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Start"/>
-                                        <Label Text="{Binding LogYourAnswer}" Style="{StaticResource Overlay}" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"/>
-                                        <Label Text="{Binding LogRealAnswer}" Style="{StaticResource Overlay}" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"
-                                               IsVisible="{Binding IsNotCorrect}"/>
-
-                                        <Label Text="Correct!" Style="{StaticResource Overlay}" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"
+                                        <Label Text="Answer" Style="{StaticResource Overlay}" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                        <Label Text="{Binding LogYourAnswer}" Style="{StaticResource Overlay}" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"/>
+                                        
+                                        <Label Text="Incorrect!" Style="{StaticResource Overlay}" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"
+                                               IsVisible="{Binding IsNotCorrect}" TextColor="{StaticResource Invalid}"/>
+                                        <Label Text="Correct!" Style="{StaticResource Overlay}" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"
                                                IsVisible="{Binding IsCorrect}" TextColor="{AppThemeBinding Light={StaticResource Valid}, Dark={StaticResource ValidDark}}"/>
                                     </Grid>
                                 </Border>

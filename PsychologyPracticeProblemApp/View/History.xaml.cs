@@ -15,8 +15,8 @@ public partial class History : ContentPage
     public History()
     {
 
-        LinkedList<AttemptLog> attempts = Database.GetAttempts(Database.CurrentUserId);
-        VM = new(attempts);
+        LinkedList<HistoryLog> attempts = Database.GetHistoryAll();
+        VM = new(attempts, this);
 
 
         InitializeComponent();
@@ -24,11 +24,11 @@ public partial class History : ContentPage
         BindingContext = VM;
     }
 
-    void ViewProblemClicked(System.Object sender, System.EventArgs e)
+    void ViewProblemClicked(Object sender, EventArgs e)
     {
-        var button = sender as Button;
-        AttemptLog attempt = button?.BindingContext as AttemptLog;
-        VM.problem = Database.GetProblem(attempt.ProblemId);
-        Navigation.PushAsync(new ProblemPage(VM.problem, VM.problem.Dataset));
+        //var button = sender as Button;
+        //AttemptLog attempt = button?.BindingContext as AttemptLog;
+        //VM.problem = Database.GetProblem(attempt.ProblemId);
+        //Navigation.PushAsync(new ProblemPage(VM.problem, VM.problem.Dataset));
     }
 }
