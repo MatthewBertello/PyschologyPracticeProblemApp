@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="PsychologyPracticeProblemApp.MHistoryPage"
-             xmlns:viewmodel="clr-namespace:PsychologyPracticeProblemApp"
+             xmlns:local="clr-namespace:PsychologyPracticeProblemApp"
+             xmlns:viewmodel="clr-namespace:PsychologyPracticeProblemApp.ViewModel"
              x:DataType="viewmodel:MHistoryViewModel"
              BindingContext="{x:Reference MHistoryViewModel}"
              Shell.NavBarIsVisible="False"
@@ -17,37 +18,43 @@
 
         <Grid Style="{StaticResource TitleInnerGrid}" RowDefinitions="Auto,*">
             <Grid ColumnDefinitions="20,*,20,*" RowDefinitions="30,30,30" Margin="0, 10">
-                <CheckBox HorizontalOptions="Start" VerticalOptions="Start"/>
-                <Label Grid.Column="1" Text="All" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Button Text="Select All" Padding="0" Margin="0,0,5,0" Grid.ColumnSpan="2" CornerRadius="5" FontSize="16" FontAttributes="None" Clicked="OnCheckAll"/>
 
-                <CheckBox Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <CheckBox Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChStandard"/>
                 <Label Grid.Row="0" Grid.Column="3" Text="Standard Deviation" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <CheckBox Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <CheckBox Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChOneSample"/>
                 <Label Grid.Row="1" Grid.Column="1" Text="One Sample" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <CheckBox Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <CheckBox Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChDependent"/>
                 <Label Grid.Row="1" Grid.Column="3" Text="Dependent Sample" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <CheckBox Grid.Row="2" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <CheckBox Grid.Row="2" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChIndendent"/>
                 <Label Grid.Row="2" Grid.Column="1" Text="Independent Sample" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <CheckBox Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <CheckBox Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start" CheckedChanged="OnCheck" x:Name="ChZScore"/>
                 <Label Grid.Row="2" Grid.Column="3" Text="Z-Score" HorizontalOptions="Start" VerticalOptions="Center"/>
             </Grid>
             <Rectangle MaximumHeightRequest="1" BackgroundColor="{AppThemeBinding Light={StaticResource TextNormal}, Dark={StaticResource TextNormalDark}}" VerticalOptions="EndAndExpand"/>
 
-            <Label Text="{Binding Size}" />
-            <ScrollView Style="{StaticResource TitleInner}" Grid.Row="1">
+            <ScrollView Style="{StaticResource TitleInner}" Grid.Row="1" Margin="0, 10">
                 <ListView x:Name="HistoryTabs" ItemsSource="{Binding History}" SelectionMode="None"
-                                  SeparatorVisibility="None" RowHeight="25" Margin="0" VerticalScrollBarVisibility="Never">
+                                  SeparatorVisibility="None" RowHeight="50" Margin="0" VerticalScrollBarVisibility="Never">
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="viewmodel:HistoryLog">
+                        <DataTemplate x:DataType="local:HistoryLog">
                             <ViewCell>
-                                <Grid ColumnDefinitions="*,*">
-                                    <Rectangle BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}" Grid.ColumnSpan="2"/>
-                                    <Rectangle BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundTint}, Dark={StaticResource BackgroundTintDark}}" Grid.ColumnSpan="2"/>
-                                    <Label Text="{Binding Answer}" FontSize="14"
-                                                       VerticalOptions="Center" HorizontalOptions="Center" Padding="15, 0"/>
-                                    <Label Text="{Binding Date}" FontSize="14" Grid.Column="1"
-                                                       VerticalOptions="Center" HorizontalOptions="Center" Padding="15, 0"/>
-                                </Grid>
+                                <Border Margin="0,0,0,5" BackgroundColor="{AppThemeBinding Light={StaticResource Tint}, Dark={StaticResource TinTDark}}" Padding="0">
+                                    <Grid ColumnDefinitions="50,*,*,Auto" RowDefinitions="*,*" Padding="0,0,10,0">
+                                        <ImageButton Source="Ico_Retry.png" WidthRequest="50" Grid.RowSpan="2" Padding="5" Opacity=".7" IsVisible="{Binding IsNotCorrect}"
+                                                     Command="{Binding RetryCommand}"/>
+                                        <Label Text="{Binding LogProblemName}" Style="{StaticResource Overlay}" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" VerticalOptions="Center"/>
+                                        <Label Text="{Binding LogDate}" Style="{StaticResource Overlay}" Grid.Row="1" Grid.Column="1" VerticalOptions="Start"/>
+                                        <Label Text="Answer" Style="{StaticResource Overlay}" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                        <Label Text="Expected" Style="{StaticResource Overlay}" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                        <Label Text="{Binding LogYourAnswer}" Style="{StaticResource Overlay}" Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"/>
+                                        <Label Text="{Binding LogRealAnswer}" Style="{StaticResource Overlay}" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"
+                                               IsVisible="{Binding IsNotCorrect}"/>
+
+                                        <Label Text="Correct!" Style="{StaticResource Overlay}" Grid.Row="1" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End"
+                                               IsVisible="{Binding IsCorrect}" TextColor="{AppThemeBinding Light={StaticResource Valid}, Dark={StaticResource ValidDark}}"/>
+                                    </Grid>
+                                </Border>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

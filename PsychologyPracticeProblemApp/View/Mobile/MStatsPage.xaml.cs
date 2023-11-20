@@ -3,6 +3,7 @@
  * Date: 10/18/2023
 */
 
+using PsychologyPracticeProblemApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +15,12 @@ namespace PsychologyPracticeProblemApp;
 
 public partial class MStatsPage : ContentPage {
 
-    
+    private MStatsViewModel VM;
     public MStatsPage()
     {
+        VM = new();
         InitializeComponent();
+        BindingContext = VM;
     }
 
     private void HandleCheck(object sender, EventArgs e)

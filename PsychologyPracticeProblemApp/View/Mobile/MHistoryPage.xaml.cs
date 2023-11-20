@@ -3,6 +3,7 @@
  * Date: 10/18/2023
 */
 
+using PsychologyPracticeProblemApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,12 +23,30 @@ public partial class MHistoryPage : ContentPage {
         BindingContext = VM;
     }
 
-    private void HandleCheck(object sender, EventArgs e)
+    private void OnCheck(object sender, EventArgs e)
     {
+        int inclusion = 0;
+        inclusion |= ChStandard.IsChecked ? MHistoryViewModel.STANDARD : 0;
+        inclusion |= ChOneSample.IsChecked ? MHistoryViewModel.ONE_SAMPLE : 0;
+        inclusion |= ChDependent.IsChecked ? MHistoryViewModel.DEPENDENT : 0;
+        inclusion |= ChIndendent.IsChecked ? MHistoryViewModel.INDEPENDENT : 0;
+        inclusion |= ChZScore.IsChecked ? MHistoryViewModel.Z_SCORE : 0;
+        VM.UpdateHistory(inclusion);
         //RadioButton rb = sender as RadioButton;
         //choiceTextBlock.Text = "You chose: " + rb.GroupName + ": " + rb.Name;
     }
-
+    private void OnCheckAll(object sender, EventArgs e)
+    {
+        bool toSet = true;
+        if(ChStandard.IsChecked && ChOneSample.IsChecked && ChDependent.IsChecked
+            && ChIndendent.IsChecked && ChZScore.IsChecked)
+            toSet = false;
+        ChStandard.IsChecked = toSet;
+        ChOneSample.IsChecked = toSet;
+        ChDependent.IsChecked = toSet;
+        ChIndendent.IsChecked = toSet;
+        ChZScore.IsChecked = toSet;
+    }
 
     private void OnProblems(object sender, EventArgs e)
     {

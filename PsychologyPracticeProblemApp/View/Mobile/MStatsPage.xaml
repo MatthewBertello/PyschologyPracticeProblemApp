@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="PsychologyPracticeProblemApp.MStatsPage"
+             xmlns:viewmodel="clr-namespace:PsychologyPracticeProblemApp.ViewModel"
+             x:DataType="viewmodel:MStatsViewModel"
+             BindingContext="{x:Reference MStatsViewModel}"
              Shell.NavBarIsVisible="False"
              >
 
@@ -16,45 +19,45 @@
 
         <ScrollView Style="{StaticResource TitleInner}">
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Margin="0,15">
-                <Label Text="Data from last 10 problems" HorizontalOptions="CenterAndExpand"/>
-                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="1">
+                <Label Text="{Binding RecordText}" HorizontalOptions="CenterAndExpand"/>
+                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="1" IsVisible="{Binding StandardDev_Show}">
                     <Grid Style="{StaticResource StatsBlockGrid}">
                         <Label Text="Standard Deviation" Style="{StaticResource StatsBlockTitle}"/>
-                        <Label Text="15/30" Style="{StaticResource StatsBlockSecondary}"/>
-                        <Label Text="Last Attempt: 11/19/23" Style="{StaticResource StatsBlockTerciary}"/>
-                        <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
+                        <Label Text="{Binding StandardDev_OutOf}" Style="{StaticResource StatsBlockSecondary}"/>
+                        <Label Text="{Binding StandardDev_Date}" Style="{StaticResource StatsBlockTerciary}"/>
+                        <Label Text="{Binding StandardDev_Perc}" Style="{StaticResource StatsBlockPercent}"/>
                     </Grid>
                 </Frame>
-                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="2">
+                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="2" IsVisible="{Binding OneSample_Show}">
                     <Grid Style="{StaticResource StatsBlockGrid}">
                         <Label Text="One Sample T-Test" Style="{StaticResource StatsBlockTitle}"/>
-                        <Label Text="15/30" Style="{StaticResource StatsBlockSecondary}"/>
-                        <Label Text="Last Attempt: 11/19/23" Style="{StaticResource StatsBlockTerciary}"/>
-                        <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
+                        <Label Text="{Binding OneSample_OutOf}" Style="{StaticResource StatsBlockSecondary}"/>
+                        <Label Text="{Binding OneSample_Date}" Style="{StaticResource StatsBlockTerciary}"/>
+                        <Label Text="{Binding OneSample_Perc}" Style="{StaticResource StatsBlockPercent}"/>
                     </Grid>
                 </Frame>
-                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="3">
+                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="3" IsVisible="{Binding Dependent_Show}">
                     <Grid Style="{StaticResource StatsBlockGrid}">
                         <Label Text="Dependent Sample T-Test" Style="{StaticResource StatsBlockTitle}"/>
-                        <Label Text="15/30" Style="{StaticResource StatsBlockSecondary}"/>
-                        <Label Text="Last Attempt: 11/19/23" Style="{StaticResource StatsBlockTerciary}"/>
-                        <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
+                        <Label Text="{Binding Dependent_OutOf}" Style="{StaticResource StatsBlockSecondary}"/>
+                        <Label Text="{Binding Dependent_Date}" Style="{StaticResource StatsBlockTerciary}"/>
+                        <Label Text="{Binding Dependent_Perc}" Style="{StaticResource StatsBlockPercent}"/>
                     </Grid>
                 </Frame>
-                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="4">
+                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="4" IsVisible="{Binding Independent_Show}">
                     <Grid Style="{StaticResource StatsBlockGrid}">
                         <Label Text="Independent Sample T-Test" Style="{StaticResource StatsBlockTitle}"/>
-                        <Label Text="15/30" Style="{StaticResource StatsBlockSecondary}"/>
-                        <Label Text="Last Attempt: 11/19/23" Style="{StaticResource StatsBlockTerciary}"/>
-                        <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
+                        <Label Text="{Binding Independent_OutOf}" Style="{StaticResource StatsBlockSecondary}"/>
+                        <Label Text="{Binding Independent_Date}" Style="{StaticResource StatsBlockTerciary}"/>
+                        <Label Text="{Binding Independent_Perc}" Style="{StaticResource StatsBlockPercent}"/>
                     </Grid>
                 </Frame>
-                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="5">
+                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="5" IsVisible="{Binding ZScore_Show}">
                     <Grid Style="{StaticResource StatsBlockGrid}">
                         <Label Text="Z-Score" Style="{StaticResource StatsBlockTitle}"/>
-                        <Label Text="15/30" Style="{StaticResource StatsBlockSecondary}"/>
-                        <Label Text="Last Attempt: 11/19/23" Style="{StaticResource StatsBlockTerciary}"/>
-                        <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
+                        <Label Text="{Binding ZScore_OutOf}" Style="{StaticResource StatsBlockSecondary}"/>
+                        <Label Text="{Binding ZScore_Date}" Style="{StaticResource StatsBlockTerciary}"/>
+                        <Label Text="{Binding ZScore_Perc}" Style="{StaticResource StatsBlockPercent}"/>
                     </Grid>
                 </Frame>
 

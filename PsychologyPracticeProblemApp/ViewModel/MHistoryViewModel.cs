@@ -9,7 +9,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PsychologyPracticeProblemApp;
+namespace PsychologyPracticeProblemApp.ViewModel;
 public class MHistoryViewModel : CoreViewModel, INotifyPropertyChanged {
     public event PropertyChangedEventHandler PropertyChanged;
     public static int
@@ -27,7 +27,7 @@ public class MHistoryViewModel : CoreViewModel, INotifyPropertyChanged {
     {
         UpdateHistory(ALL);
     }
-    private void UpdateHistory(int inclusionSet)
+    public void UpdateHistory(int inclusionSet)
     {
         LinkedList<HistoryLog> logs = Database.GetHistoryAll();
         History.Clear();
