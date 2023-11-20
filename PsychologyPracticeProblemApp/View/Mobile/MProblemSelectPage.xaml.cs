@@ -39,4 +39,35 @@ public partial class MProblemSelectPage : ContentPage {
     {
         await Navigation.PushAsync(new MProblemPage(IProblem.ZScore));
     }
+
+
+    private void OnProblems(object sender, EventArgs e)
+    {
+        MovePage(new MProblemSelectPage(), 0);
+    }
+    private void OnStats(object sender, EventArgs e)
+    {
+        MovePage(new MStatsPage(), 1);
+    }
+    private async void OnHistory(object sender, EventArgs e)
+    {
+
+    }
+    private async void OnSettings(object sender, EventArgs e)
+    {
+
+    }
+
+    private async void MovePage(Page page, int dir)
+    {
+        if(dir < 0) // left
+        {
+            Navigation.InsertPageBefore(page, this);
+            await Navigation.PopAsync();
+        } else // right
+        {
+            await Navigation.PushAsync(page);
+            Navigation.RemovePage(this);
+        }
+    }
 }

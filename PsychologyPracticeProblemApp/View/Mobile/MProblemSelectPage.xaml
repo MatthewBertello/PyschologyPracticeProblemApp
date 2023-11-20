@@ -23,9 +23,10 @@
                 </Grid>
             </Grid>
         </ScrollView>
+
         <ImageButton Style="{StaticResource FooterButtonSelected}" Grid.Column="0" Source="ico_problems.png"/>
-        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="1" Source="ico_stats.png"/>
-        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="2" Source="ico_history.png"/>
-        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="3" Source="ico_settings.png"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="1" Source="ico_stats.png" Clicked="OnStats"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="2" Source="ico_history.png" Clicked="OnHistory"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="3" Source="ico_settings.png" Clicked="OnSettings"/>
     </Grid>
 </ContentPage>

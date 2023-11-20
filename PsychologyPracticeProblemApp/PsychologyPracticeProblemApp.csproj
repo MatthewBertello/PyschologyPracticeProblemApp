@@ -76,6 +76,9 @@
 	  <Compile Update="View\Mobile\MExamplePage.xaml.cs">
 	    <DependentUpon>MExamplePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="View\Mobile\MStatsPage.xaml.cs">
+	    <DependentUpon>MStatsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\Mobile\MProblemSelectPage.xaml.cs">
 	    <DependentUpon>MProblemSelectPage.xaml</DependentUpon>
 	  </Compile>
@@ -95,6 +98,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Mobile\MExamplePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Mobile\MStatsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Mobile\MProblemSelectPage.xaml">

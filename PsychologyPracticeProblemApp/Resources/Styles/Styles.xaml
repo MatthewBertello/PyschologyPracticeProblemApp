@@ -525,6 +525,7 @@
         <Setter Property="Grid.Row" Value="1"/>
         <Setter Property="Grid.ColumnSpan" Value="4"/>
         <Setter Property="Margin" Value="25,0"/>
+        <Setter Property="VerticalScrollBarVisibility" Value="Never"/>
     </Style>
     <Style x:Key="FooterButton" TargetType="ImageButton">
         <Setter Property="Grid.Row" Value="2"/>
@@ -541,5 +542,39 @@
         <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+
+
+    <Style x:Key="StatsBlockGrid" TargetType="Grid">
+        <Setter Property="RowDefinitions" Value="2*,*,*"/>
+        <Setter Property="ColumnDefinitions" Value="*,Auto"/>
+    </Style>
+    <Style x:Key="StatsBlockFrame" TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Tint}, Dark={StaticResource TintDark}}"/>
+        <Setter Property="Padding" Value="20, 10"/>
+        <Setter Property="Margin" Value="0,10,0,0"/>
+    </Style>
+    <Style x:Key="StatsBlockTitle" TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextOverlay}, Dark={StaticResource TextOverlayDark}}"/>
+        <Setter Property="Grid.Column" Value="0"/>
+        <Setter Property="Grid.Row" Value="0"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+    </Style>
+    <Style x:Key="StatsBlockPercent" TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextOverlay}, Dark={StaticResource TextOverlayDark}}"/>
+        <Setter Property="Grid.Column" Value="1"/>
+        <Setter Property="Grid.Row" Value="1"/>
+    </Style>
+    <Style x:Key="StatsBlockSecondary" TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextOverlay}, Dark={StaticResource TextOverlayDark}}"/>
+        <Setter Property="Grid.Column" Value="0"/>
+        <Setter Property="Grid.Row" Value="1"/>
+        <Setter Property="Opacity" Value=".7"/>
+    </Style>
+    <Style x:Key="StatsBlockTerciary" TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextOverlay}, Dark={StaticResource TextOverlayDark}}"/>
+        <Setter Property="Grid.Column" Value="0"/>
+        <Setter Property="Grid.Row" Value="2"/>
+        <Setter Property="Opacity" Value=".7"/>
     </Style>
 </ResourceDictionary>

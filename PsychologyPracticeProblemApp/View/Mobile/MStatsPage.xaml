@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="PsychologyPracticeProblemApp.MStatsPage"
+             Shell.NavBarIsVisible="False"
+             >
+
+    <Grid Style="{StaticResource TitleGrid}">
+        <Rectangle Style="{StaticResource TitleRect}"/>
+        <Rectangle Style="{StaticResource FooterRect}"/>
+        <Label Text="Problem Select" Style="{StaticResource Title}"/>
+        <!-- <ImageButton Style="{StaticResource TitleBack}" /> -->
+
+
+
+        <ScrollView Style="{StaticResource TitleInner}">
+            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" Margin="0,15">
+                <Label Text="Data from last 10 problems" HorizontalOptions="CenterAndExpand"/>
+                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="1">
+                    <Grid Style="{StaticResource StatsBlockGrid}">
+                        <Label Text="Standard Deviation" Style="{StaticResource StatsBlockTitle}"/>
+                        <Label Text="15/30" Style="{StaticResource StatsBlockSecondary}"/>
+                        <Label Text="Last Attempt: 11/19/23" Style="{StaticResource StatsBlockTerciary}"/>
+                        <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
+                    </Grid>
+                </Frame>
+                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="2">
+                    <Grid Style="{StaticResource StatsBlockGrid}">
+                        <Label Text="One Sample T-Test" Style="{StaticResource StatsBlockTitle}"/>
+                        <Label Text="15/30" Style="{StaticResource StatsBlockSecondary}"/>
+                        <Label Text="Last Attempt: 11/19/23" Style="{StaticResource StatsBlockTerciary}"/>
+                        <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
+                    </Grid>
+                </Frame>
+                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="3">
+                    <Grid Style="{StaticResource StatsBlockGrid}">
+                        <Label Text="Dependent Sample T-Test" Style="{StaticResource StatsBlockTitle}"/>
+                        <Label Text="15/30" Style="{StaticResource StatsBlockSecondary}"/>
+                        <Label Text="Last Attempt: 11/19/23" Style="{StaticResource StatsBlockTerciary}"/>
+                        <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
+                    </Grid>
+                </Frame>
+                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="4">
+                    <Grid Style="{StaticResource StatsBlockGrid}">
+                        <Label Text="Independent Sample T-Test" Style="{StaticResource StatsBlockTitle}"/>
+                        <Label Text="15/30" Style="{StaticResource StatsBlockSecondary}"/>
+                        <Label Text="Last Attempt: 11/19/23" Style="{StaticResource StatsBlockTerciary}"/>
+                        <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
+                    </Grid>
+                </Frame>
+                <Frame Style="{StaticResource StatsBlockFrame}" Grid.Row="5">
+                    <Grid Style="{StaticResource StatsBlockGrid}">
+                        <Label Text="Z-Score" Style="{StaticResource StatsBlockTitle}"/>
+                        <Label Text="15/30" Style="{StaticResource StatsBlockSecondary}"/>
+                        <Label Text="Last Attempt: 11/19/23" Style="{StaticResource StatsBlockTerciary}"/>
+                        <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
+                    </Grid>
+                </Frame>
+                
+            </Grid>
+        </ScrollView>
+        <Label x:Name="choiceTextBlock" Margin="5" />
+        
+        
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="0" Source="ico_problems.png" Clicked="OnProblems"/>
+        <ImageButton Style="{StaticResource FooterButtonSelected}" Grid.Column="1" Source="ico_stats.png"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="2" Source="ico_history.png" Clicked="OnHistory"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="3" Source="ico_settings.png" Clicked="OnSettings"/>
+    </Grid>
+</ContentPage>
