@@ -9,7 +9,7 @@
     <Grid Style="{StaticResource TitleGrid}">
         <Rectangle Style="{StaticResource TitleRect}"/>
         <Rectangle Style="{StaticResource FooterRect}"/>
-        <Label Text="Problem Select" Style="{StaticResource Title}"/>
+        <Label Text="Stats" Style="{StaticResource Title}"/>
         <!-- <ImageButton Style="{StaticResource TitleBack}" /> -->
 
 
@@ -57,12 +57,11 @@
                         <Label Text="50%" Style="{StaticResource StatsBlockPercent}"/>
                     </Grid>
                 </Frame>
-                
+
             </Grid>
         </ScrollView>
-        <Label x:Name="choiceTextBlock" Margin="5" />
-        
-        
+
+
         <ImageButton Style="{StaticResource FooterButton}" Grid.Column="0" Source="ico_problems.png" Clicked="OnProblems"/>
         <ImageButton Style="{StaticResource FooterButtonSelected}" Grid.Column="1" Source="ico_stats.png"/>
         <ImageButton Style="{StaticResource FooterButton}" Grid.Column="2" Source="ico_history.png" Clicked="OnHistory"/>

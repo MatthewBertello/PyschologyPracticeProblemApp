@@ -12,17 +12,19 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
 
-public partial class MStatsPage : ContentPage {
+public partial class MHistoryPage : ContentPage {
 
-    
-    public MStatsPage()
+    public MHistoryViewModel VM;
+    public MHistoryPage()
     {
+        VM = new();
         InitializeComponent();
+        BindingContext = VM;
     }
 
     private void HandleCheck(object sender, EventArgs e)
     {
-        RadioButton rb = sender as RadioButton;
+        //RadioButton rb = sender as RadioButton;
         //choiceTextBlock.Text = "You chose: " + rb.GroupName + ": " + rb.Name;
     }
 
@@ -33,11 +35,11 @@ public partial class MStatsPage : ContentPage {
     }
     private void OnStats(object sender, EventArgs e)
     {
-        MovePage(new MStatsPage(), 0);
+        MovePage(new MStatsPage(), -1);
     }
     private void OnHistory(object sender, EventArgs e)
     {
-        MovePage(new MHistoryPage(), 1);
+        MovePage(new MHistoryPage(), 0);
     }
     private void OnSettings(object sender, EventArgs e)
     {

@@ -78,7 +78,7 @@ public class ProblemViewModel : OverlayViewModel, INotifyPropertyChanged {
         try
         {
             YourAnswer = double.Parse(solution);
-            Database.SaveAnswerAttempt(problem, data, YourAnswer ?? 0, problem.Name, Database.CurrentUserId);
+            Database.SaveAnswerAttempt(problem, data, YourAnswer ?? 0, problem.Name, User.Current.Id);
             ApplyPropertyChange(false, true);
         } catch (Exception ex)
         {

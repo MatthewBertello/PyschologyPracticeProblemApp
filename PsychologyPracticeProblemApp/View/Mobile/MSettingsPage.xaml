@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="PsychologyPracticeProblemApp.MSettingsPage"
+             Shell.NavBarIsVisible="False"
+             >
+
+    <Grid Style="{StaticResource TitleGrid}">
+        <Rectangle Style="{StaticResource TitleRect}"/>
+        <Rectangle Style="{StaticResource FooterRect}"/>
+        <Label Text="Settings" Style="{StaticResource Title}"/>
+        <!-- <ImageButton Style="{StaticResource TitleBack}" /> -->
+
+        <ScrollView Style="{StaticResource TitleInner}">
+            <Grid>
+                <Button Text="Logout" Clicked="OnLogout"/>
+            </Grid>
+        </ScrollView>
+
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="0" Source="ico_problems.png" Clicked="OnProblems"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="1" Source="ico_stats.png" Clicked="OnStats" IsEnabled="{Binding IsNotGuest}"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="2" Source="ico_history.png" Clicked="OnHistory" IsEnabled="{Binding IsNotGuest}"/>
+        <ImageButton Style="{StaticResource FooterButtonSelected}" Grid.Column="3" Source="ico_settings.png" Clicked="OnSettings"/>
+    </Grid>
+</ContentPage>

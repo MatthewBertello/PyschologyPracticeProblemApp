@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace PsychologyPracticeProblemApp.ViewModel;
 
-public class OverlayViewModel {
+public class OverlayViewModel : CoreViewModel {
     //public event PropertyChangedEventHandler PropertyChanged;
 
     public String PageName { get; set; }
@@ -16,8 +16,6 @@ public class OverlayViewModel {
     public Command LogoutCommand { get; set; }
     public Command HomeCommand { get; set; }
 
-    public Boolean IsGuest => User.Current.Id == User.Guest;
-    public Boolean IsNotGuest => !IsGuest;
 
     private ContentPage parent;
     public OverlayViewModel(ContentPage parent, String pageName)

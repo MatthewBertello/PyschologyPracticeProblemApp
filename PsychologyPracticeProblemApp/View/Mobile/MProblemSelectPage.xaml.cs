@@ -3,6 +3,7 @@
  * Date: 10/18/2023
 */
 
+using PsychologyPracticeProblemApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +15,11 @@ namespace PsychologyPracticeProblemApp;
 
 public partial class MProblemSelectPage : ContentPage {
 
-    
+    public CoreViewModel VM = new();
     public MProblemSelectPage()
     {
         InitializeComponent();
+        BindingContext = VM;
     }
     public async void OnStandard(object sender, EventArgs e)
     {
@@ -49,13 +51,13 @@ public partial class MProblemSelectPage : ContentPage {
     {
         MovePage(new MStatsPage(), 1);
     }
-    private async void OnHistory(object sender, EventArgs e)
+    private void OnHistory(object sender, EventArgs e)
     {
-
+        MovePage(new MHistoryPage(), 1);
     }
-    private async void OnSettings(object sender, EventArgs e)
+    private void OnSettings(object sender, EventArgs e)
     {
-
+        MovePage(new MSettingsPage(), 1);
     }
 
     private async void MovePage(Page page, int dir)

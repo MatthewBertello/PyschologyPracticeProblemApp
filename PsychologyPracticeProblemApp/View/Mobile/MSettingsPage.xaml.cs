@@ -3,6 +3,7 @@
  * Date: 10/18/2023
 */
 
+using PsychologyPracticeProblemApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,36 +13,35 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp;
 
-public partial class MStatsPage : ContentPage {
+public partial class MSettingsPage : ContentPage {
 
-    
-    public MStatsPage()
+    public SettingsViewModel VM;
+    public MSettingsPage()
     {
+        VM = new(this);
         InitializeComponent();
+        BindingContext = VM;
     }
 
-    private void HandleCheck(object sender, EventArgs e)
+    private void OnLogout(object sender, EventArgs e)
     {
-        RadioButton rb = sender as RadioButton;
-        //choiceTextBlock.Text = "You chose: " + rb.GroupName + ": " + rb.Name;
+        User.Logout(this);
     }
-
-
     private void OnProblems(object sender, EventArgs e)
     {
         MovePage(new MProblemSelectPage(), -1);
     }
     private void OnStats(object sender, EventArgs e)
     {
-        MovePage(new MStatsPage(), 0);
+        MovePage(new MStatsPage(), -1);
     }
     private void OnHistory(object sender, EventArgs e)
     {
-        MovePage(new MHistoryPage(), 1);
+        MovePage(new MHistoryPage(), -1);
     }
     private void OnSettings(object sender, EventArgs e)
     {
-        MovePage(new MSettingsPage(), 1);
+        MovePage(new MSettingsPage(), 0);
     }
 
     private async void MovePage(Page page, int dir)

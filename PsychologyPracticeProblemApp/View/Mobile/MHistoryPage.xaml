@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="PsychologyPracticeProblemApp.MHistoryPage"
+             xmlns:viewmodel="clr-namespace:PsychologyPracticeProblemApp"
+             x:DataType="viewmodel:MHistoryViewModel"
+             BindingContext="{x:Reference MHistoryViewModel}"
+             Shell.NavBarIsVisible="False"
+             >
+
+    <Grid Style="{StaticResource TitleGrid}">
+        <Rectangle Style="{StaticResource TitleRect}"/>
+        <Rectangle Style="{StaticResource FooterRect}"/>
+        <Label Text="History" Style="{StaticResource Title}"/>
+        <!-- <ImageButton Style="{StaticResource TitleBack}" /> -->
+
+        <Grid Style="{StaticResource TitleInnerGrid}" RowDefinitions="Auto,*">
+            <Grid ColumnDefinitions="20,*,20,*" RowDefinitions="30,30,30" Margin="0, 10">
+                <CheckBox HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Column="1" Text="All" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                <CheckBox Grid.Row="0" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Row="0" Grid.Column="3" Text="Standard Deviation" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <CheckBox Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="One Sample" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <CheckBox Grid.Row="1" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Row="1" Grid.Column="3" Text="Dependent Sample" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <CheckBox Grid.Row="2" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="Independent Sample" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <CheckBox Grid.Row="2" Grid.Column="2" HorizontalOptions="Start" VerticalOptions="Start"/>
+                <Label Grid.Row="2" Grid.Column="3" Text="Z-Score" HorizontalOptions="Start" VerticalOptions="Center"/>
+            </Grid>
+            <Rectangle MaximumHeightRequest="1" BackgroundColor="{AppThemeBinding Light={StaticResource TextNormal}, Dark={StaticResource TextNormalDark}}" VerticalOptions="EndAndExpand"/>
+
+            <Label Text="{Binding Size}" />
+            <ScrollView Style="{StaticResource TitleInner}" Grid.Row="1">
+                <ListView x:Name="HistoryTabs" ItemsSource="{Binding History}" SelectionMode="None"
+                                  SeparatorVisibility="None" RowHeight="25" Margin="0" VerticalScrollBarVisibility="Never">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="viewmodel:HistoryLog">
+                            <ViewCell>
+                                <Grid ColumnDefinitions="*,*">
+                                    <Rectangle BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}" Grid.ColumnSpan="2"/>
+                                    <Rectangle BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundTint}, Dark={StaticResource BackgroundTintDark}}" Grid.ColumnSpan="2"/>
+                                    <Label Text="{Binding Answer}" FontSize="14"
+                                                       VerticalOptions="Center" HorizontalOptions="Center" Padding="15, 0"/>
+                                    <Label Text="{Binding Date}" FontSize="14" Grid.Column="1"
+                                                       VerticalOptions="Center" HorizontalOptions="Center" Padding="15, 0"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </Grid>
+
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="0" Source="ico_problems.png" Clicked="OnProblems"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="1" Source="ico_stats.png" Clicked="OnStats"/>
+        <ImageButton Style="{StaticResource FooterButtonSelected}" Grid.Column="2" Source="ico_history.png"/>
+        <ImageButton Style="{StaticResource FooterButton}" Grid.Column="3" Source="ico_settings.png" Clicked="OnSettings"/>
+    </Grid>
+</ContentPage>

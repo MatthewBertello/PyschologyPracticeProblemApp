@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace PsychologyPracticeProblemApp;
 public class User {
     public static Guid Guest => Guid.Empty;
+    public static Guid Admin => new(new byte[] {1, 2, 4, 8, 16, 32, 16, 8, 4, 2, 1, 2, 4, 8, 16, 32}); // did not pick these numbers for any particular reason.
     public static User Current { get; private set; } = null;
     public static string Error { get; private set; } = string.Empty;
 

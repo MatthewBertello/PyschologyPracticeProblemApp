@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PsychologyPracticeProblemApp.Model.Structs;
+namespace PsychologyPracticeProblemApp;
 /// <summary>
 /// Stores a single attempt at a problem.
 /// </summary>
