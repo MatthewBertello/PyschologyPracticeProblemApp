@@ -67,6 +67,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Resources\Styles\ThemeStyles.xaml.cs">
+	    <DependentUpon>ThemeStyles.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Styles\ThemeLight.xaml.cs">
+	    <DependentUpon>ThemeLight.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\History.xaml.cs">
 	    <DependentUpon>History.xaml</DependentUpon>
 	  </Compile>
@@ -97,6 +103,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Resources\Styles\ColorsDark.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\ThemeStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\ThemeLight.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

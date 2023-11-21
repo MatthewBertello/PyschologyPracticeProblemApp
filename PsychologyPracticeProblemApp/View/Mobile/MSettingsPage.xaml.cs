@@ -27,6 +27,11 @@ public partial class MSettingsPage : ContentPage {
     {
         User.Logout(this);
     }
+    private void OnThemeChange(object sender, EventArgs e)
+    {
+        App.Current.UserAppTheme = AppTheme.Dark;
+    }
+
     private void OnProblems(object sender, EventArgs e)
     {
         MovePage(new MProblemSelectPage(), -1);

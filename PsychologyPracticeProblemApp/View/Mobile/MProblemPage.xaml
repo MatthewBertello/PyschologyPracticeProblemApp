@@ -72,14 +72,14 @@
                 <!--Your Answer + Correct/Incorrect-->
                 <Grid Grid.ColumnSpan="3" Grid.Row="1" RowDefinitions="Auto,*" Margin="0,0,0,10">
                     <Label Grid.ColumnSpan="2" Text="Your Answer:" VerticalOptions="Center"/>
-                    <Frame VerticalOptions="CenterAndExpand" Padding="10,3" Grid.Row="1">
-                        <Entry Placeholder="" x:Name="AnswerEntry"/>
+                    <Frame VerticalOptions="CenterAndExpand" Padding="10,3" Grid.Row="1" BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}">
+                        <Entry Placeholder="" x:Name="AnswerEntry" TextColor="{AppThemeBinding Light={StaticResource TextNormal}, Dark={StaticResource TextNormalDark}}"/>
                     </Frame>
                     <Grid IsVisible="{Binding ShowCorrectAnswer}">
-                        <Frame Margin="0" Padding="20,5" BackgroundColor="{StaticResource Valid}" IsVisible="{Binding IsCorrect}">
+                        <Frame Margin="0" Padding="20,5" BackgroundColor="{AppThemeBinding Light={StaticResource Valid}, Dark={StaticResource ValidDark}}" IsVisible="{Binding IsCorrect}">
                             <Label Text="Correct!" VerticalOptions="Center"/>
                         </Frame>
-                        <Frame Margin="0" Padding="20,5" BackgroundColor="{StaticResource Invalid}" IsVisible="{Binding IsIncorrect}">
+                        <Frame Margin="0" Padding="20,5" BackgroundColor="{AppThemeBinding Light={StaticResource Invalid}, Dark={StaticResource InvalidDark}}" IsVisible="{Binding IsIncorrect}">
                             <Grid>
                                 <Label Text="Incorrect!" VerticalOptions="Center"/>
                                 <Label Text="{Binding CorrectAnswerText}" VerticalOptions="Center" HorizontalOptions="EndAndExpand"/>
