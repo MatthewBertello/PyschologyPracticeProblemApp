@@ -3,10 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
-namespace PsychologyPracticeProblemApp.Model.Utility; 
-
+namespace PsychologyPracticeProblemApp.Model.Utility;
 public static class SecurityUtil {
+    public static string Encrypt(string message)
+    {
+        //salt = new Guid().ToString(); // simple random salt
+
+        // message to bytes
+        byte[] data = Encoding.ASCII.GetBytes(message);
+        // hash the bytes
+        SHA384 sha = SHA384.Create();
+        byte[] result = sha.ComputeHash(data);
+        // bytes back to string
+        return Encoding.UTF8.GetString(result);
+    }
     /// <summary>
     /// Hash the password using BCrypt
     /// </summary>
@@ -14,7 +26,8 @@ public static class SecurityUtil {
     /// <returns></returns>
     public static string HashPassword(string password)
     {
-        return BCrypt.Net.BCrypt.HashPassword(password);
+        return Encrypt(password);
+        //return BCrypt.Net.BCrypt.HashPassword(password);
     }
 
     /// <summary>
@@ -26,7 +39,8 @@ public static class SecurityUtil {
     /// <returns></returns>
     public static bool VerifyPassword(string enteredPassword, string hashedPassword)
     {
-        return BCrypt.Net.BCrypt.Verify(enteredPassword, hashedPassword);
+        return Encrypt(enteredPassword) == hashedPassword;
+        //return BCrypt.Net.BCrypt.Verify(enteredPassword, hashedPassword);
     }
 
 }
