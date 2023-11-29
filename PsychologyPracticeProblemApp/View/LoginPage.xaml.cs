@@ -3,6 +3,7 @@
  * Date: 10/18/2023
 */
 
+using PsychologyPracticeProblemApp.Model.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,15 +42,11 @@ namespace PsychologyPracticeProblemApp
             string username = UsernameEntry.Text;
             string password = PasswordEntry.Text;
 
-            // Check if username and password are entered
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {
-                await DisplayAlert("Error", "Please enter both username and password.", "OK");
-                return;
-            }
+            // Hash the entered password for comparison
+            string hashedPassword = SecurityUtil.HashPassword(password);
 
             // Retrieve user data from the database
-            User user = User.Login(username, password);
+            User user = User.Login(username, hashedPassword);
 
             if (user != null)
             {
