@@ -1,30 +1,32 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp.Model.Utility; 
+
 public static class SecurityUtil {
-
     /// <summary>
-    /// Turns a string into an encrypted form of itself
+    /// Hash the password using BCrypt
     /// </summary>
-    /// <param name="data"></param>
+    /// <param name="password"></param>
     /// <returns></returns>
-    public static string Encrypt(string data)
+    public static string HashPassword(string password)
     {
-        return "";
+        return BCrypt.Net.BCrypt.HashPassword(password);
     }
 
     /// <summary>
-    /// Reverts an encrpted string back into its normal form
+    /// Verify if the entered password matches the hashed password using BCrypt
     /// </summary>
-    /// <param name="data"></param>
+    /// <param name="enteredPassword"></param>
+    /// <param name="hashedPassword"></param>
+    ///<param name="salt"></param>
     /// <returns></returns>
-    public static string Decrypt(string data)
+    public static bool VerifyPassword(string enteredPassword, string hashedPassword)
     {
-        return "";
+        return BCrypt.Net.BCrypt.Verify(enteredPassword, hashedPassword);
     }
+
 }
-
