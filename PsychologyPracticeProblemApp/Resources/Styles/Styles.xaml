@@ -451,9 +451,10 @@
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="0"/>
     </Style>
     <Style x:Key="HeaderButton" TargetType="ImageButton">
-        <Setter Property="BackgroundColor" Value="{StaticResource Tint}"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
         <Setter Property="Source" Value="menu_button.png"/>
         <Setter Property="Padding" Value="5"/>
     </Style>
