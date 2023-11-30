@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PsychologyPracticeProblemApp.Model.Utility;
 
 namespace PsychologyPracticeProblemApp;
 
@@ -32,13 +33,17 @@ public partial class MLoginPage : ContentPage, INotifyPropertyChanged {
         ErrorMessage = "";
         string username = UsernameEntry.Text;
         string password = PasswordEntry.Text;
+        // Hash the entered password for comparison
+        string hashedPassword = SecurityUtil.HashPassword(password);
+
         if(string.IsNullOrEmpty(username))
             ErrorMessage = "Username cannot be blank!";
         else if(string.IsNullOrEmpty(password))
             ErrorMessage = "Password cannot be blank!";
         else
         {
-            User user = User.Login(username, password);
+            // Retrieve user data from the database
+            User user = User.Login(username, hashedPassword);
             if(user != null) await Navigation.PushAsync(new MProblemSelectPage());
             else ErrorMessage = "Invalid Username or Password!";
         }
