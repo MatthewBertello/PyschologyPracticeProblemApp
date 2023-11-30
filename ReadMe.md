@@ -1,5 +1,6 @@
 Sprint4 Changes:
 - Added encryption for the passwords ✅
+- Updated the example and formula images ✅
 - Made improvements to the History Page which is should be finished now ✅
 - Added Mobile version of the app
 - The core functionality of the mobile version is complete (still some polish need though). ✅
@@ -7,7 +8,7 @@ Sprint4 Changes:
 
 Needs to be Done.
 - Need to make some improvements to the UI for the mobile portion in particular the settings page.
-- Need to add dark mod to the desktop version
+- Need to add dark mode to the desktop version
 - Need to make the Stats page look better probably
 - Need to fix some general UI issues with button sizes and color. We should have most of this done by now.
 
