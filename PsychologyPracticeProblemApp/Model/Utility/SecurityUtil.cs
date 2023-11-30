@@ -7,10 +7,15 @@ using System.Security.Cryptography;
 
 namespace PsychologyPracticeProblemApp.Model.Utility;
 public static class SecurityUtil {
+   
+    /// <summary>
+    /// Encrypts the message
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
     public static string Encrypt(string message)
     {
         //salt = new Guid().ToString(); // simple random salt
-
         // message to bytes
         byte[] data = Encoding.ASCII.GetBytes(message);
         // hash the bytes
@@ -19,6 +24,7 @@ public static class SecurityUtil {
         // bytes back to string
         return Encoding.UTF8.GetString(result);
     }
+    
     /// <summary>
     /// Hash the password using BCrypt
     /// </summary>
