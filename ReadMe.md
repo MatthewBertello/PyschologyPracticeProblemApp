@@ -1,3 +1,19 @@
+Sprint4 Changes:
+- Added encryption for the passwords ✅
+- Made improvements to the History Page which is should be finished now ✅
+- Added Mobile version of the app
+- The core functionality of the mobile version is complete (still some polish need though). ✅
+- Finished the Example page ✅
+
+Needs to be Done.
+- Need to make some improvements to the UI for the mobile portion in particular the settings page.
+- Need to add dark mod to the desktop version
+- Need to make the Stats page look better probably
+- Need to fix some general UI issues with button sizes and color. We should have most of this done by now.
+
+Problem and Issues
+- had some problems with the encryption and older passwords we are probably going to remove them or try and figure out how to update the old passwords
+
 Sprint3 changes: 
 - Added login page functionality 😀
 - Added createAccount page functionality
