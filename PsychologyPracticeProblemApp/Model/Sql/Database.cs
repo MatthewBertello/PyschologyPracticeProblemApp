@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using PsychologyPracticeProblemApp.Model.Sql;
 using PsychologyPracticeProblemApp.Model.Structs;
+using PsychologyPracticeProblemApp.Model.Utility;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -76,7 +77,7 @@ public static class Database {
     private static void VerifyStartup() {
         if(hasStarted) return;
         hasStarted = true;
-
+        //RebuildTables();
         new NpgsqlCommand(SQL["CreateProblemsTable"], connection).ExecuteNonQuery();
         new NpgsqlCommand(SQL["CreateAttemptsTable"], connection).ExecuteNonQuery();
         new NpgsqlCommand(SQL["CreateUsersTable"], connection).ExecuteNonQuery();
@@ -91,15 +92,7 @@ public static class Database {
         new NpgsqlCommand(SQL["CreateAttemptsTable"], connection).ExecuteNonQuery();
         new NpgsqlCommand(SQL["CreateUsersTable"], connection).ExecuteNonQuery();
 
-        try
-        {
-            using var cmd = new NpgsqlCommand(SQL["AddAdminUser"], connection) {
-                Parameters = {
-                new() { Value = User.Admin }
-            }
-            };
-            cmd.ExecuteNonQuery();
-        } catch { }
+        AddUser("admin", "123", "admin@admin.com", "Admin", "M");
     }
     /// <summary>
     /// Take any given attempt and save it to the database
@@ -139,7 +132,7 @@ public static class Database {
     /// <param name="userID">user id</param>
     public static bool AddUser(string username, string password, string email, string firstName, string lastName)
     {
-
+        password = SecurityUtil.HashPassword(password);
         if(CheckUsernameExists(username)) return false;
         if(CheckEmailExists(email)) return false;
 
@@ -279,6 +272,7 @@ public static class Database {
     public static User GetUser(string username, string password)
     {
         Verify();
+        password = SecurityUtil.HashPassword(password);
         User user = null;
         using var cmd = new NpgsqlCommand(SQL["GetUser"], connection) {
             Parameters = {

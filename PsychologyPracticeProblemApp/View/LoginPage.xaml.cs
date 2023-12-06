@@ -42,11 +42,8 @@ namespace PsychologyPracticeProblemApp
             string username = UsernameEntry.Text;
             string password = PasswordEntry.Text;
 
-            // Hash the entered password for comparison
-            string hashedPassword = SecurityUtil.HashPassword(password);
-
             // Retrieve user data from the database
-            User user = User.Login(username, hashedPassword);
+            User user = User.Login(username, password);
 
             if (user != null)
             {

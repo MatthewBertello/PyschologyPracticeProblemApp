@@ -34,7 +34,6 @@ public partial class MLoginPage : ContentPage, INotifyPropertyChanged {
         string username = UsernameEntry.Text;
         string password = PasswordEntry.Text;
         // Hash the entered password for comparison
-        string hashedPassword = SecurityUtil.HashPassword(password);
 
         if(string.IsNullOrEmpty(username))
             ErrorMessage = "Username cannot be blank!";
@@ -43,7 +42,7 @@ public partial class MLoginPage : ContentPage, INotifyPropertyChanged {
         else
         {
             // Retrieve user data from the database
-            User user = User.Login(username, hashedPassword);
+            User user = User.Login(username, password);
             if(user != null) await Navigation.PushAsync(new MProblemSelectPage());
             else ErrorMessage = "Invalid Username or Password!";
         }

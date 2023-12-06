@@ -19,7 +19,7 @@ public partial class CreateAccount : ContentPage
         string username = UsernameEntry.Text;
         string password = PasswordEntry.Text;
         // Hash the password before saving it to the database
-        string hashedPassword = SecurityUtil.HashPassword(password);
+
         string email = EmailEntry.Text;
         string firstName = "";
         string lastName = "";
@@ -48,7 +48,7 @@ public partial class CreateAccount : ContentPage
         }
 
 	
-        bool accountCreated = Database.AddUser(username, hashedPassword, email, firstName, lastName);
+        bool accountCreated = Database.AddUser(username, password, email, firstName, lastName);
 
 
         if (accountCreated)
