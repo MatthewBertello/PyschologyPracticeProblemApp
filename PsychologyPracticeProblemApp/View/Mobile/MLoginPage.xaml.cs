@@ -73,7 +73,7 @@ public partial class MLoginPage : ContentPage, INotifyPropertyChanged {
 
     private void OnCreateAccount(object sender, EventArgs e)
     {
-
+        Task _ = Navigation.PushAsync(new MCreateAccountPage());
     }
 
 }

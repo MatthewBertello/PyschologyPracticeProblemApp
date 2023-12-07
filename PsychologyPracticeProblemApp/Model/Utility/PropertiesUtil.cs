@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PsychologyPracticeProblemApp.Model.Utility;
 /* TODO:
- * Login -> save password
- * Create Account
- * Figure out how to save/load mobile files
+ *XLogin -> save password
+ *XCreate Account
+ *XFigure out how to save/load mobile files
  * 
  * 
  * SETTINGS:

@@ -33,7 +33,7 @@ public partial class MHistoryPage : ContentPage {
         inclusion |= chDependent.IsChecked ? MHistoryViewModel.DEPENDENT : 0;
         inclusion |= chIndendent.IsChecked ? MHistoryViewModel.INDEPENDENT : 0;
         inclusion |= chZScore.IsChecked ? MHistoryViewModel.Z_SCORE : 0;
-        Debug.WriteLine(inclusion.ToString());
+
         VM.UpdateHistory(inclusion);
         //RadioButton rb = sender as RadioButton;
         //choiceTextBlock.Text = "You chose: " + rb.GroupName + ": " + rb.Name;
