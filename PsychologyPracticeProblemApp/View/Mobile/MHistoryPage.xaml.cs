@@ -7,6 +7,7 @@ using PsychologyPracticeProblemApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,16 +22,18 @@ public partial class MHistoryPage : ContentPage {
         VM = new();
         InitializeComponent();
         BindingContext = VM;
+        chStandard.IsChecked = chOneSample.IsChecked = chDependent.IsChecked = chIndendent.IsChecked = chZScore.IsChecked = true;
     }
 
     private void OnCheck(object sender, EventArgs e)
     {
         int inclusion = 0;
-        inclusion |= ChStandard.IsChecked ? MHistoryViewModel.STANDARD : 0;
-        inclusion |= ChOneSample.IsChecked ? MHistoryViewModel.ONE_SAMPLE : 0;
-        inclusion |= ChDependent.IsChecked ? MHistoryViewModel.DEPENDENT : 0;
-        inclusion |= ChIndendent.IsChecked ? MHistoryViewModel.INDEPENDENT : 0;
-        inclusion |= ChZScore.IsChecked ? MHistoryViewModel.Z_SCORE : 0;
+        inclusion |= chStandard.IsChecked ? MHistoryViewModel.STANDARD : 0;
+        inclusion |= chOneSample.IsChecked ? MHistoryViewModel.ONE_SAMPLE : 0;
+        inclusion |= chDependent.IsChecked ? MHistoryViewModel.DEPENDENT : 0;
+        inclusion |= chIndendent.IsChecked ? MHistoryViewModel.INDEPENDENT : 0;
+        inclusion |= chZScore.IsChecked ? MHistoryViewModel.Z_SCORE : 0;
+        Debug.WriteLine(inclusion.ToString());
         VM.UpdateHistory(inclusion);
         //RadioButton rb = sender as RadioButton;
         //choiceTextBlock.Text = "You chose: " + rb.GroupName + ": " + rb.Name;
@@ -38,14 +41,14 @@ public partial class MHistoryPage : ContentPage {
     private void OnCheckAll(object sender, EventArgs e)
     {
         bool toSet = true;
-        if(ChStandard.IsChecked && ChOneSample.IsChecked && ChDependent.IsChecked
-            && ChIndendent.IsChecked && ChZScore.IsChecked)
+        if(chStandard.IsChecked && chOneSample.IsChecked && chDependent.IsChecked
+            && chIndendent.IsChecked && chZScore.IsChecked)
             toSet = false;
-        ChStandard.IsChecked = toSet;
-        ChOneSample.IsChecked = toSet;
-        ChDependent.IsChecked = toSet;
-        ChIndendent.IsChecked = toSet;
-        ChZScore.IsChecked = toSet;
+        chStandard.IsChecked = toSet;
+        chOneSample.IsChecked = toSet;
+        chDependent.IsChecked = toSet;
+        chIndendent.IsChecked = toSet;
+        chZScore.IsChecked = toSet;
     }
 
     private void OnProblems(object sender, EventArgs e)
@@ -77,4 +80,5 @@ public partial class MHistoryPage : ContentPage {
             Navigation.RemovePage(this);
         }
     }
+
 }

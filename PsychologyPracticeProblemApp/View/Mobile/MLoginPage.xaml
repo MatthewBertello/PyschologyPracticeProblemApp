@@ -14,20 +14,23 @@
         <Label Text="Login" Style="{StaticResource Title}"/>
 
         <ScrollView Style="{StaticResource TitleInner}">
-            <Grid RowDefinitions="*,*,*,*,*,*,*,*">
-                <Label Grid.Row="0" Text="Statistics" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" FontSize="35"/>
-                <Label Grid.Row="1" Text="Practice" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" FontSize="35"/>
-                <Frame Grid.Row="2" Padding="10,0" VerticalOptions="CenterAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}">
+            <Grid RowDefinitions="*,*,*,.5*,*,*,*,.5*">
+                <Label Grid.Row="0" Text="Statistics Practice" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" FontSize="35"/>
+                <Frame Grid.Row="1" Padding="10,0" VerticalOptions="CenterAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}">
                     <Entry Placeholder="Username" x:Name="UsernameEntry"/>
                 </Frame>
-                <Frame Grid.Row="3" Padding="10,0" VerticalOptions="CenterAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}">
+                <Frame Grid.Row="2" Padding="10,0" VerticalOptions="CenterAndExpand" BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}">
                     <Entry Placeholder="Password" x:Name="PasswordEntry" IsPassword="True" TextColor="{AppThemeBinding Light={StaticResource TextNormal}, Dark={StaticResource TextNormalDark}}"/>
                 </Frame>
 
+                <Label Grid.Row="3" Text="{Binding ErrorMessage}" Style="{StaticResource Error}"/>
                 <Button Grid.Row="4" Text="Login" VerticalOptions="CenterAndExpand" Clicked="OnLogin"/>
                 <Button Grid.Row="5" Text="Create Account" VerticalOptions="CenterAndExpand" Clicked="OnCreateAccount"/>
                 <Button Grid.Row="6" Text="Use as guest" VerticalOptions="CenterAndExpand" Clicked="OnGuest"/>
-                <Label Grid.Row="7" Text="{Binding ErrorMessage}" Style="{StaticResource Error}"/>
+                <Grid ColumnDefinitions="Auto,*" Grid.Row="7">
+                    <CheckBox x:Name="rememberUserCheckbox" Grid.Column="0" Margin="75,0,0,0"/>
+                    <Label Text="Remember Credentials" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center"/>
+                </Grid>
             </Grid>
         </ScrollView>
     </Grid>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,31 +45,32 @@ class PropertiesUtil {
         string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), propFile);
         using(var writer = File.CreateText(fileName))
         {
-            await writer.WriteLineAsync(DataToFile("StayLoggedIn", StayLoggedIn.ToString()));
-            await writer.WriteLineAsync(DataToFile("DarkMode", DarkMode.ToString()));
-            await writer.WriteLineAsync(DataToFile("SavedUser", SavedUser));
+            await writer.WriteLineAsync(DataToFile("StayLoggedIn",  StayLoggedIn.ToString()));
+            await writer.WriteLineAsync(DataToFile("DarkMode",      DarkMode.ToString()));
+            await writer.WriteLineAsync(DataToFile("SavedUser",     SavedUser));
             await writer.WriteLineAsync(DataToFile("SavedPassword", SavedPassword));
-            await writer.WriteLineAsync(DataToFile("DatasetCount", DatasetCount.ToString()));
-            await writer.WriteLineAsync(DataToFile("DatasetMin", DatasetMin.ToString()));
-            await writer.WriteLineAsync(DataToFile("DatasetMax", DatasetMax.ToString()));
-            await writer.WriteLineAsync(DataToFile("HistoryCount", HistoryCount.ToString()));
+            await writer.WriteLineAsync(DataToFile("DatasetCount",  DatasetCount.ToString()));
+            await writer.WriteLineAsync(DataToFile("DatasetMin",    DatasetMin.ToString()));
+            await writer.WriteLineAsync(DataToFile("DatasetMax",    DatasetMax.ToString()));
+            await writer.WriteLineAsync(DataToFile("HistoryCount",  HistoryCount.ToString()));
         }
     }
     private static String DataToFile(string propName, string val)
     {
         return propName + "=" + val;
     }
-    public static async void Load()
+    public static async Task Load()
     {
         var fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), propFile);
 
-        if(fileName == null || !System.IO.File.Exists(fileName)) return;
-
+        if(fileName == null || !File.Exists(fileName)) return;
+        Debug.WriteLine(fileName);
         using(var reader = new StreamReader(fileName, true))
         {
             string line;
             while((line = await reader.ReadLineAsync()) != null)
             {
+                Debug.WriteLine(line);
                 string[] parts = line.Split('=');
                 switch(parts[0])
                 {
