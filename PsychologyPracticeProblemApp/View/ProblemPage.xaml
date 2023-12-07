@@ -50,17 +50,17 @@
                             <Label Text="{Binding Input2}" TextColor="Black" FontSize="14" VerticalOptions="Center" HorizontalOptions="Start" Padding="0" Margin="0"/>
                         </Border>
                         <Button Grid.Row="2" Text="Generate New Problem" TextColor="Black" VerticalOptions="Start" Grid.ColumnSpan="3"
-                        HorizontalOptions="Center" BackgroundColor="{StaticResource Tint}"
-                        MaximumWidthRequest="500" WidthRequest="200" Clicked="OnRegenerateClicked"/>
+                        HorizontalOptions="Center" BackgroundColor="LightBlue"
+                        MaximumWidthRequest="500" WidthRequest="300" Clicked="OnRegenerateClicked"/>
 
                     </Grid>
                 </Border>
                 <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="*,50,*">
                     <Border Stroke="Black" StrokeShape="RoundRectangle 25" >
-                        <Image x:Name="FormulaImage" Source="defaultformula.png"  Aspect="AspectFit" HeightRequest="650" WidthRequest="500" HorizontalOptions="Center" />
+                        <Image x:Name="FormulaImage" Source="defaultformula.png"  Aspect="AspectFit" HeightRequest="300" WidthRequest="300" HorizontalOptions="Center" />
                     </Border>
                     <Grid Grid.Row="1" ColumnDefinitions="*,*,50">
-                        <Button Text="See Example" Clicked="OnSeeExampleClicked" TextColor="Black" BackgroundColor="{StaticResource Tint}"/>
+                        <Button Text="See Example" Clicked="OnSeeExampleClicked" TextColor="Black" BackgroundColor="LightBlue"/>
                         <Border Grid.Column="1" Stroke="Black" StrokeShape="RoundRectangle 5" Padding="0" IsVisible="{Binding NotShowCorrectAnswer}">
                             <Entry x:Name="AnswerEntry"  MaxLength="6" Text="0" TextColor="Black" HorizontalOptions="Center" FontSize="Medium" Placeholder="Answer"/>
                         </Border>

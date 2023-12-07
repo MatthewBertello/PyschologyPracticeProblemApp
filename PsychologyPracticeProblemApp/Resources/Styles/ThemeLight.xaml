@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <?xaml-comp compile="true" ?>
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="PsychologyPracticeProblemApp.Colors">
+    x:Class="PsychologyPracticeProblemApp.ThemeLight">
 
     <Color x:Key="Primary">#512BD4</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
@@ -21,16 +21,16 @@
     <Color x:Key="Valid">#92D050</Color>
     <Color x:Key="Invalid">#FF5050</Color>
 
-    <Color x:Key="BackgroundDark">Black</Color>
-    <Color x:Key="BackgroundTintDark">White</Color>
-    <Color x:Key="TintDark">#517AC4</Color>
+    <Color x:Key="BackgroundDark">#191919</Color>
+    <Color x:Key="BackgroundTintDark">#232323</Color>
+    <Color x:Key="TintDark">#474747</Color>
     <Color x:Key="TintHighlightDark">#00B0F0</Color>
-    <Color x:Key="TintDisabledDark">#00B0F0</Color>
-    <Color x:Key="TextNormalDark">#00B0F0</Color>
-    <Color x:Key="TextOverlayDark">#00B0F0</Color>
-    <Color x:Key="TextDisabledDark">#00B0F0</Color>
-    <Color x:Key="ValidDark">#92D050</Color>
-    <Color x:Key="InvalidDark">#FF5050</Color>
+    <Color x:Key="TintDisabledDark">#74707C</Color>
+    <Color x:Key="TextNormalDark">#FFF7AE</Color>
+    <Color x:Key="TextOverlayDark">#FFF7AE</Color>
+    <Color x:Key="TextDisabledDark">#594A41</Color>
+    <Color x:Key="ValidDark">#1F6856</Color>
+    <Color x:Key="InvalidDark">#ED254E</Color>
 
     <Color x:Key="TintLight">#00B0F0</Color>
 

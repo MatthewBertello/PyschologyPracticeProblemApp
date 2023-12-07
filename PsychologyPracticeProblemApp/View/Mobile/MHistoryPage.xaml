@@ -39,7 +39,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="local:HistoryLog">
                             <ViewCell>
-                                <Border Margin="0,0,0,5" BackgroundColor="{AppThemeBinding Light={StaticResource Tint}, Dark={StaticResource TinTDark}}" Padding="0">
+                                <Border Margin="0,0,0,5" BackgroundColor="{AppThemeBinding Light={StaticResource Tint}, Dark={StaticResource TintDark}}" Padding="0">
                                     <Grid ColumnDefinitions="50,3*,2*,Auto" RowDefinitions="*,*" Padding="0,0,10,0">
                                         <ImageButton Source="Ico_Retry.png" WidthRequest="50" Grid.RowSpan="2" Padding="5" Opacity=".7" IsVisible="{Binding IsNotCorrect}"
                                                      Command="{Binding RetryCommand}"/>

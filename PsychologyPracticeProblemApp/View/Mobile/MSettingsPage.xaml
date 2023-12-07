@@ -13,8 +13,9 @@
         <!-- <ImageButton Style="{StaticResource TitleBack}" /> -->
 
         <ScrollView Style="{StaticResource TitleInner}">
-            <Grid>
+            <Grid RowDefinitions="50,50">
                 <Button Text="Logout" Clicked="OnLogout"/>
+                <Button Text="Dark" Clicked="OnThemeChange" Grid.Row="1"/>
             </Grid>
         </ScrollView>
 
