@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maui.ApplicationModel.DataTransfer;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,12 +14,11 @@ namespace PsychologyPracticeProblemApp.Model.Utility;
  * 
  * 
  * SETTINGS:
- * Toggle Dark Mode
+ *XToggle Dark Mode
  * Change DataSet Count
  * Change DataSet Min / Max
- * Change History Count
+ *XChange History Count
  * Set new password
- * Set new username
  * 
  * ADMIN SETTINGS:
  * Clear global history
@@ -59,6 +59,10 @@ class PropertiesUtil {
     {
         return propName + "=" + val;
     }
+    public static void UpdateTheme()
+    {
+        App.Current.UserAppTheme = DarkMode ? AppTheme.Dark : AppTheme.Light;
+    }
     public static async Task Load()
     {
         var fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), propFile);
@@ -85,6 +89,6 @@ class PropertiesUtil {
                 }
             }
         }
-
+        UpdateTheme();
     }
 }

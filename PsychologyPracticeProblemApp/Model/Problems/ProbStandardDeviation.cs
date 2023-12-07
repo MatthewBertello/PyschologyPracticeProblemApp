@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PsychologyPracticeProblemApp.Model.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,9 @@ public class ProbStandardDeviation : IProblem {
 
     public override DataSet GenData()
     {
-        int count = (int) StatsUtil.GenRandomValue(10, 10);
-        return new DataSet(StatsUtil.GenRandomData(count, 0, 10));
+
+        return new DataSet(
+            StatsUtil.GenRandomData(PropertiesUtil.DatasetCount, PropertiesUtil.DatasetMin, PropertiesUtil.DatasetMax));
     }
 
     public override double Solve(DataSet dataSet)

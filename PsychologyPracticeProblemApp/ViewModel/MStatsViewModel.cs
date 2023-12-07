@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PsychologyPracticeProblemApp.Model.Utility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ public class MStatsViewModel : CoreViewModel {
     public String ZScore_Date => String.Format("Last Attempt: {0}", mostRecent[IProblem.ZScore.Id]?.ToString(dateFormat) ?? "");
 
 
-    private int recordCount = 10;
+    private int recordCount => PropertiesUtil.HistoryCount;
     private LinkedList<HistoryLog> historyLogs;
 
     private int[] correct = new int[6];
@@ -51,6 +52,7 @@ public class MStatsViewModel : CoreViewModel {
         historyLogs = Database.GetHistoryAll(User.Current.Id);
         foreach(HistoryLog log in historyLogs)
         {
+            if(total[log.Problem.Id] >= recordCount) continue;
             total[log.Problem.Id]++;
             correct[log.Problem.Id] += log.IsCorrect ? 1 : 0;
 

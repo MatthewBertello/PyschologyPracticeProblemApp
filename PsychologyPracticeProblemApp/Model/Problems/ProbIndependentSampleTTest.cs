@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PsychologyPracticeProblemApp.Model.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,9 @@ public class ProbIndependentSampleTTest : IProblem {
 
     public override DataSet GenData()
     {
-        int countA = (int)StatsUtil.GenRandomValue(7, 10);
-        int countB = (int)StatsUtil.GenRandomValue(7, 10);
         return new DataSet(
-            StatsUtil.GenRandomData(countA, 5, 20),
-            StatsUtil.GenRandomData(countB, 5, 20)
+            StatsUtil.GenRandomData(PropertiesUtil.DatasetCount, PropertiesUtil.DatasetMin, PropertiesUtil.DatasetMax),
+            StatsUtil.GenRandomData(PropertiesUtil.DatasetCount, PropertiesUtil.DatasetMin, PropertiesUtil.DatasetMax)
             );
     }
 

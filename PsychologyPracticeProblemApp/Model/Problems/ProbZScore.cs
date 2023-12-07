@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PsychologyPracticeProblemApp.Model.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,11 @@ namespace PsychologyPracticeProblemApp;
 public class ProbZScore : IProblem {
     public override DataSet GenData()
     {
-        int v = (int)StatsUtil.GenRandomValue(7, 10);
         return new DataSet(
-            StatsUtil.GenRandomData(v, 0, 10),
+            StatsUtil.GenRandomData(PropertiesUtil.DatasetCount, PropertiesUtil.DatasetMin, PropertiesUtil.DatasetMax),
             null,
-            StatsUtil.GenRandomValue(5,15),
-            StatsUtil.GenRandomValue(5,15)
+            StatsUtil.GenRandomValue(PropertiesUtil.DatasetMin, PropertiesUtil.DatasetMax),
+            StatsUtil.GenRandomValue(PropertiesUtil.DatasetMin, PropertiesUtil.DatasetMax)
             );
     }
 

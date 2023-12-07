@@ -3,6 +3,7 @@
  * Date: 10/18/2023
 */
 
+using PsychologyPracticeProblemApp.Model.Utility;
 using PsychologyPracticeProblemApp.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ public partial class MSettingsPage : ContentPage {
         VM = new(this);
         InitializeComponent();
         BindingContext = VM;
+        SetTheme(PropertiesUtil.DarkMode);
     }
 
     private void OnLogout(object sender, EventArgs e)
@@ -29,7 +31,15 @@ public partial class MSettingsPage : ContentPage {
     }
     private void OnThemeChange(object sender, EventArgs e)
     {
-        App.Current.UserAppTheme = AppTheme.Dark;
+        bool newTheme = !PropertiesUtil.DarkMode;
+        SetTheme(newTheme);
+        PropertiesUtil.Save();
+    }
+    private void SetTheme(bool isDark)
+    {
+        PropertiesUtil.DarkMode = isDark;
+        PropertiesUtil.UpdateTheme();
+        themeButton.Source = isDark ? "ico_dark.png" : "ico_light.png";
     }
 
     private void OnProblems(object sender, EventArgs e)
@@ -61,4 +71,13 @@ public partial class MSettingsPage : ContentPage {
             Navigation.RemovePage(this);
         }
     }
+
+    private void dsCountUp(object sender, EventArgs e) { VM.ChangeDSCount(1); }
+    private void dsCountDown(object sender, EventArgs e) { VM.ChangeDSCount(-1); }
+    private void dsMinUp(object sender, EventArgs e) { VM.ChangeDSMin(1); }
+    private void dsMinDown(object sender, EventArgs e) { VM.ChangeDSMin(-1); }
+    private void dsMaxUp(object sender, EventArgs e) { VM.ChangeDSMax(1); }
+    private void dsMaxDown(object sender, EventArgs e) { VM.ChangeDSMax(-1); }
+    private void histUp(object sender, EventArgs e) { VM.ChangeHistoryCount(1); }
+    private void histDown(object sender, EventArgs e) { VM.ChangeHistoryCount(-1); }
 }
