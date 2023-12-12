@@ -9,6 +9,8 @@ namespace PsychologyPracticeProblemApp.Model.Sql;
 public class DatabaseCache {
     private static Dictionary<Guid, LinkedList<HistoryLog>> History { get; set; } = new();
     private static Dictionary<Guid, Boolean> Dirty { get; set; } = new();
+    private static LinkedList<User> UserList { get; set; } = null;
+    public static Boolean DirtyUsers { get; set; } = true;
     private static void Verify(Guid guid)
     {
         if(!History.ContainsKey(guid)) History[guid] = new();
@@ -41,6 +43,29 @@ public class DatabaseCache {
             Dirty[userID] = false;
         }
         return History[userID];
+    }
+    public static LinkedList<User> GetUsers(NpgsqlConnection connection)
+    {
+        if(DirtyUsers)
+        {
+            DirtyUsers = false;
+            UserList = new LinkedList<User>();
+            using var cmd = new NpgsqlCommand(Database.SQL["GetAllUsers"], connection);
+            NpgsqlDataReader reader = cmd.ExecuteReader();
+            while(reader.Read())
+            {
+                User user = new User(
+                        (Guid)reader.GetValue(0),
+                        (string)reader.GetValue(1),
+                        (string)reader.GetValue(2),
+                        (string)reader.GetValue(3),
+                        (string)reader.GetValue(4)
+                    );
+                if(user.Id != User.Admin)
+                    UserList.AddLast(user);
+            }
+        }
+        return UserList;
     }
     public static void SetDirty(Guid userID)
     {

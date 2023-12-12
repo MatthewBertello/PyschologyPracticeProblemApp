@@ -9,7 +9,7 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextNormal}, Dark={StaticResource TextNormalDark}}" />
         <Setter Property="HeightRequest" Value="100" />
     </Style>
-
+    
     <Style TargetType="Image"
        Class="FlyoutItemImageStyle">
         <Setter Property="Aspect"

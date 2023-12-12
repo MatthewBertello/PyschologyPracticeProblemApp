@@ -24,11 +24,14 @@ public static class Database {
         { "InsertProblem", "INSERT INTO problem (problemType, xValues, yValues, inputA, inputB) VALUES ($1, $2, $3, $4, $5) RETURNING id" },
         { "InsertAttempt", "INSERT INTO attempt (userId, problemType, xValues, yValues, inputA, inputB, answer, date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id" },
         { "InsertUser", "INSERT INTO account (username, password, firstName, lastName, email) VALUES ($1, $2, $3, $4, $5) RETURNING id" },
+        { "InsertUserGuid", "INSERT INTO account (id, username, password, firstName, lastName, email) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id" },
         { "GetPastAttempts", "SELECT attempt.answer, problem.xValues, problem.yValues, problem.inputA, problem.inputB, attempt.date FROM attempt, problem WHERE attempt.problemId = problem.id and attempt.userId = $1 AND problem.problemType = $2" },
         { "GetAllPastAttempts", "SELECT attempt.problemType, answer, xValues, yValues, inputA, inputB, date FROM attempt WHERE userId = $1" },
         { "GetUser", "SELECT id, firstName, lastName, email FROM account WHERE username = $1 AND password = $2" },
+        { "GetAllUsers", "SELECT id, firstName, lastName, email, username FROM account" },
         { "GetUsernameExists", "SELECT id FROM account WHERE username = $1" },
         { "GetEmailExists", "SELECT id FROM account WHERE email = $1" },
+        { "RemoveUser", "DELETE FROM account WHERE username = $1" },
     };
 
     /// <summary>
@@ -84,16 +87,25 @@ public static class Database {
     }
     public static void RebuildTables()
     {
+        RebuildHistory();
+        Verify();
+        // drop users
+        new NpgsqlCommand(SQL["DropUsersTable"], connection).ExecuteNonQuery();
+        // add users
+        new NpgsqlCommand(SQL["CreateUsersTable"], connection).ExecuteNonQuery();
+        AddUser("admin", "123", "admin@admin.com", "Admin", "M", User.Admin);
+    }
+    public static void RebuildHistory()
+    {
+        Verify();
+        // remove
         new NpgsqlCommand(SQL["DropProblemsTable"], connection).ExecuteNonQuery();
         new NpgsqlCommand(SQL["DropAttemptsTable"], connection).ExecuteNonQuery();
-        new NpgsqlCommand(SQL["DropUsersTable"], connection).ExecuteNonQuery();
-
+        // remake
         new NpgsqlCommand(SQL["CreateProblemsTable"], connection).ExecuteNonQuery();
         new NpgsqlCommand(SQL["CreateAttemptsTable"], connection).ExecuteNonQuery();
-        new NpgsqlCommand(SQL["CreateUsersTable"], connection).ExecuteNonQuery();
-
-        AddUser("admin", "123", "admin@admin.com", "Admin", "M");
     }
+
     /// <summary>
     /// Take any given attempt and save it to the database
     /// </summary>
@@ -130,7 +142,7 @@ public static class Database {
     /// <param name="dataSet">the data set of inputs</param>
     /// <param name="yourAnswer">what the user answered</param>
     /// <param name="userID">user id</param>
-    public static bool AddUser(string username, string password, string email, string firstName, string lastName)
+    public static bool AddUser(string username, string password, string email, string firstName, string lastName, Guid? guid=null)
     {
         password = SecurityUtil.HashPassword(password);
         if(CheckUsernameExists(username)) return false;
@@ -141,18 +153,33 @@ public static class Database {
         // Add user
         try
         {
-            Guid probID;
             {
-                using var cmd = new NpgsqlCommand(SQL["InsertUser"], connection) {
-                    Parameters = {
+                if(guid == null)
+                {
+                    using var cmd = new NpgsqlCommand(SQL["InsertUser"], connection) {
+                        Parameters = {
                         new() { Value = username },
                         new() { Value = password },
                         new() { Value = firstName },
                         new() { Value = lastName },
                         new() { Value = email },
                     }
-                };
-                probID = (Guid) cmd.ExecuteScalar();
+                    };
+                    guid = (Guid)cmd.ExecuteScalar();
+                } else
+                {
+                    using var cmd = new NpgsqlCommand(SQL["InsertUserGuid"], connection) {
+                        Parameters = {
+                        new() { Value = guid },
+                        new() { Value = username },
+                        new() { Value = password },
+                        new() { Value = firstName },
+                        new() { Value = lastName },
+                        new() { Value = email },
+                    }
+                    };
+                    guid = (Guid)cmd.ExecuteScalar();
+                }
             }
         } catch { return false; }
         return true;
@@ -181,10 +208,32 @@ public static class Database {
     /// <param name="userID">user id</param>
     /// <param name="type">type of problem to retrieve</param>
     /// <returns>a list of attempts</returns>
-    public static LinkedList<HistoryLog> GetHistoryAll (Guid? userID=null)
+    public static LinkedList<HistoryLog> GetHistoryAll(Guid? userID = null)
     {
         Verify();
         return DatabaseCache.GetHistory(userID ?? User.Current.Id, connection);
+    }
+    public static void RemoveUser(String username)
+    {
+        Verify();
+        try
+        {
+            using var cmd = new NpgsqlCommand(SQL["RemoveUser"], connection) {
+                Parameters = {
+                    new() { Value = username }
+                }
+            };
+            cmd.ExecuteNonQuery();
+        } catch { }
+    }
+    /// <summary>
+    /// Gets a list of all users (excluding admin)
+    /// </summary>
+    /// <returns></returns>
+    public static LinkedList<User> GetUsersAll()
+    {
+        Verify();
+        return DatabaseCache.GetUsers(connection);
     }
 
 

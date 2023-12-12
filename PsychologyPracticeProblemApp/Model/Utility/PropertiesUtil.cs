@@ -15,8 +15,8 @@ namespace PsychologyPracticeProblemApp.Model.Utility;
  * 
  * SETTINGS:
  *XToggle Dark Mode
- * Change DataSet Count
- * Change DataSet Min / Max
+ *XChange DataSet Count
+ *XChange DataSet Min / Max
  *XChange History Count
  * Set new password
  * 

@@ -80,4 +80,26 @@ public partial class MSettingsPage : ContentPage {
     private void dsMaxDown(object sender, EventArgs e) { VM.ChangeDSMax(-1); }
     private void histUp(object sender, EventArgs e) { VM.ChangeHistoryCount(1); }
     private void histDown(object sender, EventArgs e) { VM.ChangeHistoryCount(-1); }
+
+    private async void ResetGlobalHistory(object sender, EventArgs e) {
+        bool delete = await DisplayAlert("Reset Global History!", "Resetting all users history cannot be undone.\nDelete anyways?", "Delete", "Cancel");
+        if(delete)
+            Database.RebuildHistory();
+    }
+    private async void ResetGlobalUsers(object sender, EventArgs e)
+    {
+        bool delete = await DisplayAlert("Delete all users!", "Deleting all users cannot be undone.\nDelete anyways?", "Delete", "Cancel");
+        if(delete)
+            Database.RebuildTables();
+    }
+    
+    private void OnRefresh(object sender, EventArgs e)
+    {
+        Model.Sql.DatabaseCache.DirtyUsers = true;
+        VM.UpdateUserList();
+    }
+    private void ViewAllStats(object sender, EventArgs e)
+    {
+
+    }
 }

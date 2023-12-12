@@ -10,25 +10,28 @@ public class User {
     public static Guid Admin => new(new byte[] {1, 2, 4, 8, 16, 32, 16, 8, 4, 2, 1, 2, 4, 8, 16, 32}); // did not pick these numbers for any particular reason.
     public static User Current { get; private set; } = null;
     public static string Error { get; private set; } = string.Empty;
+    public string Username { get; private set; } = string.Empty;
 
 
     private Guid id;
     private string firstName, lastName, email;
 
-    public String DisplayName => firstName;
+    public String DisplayName => String.Format("{0}, {1}", firstName, lastName[0]);
     public String Email => email;
     public String FirstName => firstName;
-    public String LastName => firstName;
+    public String LastName => lastName;
     public Guid Id => id;
 
 
-    public User() {}
-    public User(Guid id, string firstName, string lastName, string email)
+    public User() { }
+    public User(Guid id, string firstName, string lastName, string email) : this(id, firstName, lastName, email, "") { }
+    public User(Guid id, string firstName, string lastName, string email, string username)
     {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.Username = username;
     }
     /// <summary>
     /// Attempts to login user based on username and password.
