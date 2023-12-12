@@ -64,27 +64,27 @@
                 <Button Text="Logout" Clicked="OnLogout" Grid.Row="5"/>
 
                 <!-- ADMIN STUFF -->
-                <Grid Grid.Row="6" RowDefinitions="40,30,50,50,50,30,200" IsVisible="{Binding IsAdmin}" RowSpacing="5">
+                <Grid Grid.Row="6" RowDefinitions="40,30,50,50,30,200" IsVisible="{Binding IsAdmin}" RowSpacing="5">
                     <Label Text="Admin Settings" FontSize="24" FontAttributes="Bold" TextDecorations="Underline" Padding="0"/>
                     <Label Grid.Row="1" Text="Global Database Functions" FontSize="18" Padding="0" Margin="0"/>
                     <Button Grid.Row="2" CornerRadius="5" Text="Reset Global History" FontFamily="Roboto" Clicked="ResetGlobalHistory"/>
                     <Button Grid.Row="3" CornerRadius="5" Text="Reset Global Users" FontFamily="Roboto" Clicked="ResetGlobalUsers"/>
-                    <Button Grid.Row="4" CornerRadius="5" Text="View All Stats" FontFamily="Roboto" Clicked="ViewAllStats"/>
-                    <Grid ColumnDefinitions="2*,*" Grid.Row="5">
+                    <!--<Button Grid.Row="4" CornerRadius="5" Text="View All Stats" FontFamily="Roboto" Clicked="ViewAllStats"/>-->
+                    <Grid ColumnDefinitions="2*,*" Grid.Row="4">
                         <Label Text="Users" FontSize="18" Padding="0" Margin="0"/>
                         <Button Grid.Column="1" CornerRadius="5" Text="Refresh" Padding="0" Clicked="OnRefresh"/>
                     </Grid>
-                        <Frame Grid.Row="6" Padding="0,5,0,5" HasShadow="False"   BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}">
+                    <Frame Grid.Row="5" Padding="0,5,0,5" HasShadow="False"   BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}">
                         <ScrollView>
                             <ListView x:Name="UsersListView" ItemsSource="{Binding UsersList}" SelectionMode="None"
                                 SeparatorVisibility="None" RowHeight="25" Margin="0" VerticalScrollBarVisibility="Never">
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="viewmodel:UserModel">
                                         <ViewCell>
-                                            <Grid ColumnDefinitions="2*,*,25" Margin="5,0">
+                                            <Grid ColumnDefinitions="2*,*,25" Margin="2,0">
                                                 <Rectangle BackgroundColor="{AppThemeBinding Light={StaticResource Background}, Dark={StaticResource BackgroundDark}}" IsVisible="{Binding IsEven}" Grid.ColumnSpan="4"/>
                                                 <Rectangle BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundTint}, Dark={StaticResource BackgroundTintDark}}" IsVisible="{Binding IsOdd}" Grid.ColumnSpan="4"/>
-                                                <Label Text="{Binding Name}" VerticalOptions="Center" />
+                                                <Label Text="{Binding Name}" VerticalOptions="Center" Margin="5,0"/>
                                                 <Label Text="{Binding Username}" VerticalOptions="Center" Grid.Column="1"/>
                                                 <!--<ImageButton Source="{AppThemeBinding Light=ico_view.png, Dark=ico_view_dark.png}" Grid.Column="2" Margin="3"/>-->
                                                 <ImageButton Source="{AppThemeBinding Light=ico_trash.png, Dark=ico_trash_dark.png}" Grid.Column="2" Margin="3" Command="{Binding OnDeleteCommand}"/>
