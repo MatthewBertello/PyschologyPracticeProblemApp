@@ -16,7 +16,7 @@ public class User {
     private Guid id;
     private string firstName, lastName, email;
 
-    public String DisplayName => String.Format("{0}, {1}", firstName, lastName[0]);
+    public String DisplayName => String.Format("{0}, {1}", firstName, lastName);
     public String Email => email;
     public String FirstName => firstName;
     public String LastName => lastName;
