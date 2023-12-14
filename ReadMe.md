@@ -1,3 +1,20 @@
+Final Submission:
+- Settings in the mobile version is finished  ✅
+- Added some more features to the Settings page ✅
+- improved the UI of the settings page
+- updated the problems to have more decimal places based on client feedback ✅
+- Added a admin features ✅
+- Admin has ability to remove uses ✅
+- fixed some other sizing issues with our UI ✅
+  
+Needs to be Done.
+- We should be finished ✅
+
+Problem and Issues
+- We had some issues with some with getting the problems to work correctly but overall we got it working.
+
+----------------------------------------------------------------------------------------------------------
+
 Sprint4 Changes:
 - Added encryption for the passwords ✅
 - Updated the example and formula images ✅
