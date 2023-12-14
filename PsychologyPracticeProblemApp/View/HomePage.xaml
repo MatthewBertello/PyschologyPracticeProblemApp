@@ -28,10 +28,10 @@
                     <VerticalStackLayout Margin="20" Spacing="20">
                         <Label TextColor="Black" Text="Practice Problems" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="EndAndExpand"/>
                         <Button Style="{StaticResource HomeButton}" Text="Standard Deviation" Clicked="OnStandard"/>
+                        <Button Style="{StaticResource HomeButton}" Text="Sample Z-Score" Clicked="OnZScore"/>
                         <Button Style="{StaticResource HomeButton}" Text="One Sample T-Test" Clicked="OnOneSample"/>
-                        <Button Style="{StaticResource HomeButton}" Text="Dependent Sample T-Test" Clicked="OnDependent"/>
                         <Button Style="{StaticResource HomeButton}" Text="Independent Sample T-Test" Clicked="OnIndependent"/>
-                        <Button Style="{StaticResource HomeButton}" Text="Z-Score" Clicked="OnZScore"/>
+                        <Button Style="{StaticResource HomeButton}" Text="Dependent Sample T-Test" Clicked="OnDependent"/>
                     </VerticalStackLayout>
                 </Frame>
             </ScrollView>
